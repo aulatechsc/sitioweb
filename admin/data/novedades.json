@@ -1,0 +1,83 @@
+[
+  {
+    "slug": "visita-ilustradora",
+    "href": "novedad-visita-ilustradora.html",
+    "title": "Visita Ilustradora",
+    "cat": "Académico",
+    "date": "Junio 2026",
+    "img": "img/novedades/1781895577424_WhatsApp_Image_2026-06-10_at_18.22.32__1_.jpeg",
+    "excerpt": "Como parte de nuestro Plan Institucional de Lectura, buscamos que chicos y chicas puedan acercarse no solo a las historias que leen, sino también a las personas que las hacen posibles. Descubrir cómo nace un libro, desde la escritura hasta la ilustración, enriquece la experiencia lectora y abre nuevas puertas a la imaginación."
+  },
+  {
+    "slug": "cambridge",
+    "href": "novedad-cambridge.html",
+    "img": "https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2026/04/img-20260331-wa0011-300x225.jpg",
+    "cat": "Académico",
+    "date": "Abril 2026",
+    "title": "Exámenes Internacionales Cambridge",
+    "excerpt": "Entregamos a nuestros estudiantes sus certificados de KET, PET, First y Advanced. 82 alumnos rindieron los exámenes de Cambridge en noviembre y diciembre de 2025."
+  },
+  {
+    "slug": "celulares",
+    "href": "novedad-celulares.html",
+    "img": "img/novedades/uso-celulares.png",
+    "cat": "Institucional",
+    "date": "Marzo 2026",
+    "title": "Entorno libre de dispositivos móviles",
+    "excerpt": "A partir del 9 de marzo, el nivel secundario implementó un entorno libre de dispositivos móviles durante la jornada escolar para mejorar la concentración y la salud mental."
+  },
+  {
+    "slug": "torneo",
+    "href": "novedad-torneo.html",
+    "img": "https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2025/11/1761919322513.jpg",
+    "cat": "Deportes",
+    "date": "Noviembre 2025",
+    "title": "Torneo Deportivo — 1° y 2° puesto",
+    "excerpt": "Chicos y chicas del secundario participaron del torneo de fútbol AQUA en Parque Norte. 6° año varones se consagró 1° puesto y 6° año mujeres obtuvo el 2° puesto."
+  },
+  {
+    "slug": "alegria",
+    "href": "novedad-alegria.html",
+    "img": "https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2025/09/IMG_6864.jpg",
+    "cat": "Comunidad",
+    "date": "Septiembre 2025",
+    "title": "17 años con Alegría Intensiva",
+    "excerpt": "Renovamos 17 años de colaboración con Alegría Intensiva, organización de médicos y artistas que transforma la experiencia hospitalaria a través del arte y el humor."
+  },
+  {
+    "slug": "ted-ed",
+    "href": "novedad-ted-ed.html",
+    "img": "img/novedades/clubes-ted-ed.jpg",
+    "cat": "Académico",
+    "date": "Junio 2025",
+    "title": "Proyecto Clubes TED-Ed",
+    "excerpt": "Los estudiantes de 2° año del secundario participan en los Clubes TED-Ed para fortalecer la confianza en sus ideas, la comunicación oral y el pensamiento crítico."
+  },
+  {
+    "slug": "baltimore",
+    "href": "novedad-baltimore.html",
+    "img": "https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2025/06/The-girls-in-Baltimore-2025.jpg",
+    "cat": "Internacional",
+    "date": "Junio 2025",
+    "title": "Intercambio escolar en Baltimore",
+    "excerpt": "Agustina Calderón y Eugenia Puyada fueron becadas para cursar un mes en la escuela Bryn Mawr de Baltimore, EE.UU., en el marco de un programa de intercambio de tres años."
+  },
+  {
+    "slug": "dialogos",
+    "href": "novedad-dialogos.html",
+    "img": "https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2025/05/2.png",
+    "cat": "Proyecto",
+    "date": "Mayo 2025",
+    "title": "«En Diálogos» — Streaming escolar",
+    "excerpt": "Lanzamos nuestro proyecto institucional de streaming con participación de todos los niveles: noticiero escolar, contenido bilingüe, entrevistas y exploración musical."
+  },
+  {
+    "slug": "bekind",
+    "href": "novedad-bekind.html",
+    "img": "https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2025/03/13.png",
+    "cat": "Convivencia",
+    "date": "Marzo 2025",
+    "title": "Be Kind — Convivencia escolar",
+    "excerpt": "Dimos inicio a Be Kind, nuestro programa de convivencia escolar, con una jornada dedicada al compañerismo, la empatía y los buenos tratos en comunidad."
+  }
+]
