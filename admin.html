@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Colegio San Carlos</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f1f5f9;color:#1e293b;min-height:100vh}
+    a{color:inherit;text-decoration:none}
+    /* Auth */
+    #auth-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#003352 0%,#00476a 100%)}
+    .auth-card{background:#fff;border-radius:16px;padding:48px 40px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+    .auth-card img{height:48px;display:block;margin:0 auto 24px}
+    .auth-card h1{font-size:1.2rem;font-weight:700;color:#003352;text-align:center;margin-bottom:4px}
+    .auth-card p{font-size:.8rem;color:#64748b;text-align:center;margin-bottom:28px}
+    .field{margin-bottom:16px}
+    .field label{display:block;font-size:.75rem;font-weight:600;color:#374151;margin-bottom:5px;text-transform:uppercase;letter-spacing:.4px}
+    .field input{width:100%;padding:11px 13px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.9rem;outline:none;transition:border-color .2s}
+    .field input:focus{border-color:#3b82f6}
+    .btn-auth{width:100%;padding:12px;background:#003352;color:#fff;border:none;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer}
+    .btn-auth:hover{background:#004d78}
+    .auth-err{background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;padding:9px 13px;border-radius:7px;font-size:.8rem;margin-bottom:14px;display:none}
+    /* Token setup */
+    #token-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:#f1f5f9}
+    .token-card{background:#fff;border-radius:14px;padding:40px;max-width:500px;width:100%;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+    .token-card h2{font-size:1.1rem;font-weight:700;color:#003352;margin-bottom:8px}
+    .token-card p{font-size:.85rem;color:#64748b;line-height:1.6;margin-bottom:20px}
+    .token-card ol{padding-left:20px;font-size:.85rem;color:#374151;line-height:2;margin-bottom:20px}
+    /* Layout */
+    #admin-panel{display:none}
+    .layout{display:flex;min-height:100vh}
+    .sidebar{width:220px;background:#0f172a;color:#e2e8f0;flex-shrink:0;display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;z-index:100;overflow-y:auto}
+    .sidebar__logo{padding:20px 18px 16px;border-bottom:1px solid #1e293b}
+    .sidebar__logo img{height:36px}
+    .sidebar__logo span{display:block;font-size:.65rem;color:#64748b;margin-top:5px;letter-spacing:.5px;text-transform:uppercase}
+    .sidebar__nav{flex:1;padding:12px 0}
+    .nav-item{display:flex;align-items:center;gap:10px;padding:10px 18px;font-size:.82rem;font-weight:500;color:#94a3b8;cursor:pointer;transition:all .15s;border:none;background:none;width:100%;text-align:left;border-left:3px solid transparent}
+    .nav-item svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+    .nav-item:hover{color:#e2e8f0;background:#1e293b}
+    .nav-item.active{color:#fff;background:#1e3a5f;border-left-color:#3b82f6}
+    .sidebar__bottom{padding:14px;border-top:1px solid #1e293b}
+    .btn-logout{display:flex;align-items:center;gap:7px;font-size:.75rem;color:#64748b;background:none;border:none;cursor:pointer;padding:6px 2px}
+    .btn-logout:hover{color:#e2e8f0}
+    .main{margin-left:220px;flex:1}
+    .topbar{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 28px;height:56px;display:flex;align-items:center;justify-content:space-between}
+    .topbar h2{font-size:.95rem;font-weight:600}
+    .topbar .badge{background:#f1f5f9;padding:3px 10px;border-radius:20px;font-size:.7rem;color:#64748b}
+    .content{padding:24px 28px}
+    /* Components */
+    .panel{background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:18px}
+    .panel__hd{padding:16px 20px;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;justify-content:space-between}
+    .panel__hd h3{font-size:.9rem;font-weight:600}
+    .panel__bd{padding:20px}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px}
+    .stat{background:#fff;border-radius:10px;padding:18px 20px;border:1px solid #e2e8f0}
+    .stat__n{font-size:1.8rem;font-weight:700;color:#003352}
+    .stat__l{font-size:.75rem;color:#64748b;margin-top:3px}
+    table{width:100%;border-collapse:collapse}
+    th{text-align:left;padding:9px 12px;font-size:.7rem;text-transform:uppercase;letter-spacing:.5px;color:#64748b;border-bottom:2px solid #e2e8f0}
+    td{padding:11px 12px;border-bottom:1px solid #f1f5f9;font-size:.82rem;vertical-align:middle}
+    tr:last-child td{border-bottom:none}
+    tr:hover td{background:#f8fafc}
+    td img{width:48px;height:34px;object-fit:cover;border-radius:5px}
+    .tag{display:inline-block;padding:2px 9px;border-radius:20px;font-size:.67rem;font-weight:600;letter-spacing:.4px;background:#dbeafe;color:#1d4ed8}
+    .btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:7px;font-size:.77rem;font-weight:600;cursor:pointer;border:none;transition:all .15s}
+    .btn svg{width:13px;height:13px;fill:currentColor}
+    .btn-primary{background:#003352;color:#fff}.btn-primary:hover{background:#004d78}
+    .btn-accent{background:#e85d26;color:#fff}.btn-accent:hover{background:#c94d1e}
+    .btn-ghost{background:#f1f5f9;color:#374151}.btn-ghost:hover{background:#e2e8f0}
+    .btn-danger{background:#fee2e2;color:#b91c1c}.btn-danger:hover{background:#fecaca}
+    .btn-sm{padding:4px 10px;font-size:.72rem}
+    .fg{margin-bottom:16px}
+    .fg label{display:block;font-size:.75rem;font-weight:600;color:#374151;margin-bottom:5px}
+    .fg input,.fg select,.fg textarea{width:100%;padding:9px 11px;border:1.5px solid #e2e8f0;border-radius:7px;font-size:.85rem;font-family:inherit;outline:none;transition:border-color .2s}
+    .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:#3b82f6}
+    .fg textarea{resize:vertical;min-height:110px}
+    .fg .hint{font-size:.7rem;color:#94a3b8;margin-top:3px}
+    .form-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .full{grid-column:1/-1}
+    .img-prev{width:100%;height:140px;object-fit:cover;border-radius:7px;border:1px solid #e2e8f0;margin-top:7px;display:none}
+    .img-prev.show{display:block}
+    .editor-wrap{border:1.5px solid #e2e8f0;border-radius:7px;overflow:hidden}
+    .editor-wrap:focus-within{border-color:#3b82f6}
+    .editor-tb{background:#f8fafc;padding:7px 9px;display:flex;gap:3px;flex-wrap:wrap;border-bottom:1px solid #e2e8f0}
+    .editor-tb button{padding:3px 7px;border:none;background:none;border-radius:4px;cursor:pointer;font-size:.77rem;font-weight:600;color:#374151}
+    .editor-tb button:hover{background:#e2e8f0}
+    .editor-body{min-height:180px;padding:12px;outline:none;font-size:.875rem;line-height:1.7}
+    .commit-list{list-style:none}
+    .commit-item{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid #f1f5f9}
+    .commit-item:last-child{border-bottom:none}
+    .chash{font-family:monospace;font-size:.7rem;background:#f1f5f9;padding:2px 7px;border-radius:4px;color:#64748b;flex-shrink:0}
+    .cmsg{flex:1;font-size:.82rem}
+    .cdate{font-size:.7rem;color:#94a3b8;flex-shrink:0}
+    #toast{position:fixed;bottom:20px;right:20px;background:#0f172a;color:#fff;padding:11px 18px;border-radius:9px;font-size:.82rem;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,.2);z-index:9999;transform:translateY(100px);opacity:0;transition:all .3s}
+    #toast.show{transform:translateY(0);opacity:1}
+    #toast.ok{background:#15803d}
+    #toast.err{background:#b91c1c}
+    .overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:888;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+    .overlay.show{opacity:1;pointer-events:all}
+    .modal{background:#fff;border-radius:13px;padding:28px;max-width:400px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+    .modal h4{font-size:.95rem;font-weight:700;margin-bottom:8px}
+    .modal p{font-size:.82rem;color:#64748b;margin-bottom:20px}
+    .modal-actions{display:flex;gap:8px;justify-content:flex-end}
+    .spinner{display:inline-block;width:16px;height:16px;border:2px solid #e2e8f0;border-top-color:#3b82f6;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .log-box{font-family:monospace;font-size:.75rem;background:#0f172a;color:#a3e635;padding:14px;border-radius:8px;min-height:50px;white-space:pre-wrap;margin-top:14px;display:none}
+    .gallery-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+    .gallery-row img{width:52px;height:38px;object-fit:cover;border-radius:5px;border:1px solid #e2e8f0;flex-shrink:0}
+    .section-hidden{display:none}
+    @media(max-width:768px){.sidebar{transform:translateX(-100%)}.main{margin-left:0}.stats{grid-template-columns:1fr}.form-2col{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+<!-- ── AUTH SCREEN ───────────────────────────────────────────────────────── -->
+<div id="auth-screen">
+  <div class="auth-card">
+    <img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="San Carlos" />
+    <h1>Panel de Administración</h1>
+    <p>Ingresá tus credenciales para continuar</p>
+    <div class="auth-err" id="auth-err">Usuario o contraseña incorrectos.</div>
+    <form id="auth-form">
+      <div class="field"><label>Usuario</label><input id="a-user" type="text" autocomplete="username" required autofocus /></div>
+      <div class="field"><label>Contraseña</label><input id="a-pass" type="password" autocomplete="current-password" required /></div>
+      <button type="submit" class="btn-auth">Ingresar</button>
+    </form>
+  </div>
+</div>
+
+<!-- ── TOKEN SCREEN ──────────────────────────────────────────────────────── -->
+<div id="token-screen" style="display:none">
+  <div class="token-card">
+    <h2>Configurar acceso a GitHub</h2>
+    <p>Para guardar cambios en el sitio necesitás un <strong>Personal Access Token</strong> de GitHub. Solo se pide una vez y queda guardado en este navegador.</p>
+    <ol>
+      <li>Entrá a <strong>github.com → Settings</strong></li>
+      <li>Ir a <strong>Developer settings → Personal access tokens → Tokens (classic)</strong></li>
+      <li>Clic en <strong>Generate new token (classic)</strong></li>
+      <li>Marcá el permiso <strong>repo</strong></li>
+      <li>Copiá el token y pegalo abajo</li>
+    </ol>
+    <div class="fg">
+      <label>Token de GitHub</label>
+      <input id="gh-token-input" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" />
+    </div>
+    <button class="btn btn-primary" onclick="saveToken()" style="width:100%;justify-content:center;padding:11px">Guardar y continuar</button>
+  </div>
+</div>
+
+<!-- ── ADMIN PANEL ───────────────────────────────────────────────────────── -->
+<div id="admin-panel">
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="San Carlos" />
+      <span>Panel de administración</span>
+    </div>
+    <nav class="sidebar__nav">
+      <button class="nav-item active" onclick="showTab('dashboard')">
+        <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg> Inicio
+      </button>
+      <button class="nav-item" onclick="showTab('novedades')">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg> Novedades
+      </button>
+      <button class="nav-item" onclick="showTab('paginas')">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg> Páginas
+      </button>
+      <button class="nav-item" onclick="showTab('historial')">
+        <svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg> Historial
+      </button>
+    </nav>
+    <div class="sidebar__bottom">
+      <button class="btn-logout" onclick="logout()">
+        <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:currentColor"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+        Cerrar sesión
+      </button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <h2 id="page-title">Inicio</h2>
+      <span class="badge">Colegio San Carlos Diálogos</span>
+    </div>
+    <div class="content">
+
+      <!-- DASHBOARD -->
+      <div id="tab-dashboard">
+        <div class="stats" id="dash-stats">
+          <div class="stat"><div class="stat__n" id="stat-nov">—</div><div class="stat__l">Novedades</div></div>
+          <div class="stat"><div class="stat__n">8</div><div class="stat__l">Páginas</div></div>
+          <div class="stat"><div class="stat__n" id="stat-commits">—</div><div class="stat__l">Commits</div></div>
+        </div>
+        <div class="panel">
+          <div class="panel__hd"><h3>Accesos rápidos</h3></div>
+          <div class="panel__bd" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+            <button class="btn btn-accent" onclick="showTab('novedades');openNovForm(null)" style="justify-content:center;padding:14px">
+              <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg> Nueva novedad
+            </button>
+            <button class="btn btn-ghost" onclick="showTab('novedades')" style="justify-content:center;padding:14px">Ver novedades</button>
+            <button class="btn btn-primary" onclick="showTab('historial')" style="justify-content:center;padding:14px">Ver historial</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel__hd"><h3>Últimas novedades</h3></div>
+          <table><thead><tr><th>Imagen</th><th>Título</th><th>Categoría</th><th>Fecha</th></tr></thead>
+          <tbody id="dash-nov-rows"><tr><td colspan="4" style="text-align:center;color:#94a3b8;padding:20px">Cargando...</td></tr></tbody></table>
+        </div>
+      </div>
+
+      <!-- NOVEDADES -->
+      <div id="tab-novedades" class="section-hidden">
+        <div id="nov-list-view">
+          <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
+            <button class="btn btn-accent" onclick="openNovForm(null)">
+              <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg> Nueva novedad
+            </button>
+          </div>
+          <div class="panel">
+            <div class="panel__hd"><h3 id="nov-list-title">Novedades</h3></div>
+            <table><thead><tr><th>Imagen</th><th>Título</th><th>Categoría</th><th>Fecha</th><th>Acciones</th></tr></thead>
+            <tbody id="nov-rows"><tr><td colspan="5" style="text-align:center;color:#94a3b8;padding:20px">Cargando...</td></tr></tbody></table>
+          </div>
+        </div>
+        <div id="nov-form-view" class="section-hidden">
+          <div style="margin-bottom:16px"><button class="btn btn-ghost btn-sm" onclick="closeNovForm()">← Volver a la lista</button></div>
+          <div class="panel">
+            <div class="panel__hd"><h3 id="nov-form-title">Nueva novedad</h3></div>
+            <div class="panel__bd">
+              <div class="form-2col">
+                <div class="fg"><label>Título *</label><input id="nv-title" type="text" placeholder="Ej: Exámenes Cambridge 2026" /></div>
+                <div class="fg"><label>Categoría</label>
+                  <select id="nv-cat">
+                    <option>Académico</option><option>Institucional</option><option>Deportes</option>
+                    <option>Comunidad</option><option>Internacional</option><option>Proyecto</option><option>Convivencia</option>
+                  </select>
+                </div>
+                <div class="fg"><label>Fecha</label><input id="nv-date" type="text" placeholder="Ej: Junio 2025" /></div>
+                <div class="fg">
+                  <label>Imagen hero (URL)</label>
+                  <input id="nv-img" type="text" placeholder="img/novedades/foto.jpg" oninput="prevHero(this.value)" />
+                  <div class="hint">También podés subir: <input type="file" accept="image/*" onchange="uploadImg(this,'nv-img','nv-img-prev')" style="font-size:.72rem"></div>
+                  <img id="nv-img-prev" class="img-prev" />
+                </div>
+                <div class="fg full"><label>Extracto (para la lista de novedades)</label><textarea id="nv-excerpt" rows="2"></textarea></div>
+              </div>
+              <div class="fg">
+                <label>Cuerpo del artículo</label>
+                <div class="editor-wrap">
+                  <div class="editor-tb">
+                    <button type="button" onclick="fmt('bold')"><strong>N</strong></button>
+                    <button type="button" onclick="fmt('italic')"><em>K</em></button>
+                    <button type="button" onclick="insTag('h2')">H2</button>
+                    <button type="button" onclick="insTag('p')">¶ Párrafo</button>
+                    <button type="button" onclick="insTag('ul')">Lista</button>
+                    <button type="button" onclick="insCita()">Cita</button>
+                  </div>
+                  <div class="editor-body" id="nv-body" contenteditable="true">
+                    <p>Escribí el contenido de la novedad aquí...</p>
+                  </div>
+                </div>
+              </div>
+              <div class="fg">
+                <label>Galería de fotos</label>
+                <div id="gallery-rows"></div>
+                <div style="display:flex;gap:8px;margin-top:8px">
+                  <button class="btn btn-ghost btn-sm" type="button" onclick="addGalleryRow()">+ URL</button>
+                  <label class="btn btn-ghost btn-sm" style="cursor:pointer">+ Subir fotos<input type="file" accept="image/*" multiple style="display:none" onchange="uploadMulti(this)"></label>
+                </div>
+              </div>
+              <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:8px">
+                <button class="btn btn-ghost" onclick="closeNovForm()">Cancelar</button>
+                <button class="btn btn-primary" onclick="saveNov(false)">Guardar borrador</button>
+                <button class="btn btn-accent" onclick="saveNov(true)">
+                  <svg viewBox="0 0 24 24"><path d="M5 4v2h14V4H5zm0 10h4v6h6v-6h4l-7-7-7 7z"/></svg>
+                  Publicar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PÁGINAS -->
+      <div id="tab-paginas" class="section-hidden">
+        <div id="pag-list-view">
+          <div class="panel">
+            <div class="panel__hd"><h3>Páginas del sitio</h3></div>
+            <div class="panel__bd" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              ${[
+                ['index.html','Inicio'],['nuestra-identidad.html','Nuestra Identidad'],
+                ['nivel-inicial.html','Nivel Inicial'],['nivel-primario.html','Nivel Primario'],
+                ['nivel-secundario.html','Nivel Secundario'],['talleres.html','Talleres'],
+                ['contacto.html','Contacto'],['novedades.html','Novedades (lista)']
+              ].map(([f,n])=>`
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0">
+                <span style="font-size:.875rem;font-weight:500">${n}</span>
+                <div style="display:flex;gap:6px">
+                  <a href="${f}" target="_blank" class="btn btn-ghost btn-sm">Ver →</a>
+                  <button class="btn btn-primary btn-sm" onclick="openPageEditor('${f}','${n}')">Editar</button>
+                </div>
+              </div>`).join('')}
+            </div>
+          </div>
+        </div>
+        <div id="pag-editor-view" class="section-hidden">
+          <div style="margin-bottom:16px"><button class="btn btn-ghost btn-sm" onclick="closePageEditor()">← Volver a páginas</button></div>
+          <div class="panel">
+            <div class="panel__hd"><h3 id="pag-editor-title">Editar página</h3><span id="pag-editor-file" style="font-size:.75rem;color:#94a3b8"></span></div>
+            <div class="panel__bd">
+              <div id="pag-fields-auto"></div>
+              <hr style="border:none;border-top:1px solid #e2e8f0;margin:20px 0">
+              <div class="fg">
+                <label>HTML completo <span style="color:#c2410c;font-size:.7rem;font-weight:400">(avanzado — editá con cuidado)</span></label>
+                <textarea id="pag-raw" rows="22" style="font-family:monospace;font-size:.72rem"></textarea>
+              </div>
+              <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:8px">
+                <button class="btn btn-ghost" onclick="closePageEditor()">Cancelar</button>
+                <button class="btn btn-primary" onclick="savePage()">Guardar y publicar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HISTORIAL -->
+      <div id="tab-historial" class="section-hidden">
+        <div class="panel">
+          <div class="panel__hd"><h3>Historial de commits</h3><button class="btn btn-ghost btn-sm" onclick="loadHistory()">Actualizar</button></div>
+          <div class="panel__bd">
+            <ul class="commit-list" id="commit-list"><li style="color:#94a3b8;font-size:.85rem;text-align:center;padding:20px">Cargando...</li></ul>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+</div><!-- /layout -->
+</div><!-- /admin-panel -->
+
+<div id="toast"></div>
+<div class="overlay" id="confirm-overlay">
+  <div class="modal">
+    <h4 id="confirm-title"></h4>
+    <p id="confirm-msg"></p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeConfirm()">Cancelar</button>
+      <button class="btn btn-danger" id="confirm-ok">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CONFIG ────────────────────────────────────────────────────────────────
+const REPO   = 'aulatechsc/sitioweb';
+const BRANCH = 'master';
+const PASS_HASH = '3d1a38c82efb47f0a567acc4840f281f9d72f02f0e7d995b6cd7b47f1c48f4e1';
+const API    = 'https://api.github.com';
+
+// State
+let ghToken = localStorage.getItem('sc_gh_token') || '';
+let novedades = [];
+let editingSlug = null;
+let currentPageFile = '';
+let currentPageSha = '';
+
+// ── AUTH ──────────────────────────────────────────────────────────────────
+async function sha256(str){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+document.getElementById('auth-form').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const user = document.getElementById('a-user').value.trim();
+  const pass = document.getElementById('a-pass').value;
+  const hash = await sha256(pass);
+  if(user === 'admin' && hash === PASS_HASH){
+    sessionStorage.setItem('sc_admin','1');
+    startApp();
+  } else {
+    document.getElementById('auth-err').style.display='block';
+    setTimeout(()=>document.getElementById('auth-err').style.display='none',2500);
+  }
+});
+
+function logout(){
+  sessionStorage.removeItem('sc_admin');
+  location.reload();
+}
+
+// ── STARTUP ───────────────────────────────────────────────────────────────
+async function startApp(){
+  document.getElementById('auth-screen').style.display = 'none';
+  if(!ghToken){
+    document.getElementById('token-screen').style.display = 'flex';
+    return;
+  }
+  document.getElementById('admin-panel').style.display = 'block';
+  loadDashboard();
+}
+
+function saveToken(){
+  const t = document.getElementById('gh-token-input').value.trim();
+  if(!t){ toast('Ingresá el token','err'); return; }
+  ghToken = t;
+  localStorage.setItem('sc_gh_token', t);
+  document.getElementById('token-screen').style.display = 'none';
+  document.getElementById('admin-panel').style.display = 'block';
+  loadDashboard();
+}
+
+window.addEventListener('load', ()=>{
+  if(sessionStorage.getItem('sc_admin') === '1'){
+    startApp();
+  }
+});
+
+// ── TABS ──────────────────────────────────────────────────────────────────
+const TABS = ['dashboard','novedades','paginas','historial'];
+const TITLES = {dashboard:'Inicio',novedades:'Novedades',paginas:'Páginas',historial:'Historial'};
+
+function showTab(tab){
+  TABS.forEach(t=>{
+    document.getElementById('tab-'+t).classList.toggle('section-hidden', t!==tab);
+  });
+  document.querySelectorAll('.nav-item').forEach((el,i)=>{
+    el.classList.toggle('active', TABS[i]===tab);
+  });
+  document.getElementById('page-title').textContent = TITLES[tab]||tab;
+  if(tab==='novedades') loadNovedades();
+  if(tab==='historial') loadHistory();
+}
+
+// ── GITHUB API ───────────────────────────────────────────────────────────
+async function ghGet(path){
+  const r = await fetch(`${API}/${path}`, {
+    headers:{ Authorization:`Bearer ${ghToken}`, Accept:'application/vnd.github+json' }
+  });
+  if(!r.ok){ const e=await r.json(); throw new Error(e.message||r.statusText); }
+  return r.json();
+}
+
+async function ghGetFile(filePath){
+  const data = await ghGet(`repos/${REPO}/contents/${filePath}?ref=${BRANCH}`);
+  const content = atob(data.content.replace(/\n/g,''));
+  return { content, sha: data.sha };
+}
+
+async function ghPutFile(filePath, content, message, sha){
+  const encoded = btoa(unescape(encodeURIComponent(content)));
+  const body = { message, content: encoded, branch: BRANCH };
+  if(sha) body.sha = sha;
+  const r = await fetch(`${API}/repos/${REPO}/contents/${filePath}`,{
+    method:'PUT',
+    headers:{ Authorization:`Bearer ${ghToken}`, Accept:'application/vnd.github+json', 'Content-Type':'application/json' },
+    body: JSON.stringify(body)
+  });
+  if(!r.ok){ const e=await r.json(); throw new Error(e.message||r.statusText); }
+  return r.json();
+}
+
+async function ghDeleteFile(filePath, message, sha){
+  const r = await fetch(`${API}/repos/${REPO}/contents/${filePath}`,{
+    method:'DELETE',
+    headers:{ Authorization:`Bearer ${ghToken}`, Accept:'application/vnd.github+json', 'Content-Type':'application/json' },
+    body: JSON.stringify({ message, sha, branch: BRANCH })
+  });
+  if(!r.ok){ const e=await r.json(); throw new Error(e.message||r.statusText); }
+}
+
+// Upload image as base64 to img/novedades/
+async function uploadImageFile(file){
+  return new Promise((res,rej)=>{
+    const reader = new FileReader();
+    reader.onload = async e=>{
+      try{
+        const base64 = e.target.result.split(',')[1];
+        const fname = Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+        const path = 'img/novedades/' + fname;
+        // Check if file exists
+        let sha;
+        try{ const ex = await ghGet(`repos/${REPO}/contents/${path}`); sha=ex.sha; }catch(err){}
+        const r = await fetch(`${API}/repos/${REPO}/contents/${path}`,{
+          method:'PUT',
+          headers:{ Authorization:`Bearer ${ghToken}`, Accept:'application/vnd.github+json', 'Content-Type':'application/json' },
+          body: JSON.stringify({ message:'Subir imagen '+fname, content: base64, branch: BRANCH, ...(sha?{sha}:{}) })
+        });
+        if(!r.ok){ const e=await r.json(); rej(new Error(e.message)); return; }
+        res(path);
+      }catch(err){ rej(err); }
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+// ── DASHBOARD ────────────────────────────────────────────────────────────
+async function loadDashboard(){
+  try{
+    const novData = await loadNovedadesData();
+    document.getElementById('stat-nov').textContent = novData.length;
+    const rows = novData.slice(0,5).map(n=>`
+      <tr>
+        <td><img src="https://raw.githubusercontent.com/${REPO}/${BRANCH}/${n.img}" onerror="this.style.display='none'" /></td>
+        <td><strong>${esc(n.title)}</strong></td>
+        <td><span class="tag">${esc(n.cat)}</span></td>
+        <td>${esc(n.date)}</td>
+      </tr>`).join('');
+    document.getElementById('dash-nov-rows').innerHTML = rows || '<tr><td colspan="4" style="text-align:center;color:#94a3b8;padding:20px">Sin novedades</td></tr>';
+  }catch(e){ console.error(e); }
+  try{
+    const commits = await ghGet(`repos/${REPO}/commits?per_page=5`);
+    document.getElementById('stat-commits').textContent = commits.length + '+';
+  }catch(e){}
+}
+
+// ── NOVEDADES ─────────────────────────────────────────────────────────────
+async function loadNovedadesData(){
+  try{
+    const {content} = await ghGetFile('admin/data/novedades.json');
+    novedades = JSON.parse(content);
+  }catch(e){
+    // Parse from novedades.html
+    try{
+      const {content} = await ghGetFile('novedades.html');
+      const doc = new DOMParser().parseFromString(content,'text/html');
+      novedades = Array.from(doc.querySelectorAll('.noticia-card')).map(el=>{
+        const href = el.querySelector('a.noticia-card__img')?.getAttribute('href')||'';
+        const slug = href.replace('novedad-','').replace('.html','');
+        return{
+          slug, href: href||('novedad-'+slug+'.html'),
+          img: el.querySelector('.noticia-card__img img')?.getAttribute('src')||'',
+          cat: el.querySelector('.noticia-card__cat')?.textContent.trim()||'',
+          date: el.querySelector('time')?.textContent.trim()||'',
+          title: el.querySelector('h3')?.textContent.trim()||'',
+          excerpt: el.querySelector('p')?.textContent.trim()||''
+        };
+      });
+    }catch(e2){ novedades = []; }
+  }
+  return novedades;
+}
+
+async function loadNovedades(){
+  document.getElementById('nov-rows').innerHTML = '<tr><td colspan="5" style="text-align:center;color:#94a3b8;padding:20px">Cargando...</td></tr>';
+  await loadNovedadesData();
+  document.getElementById('nov-list-title').textContent = `Novedades (${novedades.length})`;
+  const rows = novedades.map((n,i)=>`
+    <tr>
+      <td><img src="https://raw.githubusercontent.com/${REPO}/${BRANCH}/${n.img}" onerror="this.style.display='none'" /></td>
+      <td><strong>${esc(n.title)}</strong></td>
+      <td><span class="tag">${esc(n.cat)}</span></td>
+      <td>${esc(n.date)}</td>
+      <td style="display:flex;gap:5px;align-items:center">
+        <button class="btn btn-ghost btn-sm" onclick="openNovForm('${esc(n.slug)}')">Editar</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteNov('${esc(n.slug)}','${esc(n.title)}')">Eliminar</button>
+        ${i>0?`<button class="btn btn-ghost btn-sm" onclick="moveNov('${esc(n.slug)}','up')">↑</button>`:''}
+        ${i<novedades.length-1?`<button class="btn btn-ghost btn-sm" onclick="moveNov('${esc(n.slug)}','down')">↓</button>`:''}
+      </td>
+    </tr>`).join('');
+  document.getElementById('nov-rows').innerHTML = rows || '<tr><td colspan="5" style="text-align:center;color:#94a3b8;padding:20px">Sin novedades</td></tr>';
+}
+
+function openNovForm(slug){
+  editingSlug = slug;
+  document.getElementById('nov-form-title').textContent = slug ? 'Editar novedad' : 'Nueva novedad';
+  document.getElementById('nv-title').value = '';
+  document.getElementById('nv-cat').value = 'Académico';
+  document.getElementById('nv-date').value = '';
+  document.getElementById('nv-img').value = '';
+  document.getElementById('nv-img-prev').classList.remove('show');
+  document.getElementById('nv-excerpt').value = '';
+  document.getElementById('nv-body').innerHTML = '<p>Escribí el contenido aquí...</p>';
+  document.getElementById('gallery-rows').innerHTML = '';
+
+  if(slug){
+    const nov = novedades.find(n=>n.slug===slug);
+    if(nov){
+      document.getElementById('nv-title').value = nov.title||'';
+      document.getElementById('nv-cat').value = nov.cat||'Académico';
+      document.getElementById('nv-date').value = nov.date||'';
+      document.getElementById('nv-img').value = nov.img||'';
+      if(nov.img){ const p=document.getElementById('nv-img-prev'); p.src='https://raw.githubusercontent.com/'+REPO+'/'+BRANCH+'/'+nov.img; p.classList.add('show'); }
+      document.getElementById('nv-excerpt').value = nov.excerpt||'';
+      // Load full HTML
+      loadNovBody(slug);
+    }
+  }
+  document.getElementById('nov-list-view').classList.add('section-hidden');
+  document.getElementById('nov-form-view').classList.remove('section-hidden');
+}
+
+async function loadNovBody(slug){
+  try{
+    const {content} = await ghGetFile('novedad-'+slug+'.html');
+    const doc = new DOMParser().parseFromString(content,'text/html');
+    const bodyEl = doc.querySelector('.article-text');
+    if(bodyEl) document.getElementById('nv-body').innerHTML = bodyEl.innerHTML;
+    const slides = Array.from(doc.querySelectorAll('.carousel__slide img'));
+    slides.forEach(img=>addGalleryRow(img.getAttribute('src')||'', img.getAttribute('alt')||''));
+  }catch(e){}
+}
+
+function closeNovForm(){
+  document.getElementById('nov-list-view').classList.remove('section-hidden');
+  document.getElementById('nov-form-view').classList.add('section-hidden');
+}
+
+async function saveNov(publish){
+  const title = document.getElementById('nv-title').value.trim();
+  if(!title){ toast('El título es obligatorio','err'); return; }
+  const slug = editingSlug || slugify(title);
+  const cat = document.getElementById('nv-cat').value;
+  const date = document.getElementById('nv-date').value.trim();
+  const img = document.getElementById('nv-img').value.trim();
+  const excerpt = document.getElementById('nv-excerpt').value.trim();
+  const body = document.getElementById('nv-body').innerHTML;
+  const gallery = getGallery();
+  const href = 'novedad-' + slug + '.html';
+
+  // Update novedades array
+  const entry = { slug, href, title, cat, date, img, excerpt };
+  const idx = novedades.findIndex(n=>n.slug===slug);
+  if(idx>=0) novedades[idx] = {...novedades[idx], ...entry};
+  else novedades.unshift(entry);
+
+  try{
+    // Save novedades.json
+    let jsonSha;
+    try{ const ex=await ghGet(`repos/${REPO}/contents/admin/data/novedades.json?ref=${BRANCH}`); jsonSha=ex.sha; }catch(e){}
+    await ghPutFile('admin/data/novedades.json', JSON.stringify(novedades,null,2), 'Actualizar lista de novedades', jsonSha);
+
+    if(publish){
+      // Generate and save novedad HTML
+      const novHtml = generateNovedadHtml({ slug, title, cat, date, heroImg: img, excerpt, body, gallery });
+      let htmlSha;
+      try{ const ex=await ghGet(`repos/${REPO}/contents/${href}?ref=${BRANCH}`); htmlSha=ex.sha; }catch(e){}
+      await ghPutFile(href, novHtml, (editingSlug?'Actualizar':'Publicar')+' novedad: '+title, htmlSha);
+      // Regenerate novedades.html grid
+      await regenerateNovedadesGrid();
+      toast('Novedad publicada');
+    } else {
+      toast('Borrador guardado');
+    }
+    editingSlug = slug;
+    document.getElementById('nov-form-title').textContent = 'Editar novedad';
+  }catch(e){
+    toast(e.message||'Error al guardar','err');
+  }
+}
+
+async function deleteNov(slug, title){
+  confirm2('Eliminar novedad', `¿Eliminar "${title}"?`, async()=>{
+    try{
+      novedades = novedades.filter(n=>n.slug!==slug);
+      let jsonSha;
+      try{ const ex=await ghGet(`repos/${REPO}/contents/admin/data/novedades.json?ref=${BRANCH}`); jsonSha=ex.sha; }catch(e){}
+      await ghPutFile('admin/data/novedades.json', JSON.stringify(novedades,null,2), 'Eliminar novedad: '+title, jsonSha);
+      // Delete HTML file
+      try{
+        const ex=await ghGet(`repos/${REPO}/contents/novedad-${slug}.html?ref=${BRANCH}`);
+        await ghDeleteFile('novedad-'+slug+'.html','Eliminar novedad: '+title,ex.sha);
+      }catch(e){}
+      await regenerateNovedadesGrid();
+      toast('Novedad eliminada');
+      loadNovedades();
+    }catch(e){ toast(e.message||'Error','err'); }
+  });
+}
+
+async function moveNov(slug, dir){
+  const idx = novedades.findIndex(n=>n.slug===slug);
+  const sw = dir==='up' ? idx-1 : idx+1;
+  if(sw<0||sw>=novedades.length) return;
+  [novedades[idx],novedades[sw]] = [novedades[sw],novedades[idx]];
+  try{
+    let sha; try{ const ex=await ghGet(`repos/${REPO}/contents/admin/data/novedades.json?ref=${BRANCH}`); sha=ex.sha; }catch(e){}
+    await ghPutFile('admin/data/novedades.json', JSON.stringify(novedades,null,2), 'Reordenar novedades', sha);
+    await regenerateNovedadesGrid();
+    toast('Orden actualizado');
+    loadNovedades();
+  }catch(e){ toast(e.message||'Error','err'); }
+}
+
+async function regenerateNovedadesGrid(){
+  const {content, sha} = await ghGetFile('novedades.html');
+  const cards = novedades.map(n=>`
+        <article class="noticia-card fade-in" data-cat="${esc(n.cat)}">
+          <a href="${esc(n.href||'novedad-'+n.slug+'.html')}" class="noticia-card__img">
+            <img src="${esc(n.img)}" alt="${esc(n.title)}" loading="lazy" />
+            <span class="noticia-card__cat">${esc(n.cat)}</span>
+          </a>
+          <div class="noticia-card__body">
+            <time>${esc(n.date)}</time>
+            <h3>${esc(n.title)}</h3>
+            <p>${esc(n.excerpt)}</p>
+            <a href="${esc(n.href||'novedad-'+n.slug+'.html')}" class="link-arrow">Leer más →</a>
+          </div>
+        </article>`).join('\n');
+  const updated = content.replace(
+    /(<div class="noticias-grid" id="noticiasGrid">)([\s\S]*?)(<p class="no-results")/,
+    `$1\n${cards}\n\n        $3`
+  );
+  await ghPutFile('novedades.html', updated, 'Actualizar grilla de novedades', sha);
+}
+
+// ── PAGE EDITOR ───────────────────────────────────────────────────────────
+async function openPageEditor(file, name){
+  currentPageFile = file;
+  document.getElementById('pag-editor-title').textContent = 'Editar: ' + name;
+  document.getElementById('pag-editor-file').textContent = file;
+  document.getElementById('pag-raw').value = 'Cargando...';
+  document.getElementById('pag-fields-auto').innerHTML = '';
+  document.getElementById('pag-list-view').classList.add('section-hidden');
+  document.getElementById('pag-editor-view').classList.remove('section-hidden');
+  try{
+    const {content, sha} = await ghGetFile(file);
+    currentPageSha = sha;
+    document.getElementById('pag-raw').value = content;
+    // Auto fields via DOMParser
+    const doc = new DOMParser().parseFromString(content,'text/html');
+    const fields = [];
+    const heroTitle = doc.querySelector('.hero__title,.hero-title,.page-hero h1,.hero h1');
+    if(heroTitle) fields.push({id:'f_hero_title', label:'Título del hero', val: heroTitle.textContent.trim()});
+    const heroSub = doc.querySelector('.hero__subtitle,.hero p:not(.section__eyebrow)');
+    if(heroSub) fields.push({id:'f_hero_sub', label:'Subtítulo / descripción', val: heroSub.textContent.trim()});
+    const eyebrow = doc.querySelector('.hero .section__eyebrow,.hero__eyebrow');
+    if(eyebrow) fields.push({id:'f_eyebrow', label:'Etiqueta (eyebrow)', val: eyebrow.textContent.trim()});
+
+    document.getElementById('pag-fields-auto').innerHTML = fields.length ? `
+      <p style="font-size:.8rem;color:#64748b;margin-bottom:14px">Campos detectados automáticamente. Los cambios se aplican al HTML completo al guardar.</p>
+      ${fields.map(f=>`
+      <div class="fg">
+        <label>${esc(f.label)}</label>
+        ${f.val.length>80?`<textarea id="${f.id}" rows="2">${esc(f.val)}</textarea>`:`<input type="text" id="${f.id}" value="${esc(f.val)}" />`}
+      </div>`).join('')}` : `<p style="font-size:.8rem;color:#94a3b8;margin-bottom:14px">No se detectaron campos rápidos. Usá el editor HTML completo.</p>`;
+
+    // Sync fields → raw textarea on change
+    fields.forEach(f=>{
+      const el = document.getElementById(f.id);
+      if(el) el.addEventListener('input', syncFieldsToRaw);
+    });
+  }catch(e){
+    document.getElementById('pag-raw').value = 'Error al cargar: ' + e.message;
+  }
+}
+
+function syncFieldsToRaw(){
+  // Update raw textarea from auto fields using simple text replacement
+  let raw = document.getElementById('pag-raw').value;
+  const fieldIds = ['f_hero_title','f_hero_sub','f_eyebrow'];
+  const selectors = [
+    ['.hero__title','.hero-title'],
+    ['.hero__subtitle'],
+    ['.section__eyebrow']
+  ];
+  // Simple approach: re-parse and replace text nodes
+  const doc = new DOMParser().parseFromString(raw,'text/html');
+  fieldIds.forEach((fid, i)=>{
+    const el = document.getElementById(fid);
+    if(!el) return;
+    const val = el.value;
+    const targets = selectors[i];
+    for(const sel of targets){
+      const found = doc.querySelector(sel);
+      if(found){ found.textContent = val; break; }
+    }
+  });
+  document.getElementById('pag-raw').value = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
+}
+
+function closePageEditor(){
+  document.getElementById('pag-list-view').classList.remove('section-hidden');
+  document.getElementById('pag-editor-view').classList.add('section-hidden');
+}
+
+async function savePage(){
+  const raw = document.getElementById('pag-raw').value.trim();
+  if(!raw){ toast('El contenido está vacío','err'); return; }
+  try{
+    await ghPutFile(currentPageFile, raw, 'Actualizar página: ' + currentPageFile, currentPageSha);
+    // Refresh sha
+    const ex = await ghGet(`repos/${REPO}/contents/${currentPageFile}?ref=${BRANCH}`);
+    currentPageSha = ex.sha;
+    toast('Página guardada y publicada');
+  }catch(e){ toast(e.message||'Error','err'); }
+}
+
+// ── HISTORIAL ─────────────────────────────────────────────────────────────
+async function loadHistory(){
+  document.getElementById('commit-list').innerHTML = '<li style="color:#94a3b8;font-size:.85rem;text-align:center;padding:20px">Cargando...</li>';
+  try{
+    const commits = await ghGet(`repos/${REPO}/commits?per_page=30`);
+    const items = commits.map(c=>`
+      <li class="commit-item">
+        <span class="chash">${c.sha.slice(0,7)}</span>
+        <span class="cmsg">${esc(c.commit.message.split('\n')[0])}</span>
+        <span class="cdate">${c.commit.author.date.slice(0,10)}</span>
+        <button class="btn btn-ghost btn-sm" onclick="rollback('${c.sha}','${esc(c.commit.message.split('\n')[0])}')">Restaurar</button>
+      </li>`).join('');
+    document.getElementById('commit-list').innerHTML = items || '<li style="text-align:center;color:#94a3b8;padding:20px">Sin commits</li>';
+  }catch(e){ document.getElementById('commit-list').innerHTML = `<li style="color:#b91c1c;padding:16px">${e.message}</li>`; }
+}
+
+async function rollback(sha, msg){
+  confirm2('Restaurar versión', `Se creará un nuevo commit restaurando el estado del commit "${msg}" (${sha.slice(0,7)}). Esto afectará todos los archivos modificados en esa versión.`, async()=>{
+    try{
+      toast('Restaurando...');
+      // Get files changed in that commit
+      const detail = await ghGet(`repos/${REPO}/commits/${sha}`);
+      const files = detail.files || [];
+      for(const f of files){
+        if(f.status === 'removed') continue;
+        // Get content at that commit
+        try{
+          const r = await fetch(`${API}/repos/${REPO}/contents/${f.filename}?ref=${sha}`,{
+            headers:{Authorization:`Bearer ${ghToken}`, Accept:'application/vnd.github+json'}
+          });
+          if(!r.ok) continue;
+          const data = await r.json();
+          // Get current sha
+          let curSha;
+          try{ const cur=await ghGet(`repos/${REPO}/contents/${f.filename}?ref=${BRANCH}`); curSha=cur.sha; }catch(e){}
+          await fetch(`${API}/repos/${REPO}/contents/${f.filename}`,{
+            method:'PUT',
+            headers:{Authorization:`Bearer ${ghToken}`, Accept:'application/vnd.github+json','Content-Type':'application/json'},
+            body: JSON.stringify({ message:'Restaurar '+f.filename+' a versión '+sha.slice(0,7), content: data.content.replace(/\n/g,''), branch: BRANCH, ...(curSha?{sha:curSha}:{}) })
+          });
+        }catch(e){ console.warn('No se pudo restaurar '+f.filename, e); }
+      }
+      toast('Versión restaurada');
+      loadHistory();
+    }catch(e){ toast(e.message||'Error al restaurar','err'); }
+  });
+}
+
+// ── NOVEDAD HTML GENERATOR ────────────────────────────────────────────────
+function generateNovedadHtml(nov){
+  const gallery = nov.gallery||[];
+  const slides = gallery.map((g,i)=>`<div class="carousel__slide"><img src="${esc(g.src)}" alt="${esc(g.alt||nov.title)}" loading="lazy"/></div>`).join('\n            ');
+  const dots = gallery.map((g,i)=>`<button class="carousel__dot${i===0?' active':''}" aria-label="Foto ${i+1}"></button>`).join('\n            ');
+  const carousel = gallery.length ? `
+  <section class="section" style="padding-top:0"><div class="container"><div class="article-container">
+    <h3 style="font-family:'Raleway',sans-serif;font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:18px">Galería de fotos</h3>
+    <div class="carousel" id="carousel-${nov.slug}">
+      <div class="carousel__track">${slides}</div>
+      <button class="carousel__btn carousel__btn--prev" aria-label="Anterior">&#8249;</button>
+      <button class="carousel__btn carousel__btn--next" aria-label="Siguiente">&#8250;</button>
+      <div class="carousel__dots">${dots}</div>
+      <div class="carousel__counter">1 / ${gallery.length}</div>
+    </div>
+  </div></div></section>` : '';
+
+  return `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${esc(nov.title)} | Colegio San Carlos Diálogos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .article-hero{position:relative;height:55vh;min-height:380px;max-height:580px;overflow:hidden;display:flex;align-items:flex-end}
+    .article-hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .article-hero__overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,51,82,.88) 0%,rgba(0,71,108,.45) 55%,rgba(0,71,108,.10) 100%)}
+    .article-hero__content{position:relative;z-index:2;padding-bottom:48px;color:#fff;max-width:760px}
+    .article-cat{display:inline-block;background:var(--accent);color:#fff;font-family:'Raleway',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:16px}
+    .article-hero__content h1{font-family:'Raleway',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:12px}
+    .article-hero__content time{font-family:'Raleway',sans-serif;font-size:13px;color:rgba(255,255,255,.75);font-weight:500}
+    .article-container{max-width:760px;margin:0 auto}
+    .article-back{display:inline-flex;align-items:center;gap:8px;font-family:'Raleway',sans-serif;font-size:13px;font-weight:600;color:var(--primary);text-decoration:none;margin-bottom:40px;padding:8px 0;border-bottom:2px solid transparent;transition:border-color .2s}
+    .article-back:hover{border-bottom-color:var(--primary)}
+    .article-text p{color:var(--text-lt);line-height:1.85;margin-bottom:18px;font-size:16px}
+    .article-text h2{font-family:'Raleway',sans-serif;font-size:1.35rem;font-weight:800;color:var(--primary);margin:36px 0 14px}
+    .article-text ul{padding-left:22px;margin-bottom:18px}
+    .article-text ul li{color:var(--text-lt);font-size:16px;line-height:1.8;margin-bottom:6px}
+    .article-text .highlight{background:var(--light);border-left:4px solid var(--accent);padding:18px 22px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;margin:28px 0}
+    .article-text .highlight p{margin-bottom:0;font-size:15px;font-style:italic}
+    .carousel{position:relative;border-radius:var(--radius);overflow:hidden;background:#111}
+    .carousel__track{display:flex;transition:transform .5s ease}
+    .carousel__slide{min-width:100%;aspect-ratio:16/9;overflow:hidden}
+    .carousel__slide img{width:100%;height:100%;object-fit:contain;display:block}
+    .carousel__btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.9);border:none;border-radius:50%;width:44px;height:44px;cursor:pointer;font-size:1.4rem;font-weight:700;color:var(--primary);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.2);transition:background .2s;z-index:3}
+    .carousel__btn:hover{background:#fff}.carousel__btn--prev{left:14px}.carousel__btn--next{right:14px}
+    .carousel__dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3}
+    .carousel__dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.45);border:none;cursor:pointer;padding:0;transition:background .2s}
+    .carousel__dot.active{background:#fff}
+    .carousel__counter{position:absolute;top:12px;right:14px;background:rgba(0,0,0,.45);color:#fff;font-family:'Raleway',sans-serif;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;z-index:3}
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="container topbar__inner">
+    <div class="topbar__contact">
+      <span><svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:rgba(255,255,255,.7);flex-shrink:0"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> José María Paz 2431 – Olivos – Vte. López</span>
+      <a href="tel:+541147960504"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg> +54 (11) 4796-0504</a>
+    </div>
+  </div></div>
+  <header class="header" id="header"><div class="container header__inner">
+    <a href="index.html" class="header__logo"><img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="Colegio San Carlos Diálogos" /></a>
+    <button class="header__burger" id="burger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    <nav class="nav" id="nav">
+      <button class="nav__close" id="navClose" aria-label="Cerrar menú">✕</button>
+      <ul class="nav__list">
+        <li><a href="index.html" class="nav__link">Inicio</a></li>
+        <li class="has-dropdown"><a href="index.html#niveles" class="nav__link">Niveles <svg viewBox="0 0 24 24" class="chevron"><path d="M7 10l5 5 5-5z"/></svg></a>
+          <ul class="dropdown"><li><a href="nivel-inicial.html">Nivel Inicial</a></li><li><a href="nivel-primario.html">Nivel Primario</a></li><li><a href="nivel-secundario.html">Nivel Secundario</a></li></ul>
+        </li>
+        <li><a href="nuestra-identidad.html" class="nav__link">Nuestra Identidad</a></li>
+        <li><a href="talleres.html" class="nav__link">Talleres</a></li>
+        <li><a href="novedades.html" class="nav__link active">Novedades</a></li>
+        <li><a href="contacto.html" class="nav__link">Contacto</a></li>
+      </ul>
+      <a href="https://linktr.ee/sancarlos_colegio" target="_blank" rel="noopener" class="btn btn--primary nav__cta">Admisiones</a>
+    </nav>
+  </div></header>
+
+  <div class="article-hero">
+    <img src="${nov.heroImg}" alt="${esc(nov.title)}" class="article-hero__img" />
+    <div class="article-hero__overlay"></div>
+    <div class="container article-hero__content">
+      <span class="article-cat">${esc(nov.cat)}</span>
+      <h1>${esc(nov.title)}</h1>
+      <time>${esc(nov.date)}</time>
+    </div>
+  </div>
+
+  <section class="section"><div class="container"><div class="article-container">
+    <a href="novedades.html" class="article-back">← Volver a Novedades</a>
+    <div class="article-text">${nov.body}</div>
+  </div></div></section>
+  ${carousel}
+
+  <footer class="footer"><div class="container footer__grid">
+    <div class="footer__brand"><img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="Colegio San Carlos Diálogos" class="footer__logo" loading="lazy" /></div>
+    <div class="footer__col"><h5>El Colegio</h5><ul><li><a href="nivel-inicial.html">Nivel Inicial</a></li><li><a href="nivel-primario.html">Nivel Primario</a></li><li><a href="nivel-secundario.html">Nivel Secundario</a></li></ul></div>
+    <div class="footer__col"><h5>Contacto</h5><ul><li>José María Paz 2431, Olivos</li><li><a href="tel:+541147960504">(+11) 4796-0504</a></li></ul></div>
+  </div><div class="footer__bottom"><p>&copy; 2025 Colegio San Carlos Diálogos.</p></div></footer>
+
+  <script src="script.js"><\/script>
+  ${gallery.length?`<script>function initCarousel(id){const el=document.getElementById(id);if(!el)return;const track=el.querySelector('.carousel__track'),slides=el.querySelectorAll('.carousel__slide'),dots=el.querySelectorAll('.carousel__dot'),counter=el.querySelector('.carousel__counter');let cur=0,timer;function go(n){cur=(n+slides.length)%slides.length;track.style.transform='translateX(-'+cur*100+'%)';dots.forEach((d,i)=>d.classList.toggle('active',i===cur));if(counter)counter.textContent=(cur+1)+' / '+slides.length;}el.querySelector('.carousel__btn--prev').addEventListener('click',()=>{clearInterval(timer);go(cur-1);start();});el.querySelector('.carousel__btn--next').addEventListener('click',()=>{clearInterval(timer);go(cur+1);start();});dots.forEach((d,i)=>d.addEventListener('click',()=>{clearInterval(timer);go(i);start();}));function start(){timer=setInterval(()=>go(cur+1),4500);}go(0);start();}initCarousel('carousel-${nov.slug}');<\/script>`:''}
+</body>
+</html>`;
+}
+
+// ── GALLERY HELPERS ───────────────────────────────────────────────────────
+function addGalleryRow(src='', alt=''){
+  const d = document.createElement('div');
+  d.className = 'gallery-row';
+  d.innerHTML = `<img src="${src}" onerror="this.style.display='none'" />
+    <input type="text" value="${src}" placeholder="URL imagen" class="g-src" style="flex:1;padding:7px 10px;border:1.5px solid #e2e8f0;border-radius:6px;font-size:.78rem" oninput="this.previousElementSibling.src=this.value;this.previousElementSibling.style.display=''" />
+    <input type="text" value="${alt}" placeholder="Descripción" class="g-alt" style="width:180px;padding:7px 10px;border:1.5px solid #e2e8f0;border-radius:6px;font-size:.78rem" />
+    <button type="button" class="btn btn-danger btn-sm" onclick="this.closest('.gallery-row').remove()">✕</button>`;
+  document.getElementById('gallery-rows').appendChild(d);
+}
+
+function getGallery(){
+  return Array.from(document.querySelectorAll('#gallery-rows .gallery-row')).map(d=>({
+    src: d.querySelector('.g-src').value.trim(),
+    alt: d.querySelector('.g-alt').value.trim()
+  })).filter(g=>g.src);
+}
+
+async function uploadImg(input, targetId, prevId){
+  const file = input.files[0]; if(!file) return;
+  toast('Subiendo imagen...');
+  try{
+    const path = await uploadImageFile(file);
+    if(targetId){ document.getElementById(targetId).value = path; }
+    if(prevId){ const p=document.getElementById(prevId); p.src='https://raw.githubusercontent.com/'+REPO+'/'+BRANCH+'/'+path; p.classList.add('show'); }
+    toast('Imagen subida');
+  }catch(e){ toast(e.message||'Error al subir','err'); }
+}
+
+async function uploadMulti(input){
+  const files = Array.from(input.files);
+  for(const f of files){
+    toast('Subiendo '+f.name+'...');
+    try{ const path=await uploadImageFile(f); addGalleryRow(path,''); }
+    catch(e){ toast(e.message||'Error','err'); }
+  }
+  if(files.length) toast('Fotos subidas');
+}
+
+function prevHero(v){
+  const p = document.getElementById('nv-img-prev');
+  p.src = v.startsWith('http') ? v : 'https://raw.githubusercontent.com/'+REPO+'/'+BRANCH+'/'+v;
+  p.classList.toggle('show', !!v);
+}
+
+// ── EDITOR HELPERS ────────────────────────────────────────────────────────
+function fmt(cmd){ document.execCommand(cmd); }
+function insTag(tag){
+  const el = document.createElement(tag==='ul'?'ul':tag);
+  if(tag==='ul'){ const li=document.createElement('li'); li.textContent='Elemento'; el.appendChild(li); }
+  else el.textContent = window.getSelection().toString() || 'Texto';
+  const sel=window.getSelection();
+  if(sel.rangeCount){ const r=sel.getRangeAt(0); r.deleteContents(); r.insertNode(el); }
+}
+function insCita(){
+  const d=document.createElement('div'); d.className='highlight';
+  const p=document.createElement('p'); p.textContent='Texto destacado...'; d.appendChild(p);
+  const sel=window.getSelection();
+  if(sel.rangeCount){ const r=sel.getRangeAt(0); r.deleteContents(); r.insertNode(d); }
+}
+
+// ── UTILS ─────────────────────────────────────────────────────────────────
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function slugify(t){ return t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
+
+function toast(msg, type='ok'){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='show '+(type==='ok'?'ok':'err');
+  clearTimeout(t._timer);
+  t._timer=setTimeout(()=>t.className='',3200);
+}
+
+function confirm2(title, msg, cb){
+  document.getElementById('confirm-title').textContent = title;
+  document.getElementById('confirm-msg').textContent = msg;
+  document.getElementById('confirm-ok').onclick = ()=>{ closeConfirm(); cb(); };
+  document.getElementById('confirm-overlay').classList.add('show');
+}
+function closeConfirm(){ document.getElementById('confirm-overlay').classList.remove('show'); }
+</script>
+</body>
+</html>

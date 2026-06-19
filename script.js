@@ -78,17 +78,41 @@ document.querySelectorAll('.slide-left, .slide-right, .slide-up').forEach(el => 
   observer.observe(el);
 });
 
-// Botón Admin flotante
+// Login Admin al pie de página
 (function(){
-  const btn = document.createElement('a');
-  btn.href = 'http://localhost:3001/admin';
-  btn.target = '_blank';
-  btn.title = 'Panel de administración';
-  btn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg> Admin';
-  btn.style.cssText = 'position:fixed;bottom:16px;right:16px;z-index:9999;background:rgba(0,51,82,.85);color:#fff;font-family:sans-serif;font-size:11px;font-weight:600;padding:6px 12px;border-radius:20px;text-decoration:none;display:flex;align-items:center;gap:5px;backdrop-filter:blur(4px);box-shadow:0 2px 10px rgba(0,0,0,.2);letter-spacing:.3px;transition:background .2s';
-  btn.onmouseenter = () => btn.style.background = 'rgba(0,51,82,1)';
-  btn.onmouseleave = () => btn.style.background = 'rgba(0,51,82,.85)';
-  document.body.appendChild(btn);
+  const bar = document.createElement('div');
+  bar.id = 'admin-bar';
+  bar.style.cssText = 'background:#0f172a;padding:18px 0;text-align:center';
+  bar.innerHTML = `
+    <form id="admin-login-form" style="display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center">
+      <span style="color:#64748b;font-family:sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase">Administración</span>
+      <input id="al-user" type="text" placeholder="Usuario" autocomplete="username"
+        style="padding:6px 10px;border-radius:6px;border:1px solid #334155;background:#1e293b;color:#e2e8f0;font-size:12px;width:110px;outline:none">
+      <input id="al-pass" type="password" placeholder="Contraseña" autocomplete="current-password"
+        style="padding:6px 10px;border-radius:6px;border:1px solid #334155;background:#1e293b;color:#e2e8f0;font-size:12px;width:130px;outline:none">
+      <button type="submit"
+        style="padding:6px 14px;background:#003352;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">
+        Entrar
+      </button>
+      <span id="al-err" style="color:#f87171;font-size:11px;display:none">Usuario o contraseña incorrectos</span>
+    </form>`;
+  document.body.appendChild(bar);
+
+  document.getElementById('admin-login-form').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const user = document.getElementById('al-user').value.trim();
+    const pass = document.getElementById('al-pass').value;
+    const hash = Array.from(new Uint8Array(
+      await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pass))
+    )).map(b=>b.toString(16).padStart(2,'0')).join('');
+    if(user === 'admin' && hash === '3d1a38c82efb47f0a567acc4840f281f9d72f02f0e7d995b6cd7b47f1c48f4e1'){
+      sessionStorage.setItem('sc_admin','1');
+      window.location.href = 'admin.html';
+    } else {
+      document.getElementById('al-err').style.display = 'inline';
+      setTimeout(()=>document.getElementById('al-err').style.display='none', 2500);
+    }
+  });
 })();
 
 // Smooth active nav link on scroll
