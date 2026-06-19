@@ -78,18 +78,18 @@ document.querySelectorAll('.slide-left, .slide-right, .slide-up').forEach(el => 
   observer.observe(el);
 });
 
-// Botón admin (solo visible en localhost)
-if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+// Botón Admin flotante
+(function(){
   const btn = document.createElement('a');
   btn.href = 'http://localhost:3001/admin';
   btn.target = '_blank';
   btn.title = 'Panel de administración';
-  btn.innerHTML = '<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg> Admin';
-  btn.style.cssText = 'position:fixed;bottom:16px;right:16px;z-index:9999;background:rgba(0,51,82,.85);color:#fff;font-family:sans-serif;font-size:11px;font-weight:600;padding:6px 12px;border-radius:20px;text-decoration:none;display:flex;align-items:center;gap:5px;backdrop-filter:blur(4px);box-shadow:0 2px 10px rgba(0,0,0,.2);letter-spacing:.3px';
+  btn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg> Admin';
+  btn.style.cssText = 'position:fixed;bottom:16px;right:16px;z-index:9999;background:rgba(0,51,82,.85);color:#fff;font-family:sans-serif;font-size:11px;font-weight:600;padding:6px 12px;border-radius:20px;text-decoration:none;display:flex;align-items:center;gap:5px;backdrop-filter:blur(4px);box-shadow:0 2px 10px rgba(0,0,0,.2);letter-spacing:.3px;transition:background .2s';
   btn.onmouseenter = () => btn.style.background = 'rgba(0,51,82,1)';
   btn.onmouseleave = () => btn.style.background = 'rgba(0,51,82,.85)';
   document.body.appendChild(btn);
-}
+})();
 
 // Smooth active nav link on scroll
 const sections = document.querySelectorAll('section[id]');
