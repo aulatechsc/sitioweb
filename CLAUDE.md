@@ -65,14 +65,17 @@ Repositorio GitHub: `aulatechsc/sitioweb` (branch `master`).
 
 ## Cómo hacer cambios desde Claude Code
 
-1. Editar los archivos directamente con las herramientas de Claude Code
-2. Hacer commit y push:
+> **IMPORTANTE:** El admin panel (`admin.html`) también puede modificar archivos directamente en GitHub.
+> Antes de editar cualquier archivo, siempre hacer `git pull origin master` para traer los últimos cambios y no pisar lo que se haya cargado desde el admin.
+
+1. **Siempre primero:** `git pull origin master`
+2. Editar los archivos con las herramientas de Claude Code
+3. Commit y push:
    ```
    git add <archivo>
    git commit -m "Descripción del cambio"
    git push origin master
    ```
-3. Los cambios se publican automáticamente vía GitHub Pages (o el hosting configurado)
 
 ## Git
 
