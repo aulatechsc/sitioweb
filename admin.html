@@ -694,96 +694,103 @@ async function regenerateNovedadesGrid(){
 }
 
 // ── PAGE CONFIG ───────────────────────────────────────────────────────────
-// Cada página tiene campos específicos con selector CSS exacto
 const PAGE_CONFIG = {
-  'index.html': {
-    name: 'Inicio', icon: '🏠',
-    desc: 'Título, descripción y etiqueta del hero principal',
-    fields: [
-      { id:'p0', label:'Etiqueta sobre el título',   sel:'.hero__eyebrow',  type:'text' },
-      { id:'p1', label:'Título principal del colegio', sel:'.hero__title',   type:'text' },
-      { id:'p2', label:'Descripción del colegio',    sel:'.hero__subtitle', type:'textarea' },
-    ]
-  },
-  'contacto.html': {
-    name: 'Contacto', icon: '📞',
-    desc: 'Título, descripción y etiqueta de la página de contacto',
-    fields: [
-      { id:'p0', label:'Etiqueta (ej: "Inscripciones abiertas")', sel:'.hero-contacto__tag', type:'text' },
-      { id:'p1', label:'Título de la página',  sel:'.hero-contacto h1',            type:'text' },
-      { id:'p2', label:'Descripción',          sel:'.hero-contacto__content > p',  type:'textarea' },
-    ]
-  },
-  'nuestra-identidad.html': {
-    name: 'Nuestra Identidad', icon: '⭐',
-    desc: 'Textos del hero de la página de identidad institucional',
-    fields: [
-      { id:'p0', label:'Etiqueta',   sel:'.hero .section__eyebrow, .page-hero .section__eyebrow', type:'text' },
-      { id:'p1', label:'Título',     sel:'.hero h1, .page-hero h1',                               type:'text' },
-      { id:'p2', label:'Descripción',sel:'.hero p:not(.section__eyebrow), .page-hero p',          type:'textarea' },
-    ]
-  },
-  'nivel-inicial.html': {
-    name: 'Nivel Inicial', icon: '🌱',
-    desc: 'Hero, equipo directivo y horarios del Nivel Inicial',
-    fields: [
-      { id:'p0', label:'Etiqueta del hero (ej: "3 a 5 años")', sel:'.hero-sub__tag', type:'text' },
-      { id:'p1', label:'Título del hero',     sel:'.hero-sub__title',    type:'text' },
-      { id:'p2', label:'Subtítulo (frase corta)', sel:'.hero-sub__subtitle', type:'textarea' },
-      { id:'p3', label:'Descripción completa',    sel:'.hero-sub__desc',    type:'textarea' },
-    ],
-    equipo: true,
-    jornada: true,
-  },
-  'nivel-primario.html': {
-    name: 'Nivel Primario', icon: '📚',
-    desc: 'Hero, equipo directivo y horarios del Nivel Primario',
-    fields: [
-      { id:'p0', label:'Etiqueta del hero (ej: "1° a 6° grado")', sel:'.hero-sub__tag', type:'text' },
-      { id:'p1', label:'Título del hero',     sel:'.hero-sub__title',    type:'text' },
-      { id:'p2', label:'Subtítulo (frase corta)', sel:'.hero-sub__subtitle', type:'textarea' },
-      { id:'p3', label:'Descripción completa',    sel:'.hero-sub__desc',    type:'textarea' },
-    ],
-    equipo: true,
-    jornada: true,
-  },
-  'nivel-secundario.html': {
-    name: 'Nivel Secundario', icon: '🎓',
-    desc: 'Hero, equipo directivo y horarios del Nivel Secundario',
-    fields: [
-      { id:'p0', label:'Etiqueta del hero (ej: "1° a 6° año")', sel:'.hero-sub__tag', type:'text' },
-      { id:'p1', label:'Título del hero',     sel:'.hero-sub__title',    type:'text' },
-      { id:'p2', label:'Subtítulo (frase corta)', sel:'.hero-sub__subtitle', type:'textarea' },
-      { id:'p3', label:'Descripción completa',    sel:'.hero-sub__desc',    type:'textarea' },
-    ],
-    equipo: true,
-    jornada: true,
-  },
-  'talleres.html': {
-    name: 'Talleres', icon: '🎨',
-    desc: 'Textos del hero de la página de talleres',
-    fields: [
-      { id:'p0', label:'Etiqueta',   sel:'.section__eyebrow',  type:'text' },
-      { id:'p1', label:'Título',     sel:'h1',                 type:'text' },
-      { id:'p2', label:'Descripción',sel:'.hero p, .intro p',  type:'textarea' },
-    ]
-  },
-  'novedades.html': {
-    name: 'Novedades', icon: '📰',
-    desc: 'Título y descripción de la sección de novedades',
-    fields: [
-      { id:'p0', label:'Etiqueta',   sel:'.hero-novedades .section__eyebrow', type:'text' },
-      { id:'p1', label:'Título',     sel:'.hero-novedades h1',                type:'text' },
-      { id:'p2', label:'Descripción',sel:'.hero-novedades p',                 type:'textarea' },
-    ]
-  },
+  'index.html':             { name:'Inicio',             icon:'🏠', desc:'Página principal del colegio' },
+  'nivel-inicial.html':     { name:'Nivel Inicial',      icon:'🌱', desc:'Propuesta pedagógica para 3 a 5 años' },
+  'nivel-primario.html':    { name:'Nivel Primario',     icon:'📚', desc:'Propuesta para 1° a 6° grado' },
+  'nivel-secundario.html':  { name:'Nivel Secundario',   icon:'🎓', desc:'Propuesta para 1° a 6° año' },
+  'nuestra-identidad.html': { name:'Nuestra Identidad',  icon:'⭐', desc:'Identidad y propuesta institucional' },
+  'contacto.html':          { name:'Contacto',           icon:'📞', desc:'Información de contacto e inscripciones' },
+  'novedades.html':         { name:'Novedades',          icon:'📰', desc:'Página de novedades y noticias' },
+  'talleres.html':          { name:'Talleres',           icon:'🎨', desc:'Talleres y actividades extracurriculares' },
 };
+
+// Selectores de todos los elementos de texto editable
+const EDIT_SELECTORS = [
+  'h1','h2','h3','h4',
+  '.section__eyebrow',
+  '.hero-sub__tag','.hero-sub__title','.hero-sub__subtitle','.hero-sub__desc',
+  '.hero__eyebrow','.hero__title','.hero__subtitle',
+  '.hero-contacto__tag','.hero-novedades h1',
+  '.equipo-card__role','.equipo-card h3','.equipo-card__initials',
+  '.jornada-row__name','.jornada-row__hora',
+  '.aspecto-item p',
+  '.topbar__contact a','.topbar__contact span',
+  '.cta-final h2','.cta-final p',
+  '.nivel-card h3','.nivel-card p',
+  '.info-item h3','.info-item p',
+  '.stat__label','.stat__number',
+  'p',
+].join(',');
+
+// Palabras clave para rotular cada campo
+function getFieldLabel(el){
+  const cls = (el.className||'').toString();
+  const tag = el.tagName.toLowerCase();
+  if(cls.includes('equipo-card__role'))    return 'Cargo';
+  if(cls.includes('equipo-card__initials'))return 'Iniciales (círculo)';
+  if(tag==='h3' && el.closest('.equipo-card')) return 'Nombre';
+  if(cls.includes('jornada-row__name'))    return 'Nombre de jornada';
+  if(cls.includes('jornada-row__hora'))    return 'Horario';
+  if(cls.includes('section__eyebrow')||cls.includes('hero-sub__tag')||cls.includes('hero__eyebrow')||cls.includes('hero-contacto__tag')) return 'Etiqueta';
+  if(cls.includes('hero-sub__title')||cls.includes('hero__title')||tag==='h1') return 'Título principal';
+  if(cls.includes('hero-sub__subtitle')||cls.includes('hero__subtitle')) return 'Subtítulo';
+  if(cls.includes('hero-sub__desc')) return 'Descripción del hero';
+  if(cls.includes('aspecto-item')) return 'Característica';
+  if(cls.includes('stat__number')) return 'Número estadística';
+  if(cls.includes('stat__label'))  return 'Etiqueta estadística';
+  if(el.closest('.topbar__contact')){
+    const href = el.getAttribute('href')||'';
+    if(href.includes('tel'))    return 'Teléfono';
+    if(href.includes('mailto')) return 'Email';
+    return 'Horario de atención';
+  }
+  if(tag==='h2') return 'Título de sección';
+  if(tag==='h3'||tag==='h4') return 'Subtítulo';
+  return 'Texto';
+}
+
+// Obtener solo los nodos de texto (salteando SVG dentro del elemento)
+function getElemText(el){
+  const nodes = Array.from(el.childNodes).filter(n=>n.nodeType===3).map(n=>n.textContent.trim()).join(' ').trim();
+  return nodes || el.textContent.trim();
+}
+
+// Determinar a qué grupo pertenece el elemento
+function getGroupInfo(el){
+  const topbar = el.closest('.topbar');
+  if(topbar) return { key:'topbar', label:'Datos de contacto (barra superior)' };
+  const section = el.closest('section');
+  if(!section) return { key:'general', label:'General' };
+  const id = section.id||'';
+  const heading = section.querySelector('h2,.section__eyebrow');
+  const label = heading ? heading.textContent.trim() : id ? id.replace(/-/g,' ') : 'Sección';
+  return { key: id||label, label };
+}
+
+// Taggear todos los elementos editables con un índice correlativo
+function tagEditableElements(doc){
+  const items = [];
+  let idx = 0;
+  doc.querySelectorAll(EDIT_SELECTORS).forEach(el => {
+    // Saltar si está dentro de nav, script, style o dropdown
+    if(el.closest('nav')||el.closest('script')||el.closest('style')) return;
+    // Saltar si tiene hijos de bloque (no es nodo hoja de texto)
+    if(Array.from(el.children).some(c=>['P','DIV','SECTION','H1','H2','H3','H4','UL','OL'].includes(c.tagName))) return;
+    const text = getElemText(el);
+    if(!text||text.length<2) return;
+    el.setAttribute('data-sc-idx', String(idx));
+    items.push({ idx, text, label: getFieldLabel(el), group: getGroupInfo(el) });
+    idx++;
+  });
+  return items;
+}
 
 let currentPageRaw = '';
 
 function buildPageCards(){
   const container = document.getElementById('pag-cards');
-  container.innerHTML = Object.entries(PAGE_CONFIG).map(([file, cfg]) => `
+  container.innerHTML = Object.entries(PAGE_CONFIG).map(([file,cfg])=>`
     <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:#fff;border-radius:10px;border:1px solid #e2e8f0;box-shadow:0 1px 4px rgba(0,0,0,.04)">
       <div style="display:flex;align-items:center;gap:14px">
         <span style="font-size:1.4rem">${cfg.icon}</span>
@@ -815,76 +822,41 @@ async function openPageEditor(file){
     currentPageSha = sha;
     currentPageRaw = content;
     const doc = new DOMParser().parseFromString(content, 'text/html');
+    const items = tagEditableElements(doc);
 
-    function makeField(id, label, val, type){
-      const baseStyle = 'width:100%;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.875rem;outline:none;font-family:inherit;box-sizing:border-box';
-      const focus = "this.style.borderColor='#3b82f6'";
-      const blur  = "this.style.borderColor='#e2e8f0'";
-      return `<div style="margin-bottom:16px">
-        <label style="font-size:.78rem;font-weight:600;color:#374151;display:block;margin-bottom:5px">${label}</label>
-        ${type==='textarea'
-          ? `<textarea id="${id}" rows="3" style="${baseStyle};resize:vertical" onfocus="${focus}" onblur="${blur}">${esc(val)}</textarea>`
-          : `<input type="text" id="${id}" value="${esc(val)}" style="${baseStyle}" onfocus="${focus}" onblur="${blur}" />`
-        }</div>`;
-    }
+    // Agrupar por sección
+    const groups = new Map();
+    items.forEach(item => {
+      const {key, label} = item.group;
+      if(!groups.has(key)) groups.set(key, {label, items:[]});
+      groups.get(key).items.push(item);
+    });
 
-    const sectionLabel = txt => `<div style="font-size:.68rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#94a3b8;border-top:1px solid #e2e8f0;margin:26px 0 18px;padding-top:18px">${txt}</div>`;
+    const bs = 'width:100%;padding:9px 12px;border:1.5px solid #e2e8f0;border-radius:7px;font-size:.855rem;outline:none;font-family:inherit;box-sizing:border-box';
+    const fo = "this.style.borderColor='#3b82f6'";
+    const bl = "this.style.borderColor='#e2e8f0'";
 
     let html = '';
-
-    // Static fields from config
-    if(cfg.fields.length){
-      html += sectionLabel('Textos del encabezado');
-      html += cfg.fields.map(f => {
-        let val = '';
-        for(const sel of f.sel.split(',')){
-          const el = doc.querySelector(sel.trim());
-          if(el){ val = el.textContent.trim(); break; }
-        }
-        return makeField('pf_' + f.id, f.label, val, f.type);
-      }).join('');
-    }
-
-    // Equipo directivo
-    if(cfg.equipo){
-      const cards = doc.querySelectorAll('.equipo-card');
-      if(cards.length){
-        html += sectionLabel('Equipo directivo');
-        cards.forEach((card, i) => {
-          const role     = card.querySelector('.equipo-card__role');
-          const name     = card.querySelector('h3');
-          const initials = card.querySelector('.equipo-card__initials');
-          html += `<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px 18px;margin-bottom:12px">
-            <div style="display:grid;grid-template-columns:1fr 1fr 80px;gap:12px">
-              ${makeField('eq_'+i+'_role', 'Cargo', role ? role.textContent.trim() : '', 'text')}
-              ${makeField('eq_'+i+'_name', 'Nombre completo', name ? name.textContent.trim() : '', 'text')}
-              ${makeField('eq_'+i+'_ini', 'Iniciales', initials ? initials.textContent.trim() : '', 'text')}
-            </div></div>`;
-        });
-      }
-    }
-
-    // Jornada horarios
-    if(cfg.jornada){
-      const rows = doc.querySelectorAll('.jornada-row');
-      if(rows.length){
-        html += sectionLabel('Horarios y jornadas');
-        rows.forEach((row, i) => {
-          const nameEl = row.querySelector('.jornada-row__name');
-          const horaEl = row.querySelector('.jornada-row__hora');
-          html += `<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
-            ${makeField('jr_'+i+'_name', 'Nombre de la jornada', nameEl ? nameEl.textContent.trim() : '', 'text')}
-            ${makeField('jr_'+i+'_hora', 'Horario', horaEl ? horaEl.textContent.trim() : '', 'text')}
-          </div>`;
-        });
-      }
-    }
+    groups.forEach(({label, items}) => {
+      html += `<div style="margin-bottom:26px">
+        <div style="font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#64748b;background:#f1f5f9;border-radius:6px;padding:6px 12px;margin-bottom:14px">${esc(label)}</div>`;
+      items.forEach(({idx, text, label:fieldLabel}) => {
+        const long = text.length > 90;
+        html += `<div style="margin-bottom:11px">
+          <label style="font-size:.74rem;font-weight:600;color:#64748b;display:block;margin-bottom:4px">${fieldLabel}</label>
+          ${long
+            ? `<textarea id="sc_${idx}" rows="3" style="${bs};resize:vertical" onfocus="${fo}" onblur="${bl}">${esc(text)}</textarea>`
+            : `<input type="text" id="sc_${idx}" value="${esc(text)}" style="${bs}" onfocus="${fo}" onblur="${bl}">`
+          }</div>`;
+      });
+      html += '</div>';
+    });
 
     document.getElementById('pag-fields').innerHTML = html ||
-      '<p style="color:#94a3b8;font-size:.85rem">No se encontraron campos editables en esta página.</p>';
+      '<p style="color:#94a3b8;font-size:.85rem">No se encontraron textos editables.</p>';
 
   }catch(e){
-    document.getElementById('pag-fields').innerHTML = `<p style="color:#b91c1c;font-size:.85rem">Error al cargar la página: ${esc(e.message)}</p>`;
+    document.getElementById('pag-fields').innerHTML = `<p style="color:#b91c1c;font-size:.85rem">Error al cargar: ${esc(e.message)}</p>`;
   }
 }
 
@@ -895,44 +867,26 @@ function closePageEditor(){
 
 async function savePage(){
   const cfg = PAGE_CONFIG[currentPageFile];
-  if(!cfg || !currentPageRaw){ toast('Error: recargá la página','err'); return; }
+  if(!cfg||!currentPageRaw){ toast('Error: recargá la página','err'); return; }
 
   const doc = new DOMParser().parseFromString(currentPageRaw, 'text/html');
+  tagEditableElements(doc); // Re-tagear con los mismos índices
 
-  // Static fields
-  cfg.fields.forEach(f => {
-    const input = document.getElementById('pf_' + f.id);
+  doc.querySelectorAll('[data-sc-idx]').forEach(el => {
+    const idx = el.getAttribute('data-sc-idx');
+    const input = document.getElementById('sc_' + idx);
+    el.removeAttribute('data-sc-idx');
     if(!input) return;
     const newVal = input.value;
-    for(const sel of f.sel.split(',')){
-      const el = doc.querySelector(sel.trim());
-      if(el){ el.textContent = newVal; break; }
+    // Si tiene SVG adentro, actualizar solo los nodos de texto (no borrar el ícono)
+    if(el.querySelector('svg')){
+      Array.from(el.childNodes).forEach(n => {
+        if(n.nodeType===3 && n.textContent.trim()) n.textContent = ' ' + newVal;
+      });
+    } else {
+      el.textContent = newVal;
     }
   });
-
-  // Equipo directivo
-  if(cfg.equipo){
-    const cards = doc.querySelectorAll('.equipo-card');
-    cards.forEach((card, i) => {
-      const roleInput = document.getElementById('eq_'+i+'_role');
-      const nameInput = document.getElementById('eq_'+i+'_name');
-      const iniInput  = document.getElementById('eq_'+i+'_ini');
-      if(roleInput){ const el = card.querySelector('.equipo-card__role'); if(el) el.textContent = roleInput.value; }
-      if(nameInput){ const el = card.querySelector('h3');                if(el) el.textContent = nameInput.value; }
-      if(iniInput) { const el = card.querySelector('.equipo-card__initials'); if(el) el.textContent = iniInput.value; }
-    });
-  }
-
-  // Jornada horarios
-  if(cfg.jornada){
-    const rows = doc.querySelectorAll('.jornada-row');
-    rows.forEach((row, i) => {
-      const nameInput = document.getElementById('jr_'+i+'_name');
-      const horaInput = document.getElementById('jr_'+i+'_hora');
-      if(nameInput){ const el = row.querySelector('.jornada-row__name'); if(el) el.textContent = nameInput.value; }
-      if(horaInput){ const el = row.querySelector('.jornada-row__hora'); if(el) el.textContent = horaInput.value; }
-    });
-  }
 
   const updated = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
 
