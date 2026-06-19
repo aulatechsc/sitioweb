@@ -285,39 +285,24 @@
       <!-- PÁGINAS -->
       <div id="tab-paginas" class="section-hidden">
         <div id="pag-list-view">
-          <div class="panel">
-            <div class="panel__hd"><h3>Páginas del sitio</h3></div>
-            <div class="panel__bd" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-              ${[
-                ['index.html','Inicio'],['nuestra-identidad.html','Nuestra Identidad'],
-                ['nivel-inicial.html','Nivel Inicial'],['nivel-primario.html','Nivel Primario'],
-                ['nivel-secundario.html','Nivel Secundario'],['talleres.html','Talleres'],
-                ['contacto.html','Contacto'],['novedades.html','Novedades (lista)']
-              ].map(([f,n])=>`
-              <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0">
-                <span style="font-size:.875rem;font-weight:500">${n}</span>
-                <div style="display:flex;gap:6px">
-                  <a href="${f}" target="_blank" class="btn btn-ghost btn-sm">Ver →</a>
-                  <button class="btn btn-primary btn-sm" onclick="openPageEditor('${f}','${n}')">Editar</button>
-                </div>
-              </div>`).join('')}
-            </div>
-          </div>
+          <p style="color:#64748b;font-size:.85rem;margin-bottom:18px">Seleccioná una página para editar sus textos.</p>
+          <div style="display:flex;flex-direction:column;gap:10px" id="pag-cards"></div>
         </div>
         <div id="pag-editor-view" class="section-hidden">
-          <div style="margin-bottom:16px"><button class="btn btn-ghost btn-sm" onclick="closePageEditor()">← Volver a páginas</button></div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+            <button class="btn btn-ghost btn-sm" onclick="closePageEditor()">← Volver</button>
+            <h3 id="pag-editor-title" style="font-size:.95rem;font-weight:600"></h3>
+            <a id="pag-preview-link" href="#" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Ver página →</a>
+          </div>
           <div class="panel">
-            <div class="panel__hd"><h3 id="pag-editor-title">Editar página</h3><span id="pag-editor-file" style="font-size:.75rem;color:#94a3b8"></span></div>
             <div class="panel__bd">
-              <div id="pag-fields-auto"></div>
-              <hr style="border:none;border-top:1px solid #e2e8f0;margin:20px 0">
-              <div class="fg">
-                <label>HTML completo <span style="color:#c2410c;font-size:.7rem;font-weight:400">(avanzado — editá con cuidado)</span></label>
-                <textarea id="pag-raw" rows="22" style="font-family:monospace;font-size:.72rem"></textarea>
-              </div>
-              <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:8px">
+              <div id="pag-fields"></div>
+              <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:20px;padding-top:16px;border-top:1px solid #f1f5f9">
                 <button class="btn btn-ghost" onclick="closePageEditor()">Cancelar</button>
-                <button class="btn btn-primary" onclick="savePage()">Guardar y publicar</button>
+                <button class="btn btn-accent" onclick="savePage()">
+                  <svg viewBox="0 0 24 24"><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
+                  Guardar y publicar
+                </button>
               </div>
             </div>
           </div>
@@ -430,6 +415,7 @@ function showTab(tab){
   });
   document.getElementById('page-title').textContent = TITLES[tab]||tab;
   if(tab==='novedades') loadNovedades();
+  if(tab==='paginas') buildPageCards();
   if(tab==='historial') loadHistory();
 }
 
@@ -707,69 +693,143 @@ async function regenerateNovedadesGrid(){
   await ghPutFile('novedades.html', updated, 'Actualizar grilla de novedades', sha);
 }
 
+// ── PAGE CONFIG ───────────────────────────────────────────────────────────
+// Cada página tiene campos específicos con selector CSS exacto
+const PAGE_CONFIG = {
+  'index.html': {
+    name: 'Inicio', icon: '🏠',
+    desc: 'Título, descripción y etiqueta del hero principal',
+    fields: [
+      { id:'p0', label:'Etiqueta sobre el título',   sel:'.hero__eyebrow',  type:'text' },
+      { id:'p1', label:'Título principal del colegio', sel:'.hero__title',   type:'text' },
+      { id:'p2', label:'Descripción del colegio',    sel:'.hero__subtitle', type:'textarea' },
+    ]
+  },
+  'contacto.html': {
+    name: 'Contacto', icon: '📞',
+    desc: 'Título, descripción y etiqueta de la página de contacto',
+    fields: [
+      { id:'p0', label:'Etiqueta (ej: "Inscripciones abiertas")', sel:'.hero-contacto__tag', type:'text' },
+      { id:'p1', label:'Título de la página',  sel:'.hero-contacto h1',            type:'text' },
+      { id:'p2', label:'Descripción',          sel:'.hero-contacto__content > p',  type:'textarea' },
+    ]
+  },
+  'nuestra-identidad.html': {
+    name: 'Nuestra Identidad', icon: '⭐',
+    desc: 'Textos del hero de la página de identidad institucional',
+    fields: [
+      { id:'p0', label:'Etiqueta',   sel:'.hero .section__eyebrow, .page-hero .section__eyebrow', type:'text' },
+      { id:'p1', label:'Título',     sel:'.hero h1, .page-hero h1',                               type:'text' },
+      { id:'p2', label:'Descripción',sel:'.hero p:not(.section__eyebrow), .page-hero p',          type:'textarea' },
+    ]
+  },
+  'nivel-inicial.html': {
+    name: 'Nivel Inicial', icon: '🌱',
+    desc: 'Textos del hero y propuesta del Nivel Inicial',
+    fields: [
+      { id:'p0', label:'Etiqueta',   sel:'.page-hero .section__eyebrow, .hero-nivel .section__eyebrow', type:'text' },
+      { id:'p1', label:'Título',     sel:'.page-hero h1, .hero-nivel h1',   type:'text' },
+      { id:'p2', label:'Descripción',sel:'.page-hero p:not(.section__eyebrow), .hero-nivel p', type:'textarea' },
+    ]
+  },
+  'nivel-primario.html': {
+    name: 'Nivel Primario', icon: '📚',
+    desc: 'Textos del hero y propuesta del Nivel Primario',
+    fields: [
+      { id:'p0', label:'Etiqueta',   sel:'.page-hero .section__eyebrow, .hero-nivel .section__eyebrow', type:'text' },
+      { id:'p1', label:'Título',     sel:'.page-hero h1, .hero-nivel h1',   type:'text' },
+      { id:'p2', label:'Descripción',sel:'.page-hero p:not(.section__eyebrow), .hero-nivel p', type:'textarea' },
+    ]
+  },
+  'nivel-secundario.html': {
+    name: 'Nivel Secundario', icon: '🎓',
+    desc: 'Textos del hero y propuesta del Nivel Secundario',
+    fields: [
+      { id:'p0', label:'Etiqueta',   sel:'.page-hero .section__eyebrow, .hero-nivel .section__eyebrow', type:'text' },
+      { id:'p1', label:'Título',     sel:'.page-hero h1, .hero-nivel h1',   type:'text' },
+      { id:'p2', label:'Descripción',sel:'.page-hero p:not(.section__eyebrow), .hero-nivel p', type:'textarea' },
+    ]
+  },
+  'talleres.html': {
+    name: 'Talleres', icon: '🎨',
+    desc: 'Textos del hero de la página de talleres',
+    fields: [
+      { id:'p0', label:'Etiqueta',   sel:'.section__eyebrow',  type:'text' },
+      { id:'p1', label:'Título',     sel:'h1',                 type:'text' },
+      { id:'p2', label:'Descripción',sel:'.hero p, .intro p',  type:'textarea' },
+    ]
+  },
+  'novedades.html': {
+    name: 'Novedades', icon: '📰',
+    desc: 'Título y descripción de la sección de novedades',
+    fields: [
+      { id:'p0', label:'Etiqueta',   sel:'.hero-novedades .section__eyebrow', type:'text' },
+      { id:'p1', label:'Título',     sel:'.hero-novedades h1',                type:'text' },
+      { id:'p2', label:'Descripción',sel:'.hero-novedades p',                 type:'textarea' },
+    ]
+  },
+};
+
+let currentPageRaw = '';
+
+function buildPageCards(){
+  const container = document.getElementById('pag-cards');
+  container.innerHTML = Object.entries(PAGE_CONFIG).map(([file, cfg]) => `
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:#fff;border-radius:10px;border:1px solid #e2e8f0;box-shadow:0 1px 4px rgba(0,0,0,.04)">
+      <div style="display:flex;align-items:center;gap:14px">
+        <span style="font-size:1.4rem">${cfg.icon}</span>
+        <div>
+          <div style="font-size:.9rem;font-weight:600;color:#1e293b">${cfg.name}</div>
+          <div style="font-size:.75rem;color:#94a3b8;margin-top:2px">${cfg.desc}</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:7px">
+        <a href="${file}" target="_blank" class="btn btn-ghost btn-sm">Ver →</a>
+        <button class="btn btn-primary btn-sm" onclick="openPageEditor('${file}')">Editar</button>
+      </div>
+    </div>`).join('');
+}
+
 // ── PAGE EDITOR ───────────────────────────────────────────────────────────
-async function openPageEditor(file, name){
+async function openPageEditor(file){
+  const cfg = PAGE_CONFIG[file];
+  if(!cfg) return;
   currentPageFile = file;
-  document.getElementById('pag-editor-title').textContent = 'Editar: ' + name;
-  document.getElementById('pag-editor-file').textContent = file;
-  document.getElementById('pag-raw').value = 'Cargando...';
-  document.getElementById('pag-fields-auto').innerHTML = '';
+  document.getElementById('pag-editor-title').textContent = cfg.icon + ' ' + cfg.name;
+  document.getElementById('pag-preview-link').href = file;
+  document.getElementById('pag-fields').innerHTML = '<p style="color:#94a3b8;font-size:.85rem;padding:12px 0">Cargando contenido...</p>';
   document.getElementById('pag-list-view').classList.add('section-hidden');
   document.getElementById('pag-editor-view').classList.remove('section-hidden');
+
   try{
     const {content, sha} = await ghGetFile(file);
     currentPageSha = sha;
-    document.getElementById('pag-raw').value = content;
-    // Auto fields via DOMParser
-    const doc = new DOMParser().parseFromString(content,'text/html');
-    const fields = [];
-    const heroTitle = doc.querySelector('.hero__title,.hero-title,.page-hero h1,.hero h1');
-    if(heroTitle) fields.push({id:'f_hero_title', label:'Título del hero', val: heroTitle.textContent.trim()});
-    const heroSub = doc.querySelector('.hero__subtitle,.hero p:not(.section__eyebrow)');
-    if(heroSub) fields.push({id:'f_hero_sub', label:'Subtítulo / descripción', val: heroSub.textContent.trim()});
-    const eyebrow = doc.querySelector('.hero .section__eyebrow,.hero__eyebrow');
-    if(eyebrow) fields.push({id:'f_eyebrow', label:'Etiqueta (eyebrow)', val: eyebrow.textContent.trim()});
+    currentPageRaw = content;
+    const doc = new DOMParser().parseFromString(content, 'text/html');
 
-    document.getElementById('pag-fields-auto').innerHTML = fields.length ? `
-      <p style="font-size:.8rem;color:#64748b;margin-bottom:14px">Campos detectados automáticamente. Los cambios se aplican al HTML completo al guardar.</p>
-      ${fields.map(f=>`
-      <div class="fg">
-        <label>${esc(f.label)}</label>
-        ${f.val.length>80?`<textarea id="${f.id}" rows="2">${esc(f.val)}</textarea>`:`<input type="text" id="${f.id}" value="${esc(f.val)}" />`}
-      </div>`).join('')}` : `<p style="font-size:.8rem;color:#94a3b8;margin-bottom:14px">No se detectaron campos rápidos. Usá el editor HTML completo.</p>`;
+    const fieldsHtml = cfg.fields.map(f => {
+      // Try each comma-separated selector
+      let val = '';
+      for(const sel of f.sel.split(',')){
+        const el = doc.querySelector(sel.trim());
+        if(el){ val = el.textContent.trim(); break; }
+      }
+      return `
+      <div class="fg" style="margin-bottom:20px">
+        <label style="font-size:.8rem;font-weight:600;color:#374151;display:block;margin-bottom:6px">${f.label}</label>
+        ${f.type==='textarea'
+          ? `<textarea id="pf_${f.id}" rows="3" style="width:100%;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.875rem;font-family:inherit;outline:none;resize:vertical" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e2e8f0'">${esc(val)}</textarea>`
+          : `<input type="text" id="pf_${f.id}" value="${esc(val)}" style="width:100%;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.875rem;outline:none" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e2e8f0'" />`
+        }
+      </div>`;
+    }).join('');
 
-    // Sync fields → raw textarea on change
-    fields.forEach(f=>{
-      const el = document.getElementById(f.id);
-      if(el) el.addEventListener('input', syncFieldsToRaw);
-    });
+    document.getElementById('pag-fields').innerHTML = fieldsHtml ||
+      '<p style="color:#94a3b8;font-size:.85rem">No se encontraron campos editables en esta página.</p>';
+
   }catch(e){
-    document.getElementById('pag-raw').value = 'Error al cargar: ' + e.message;
+    document.getElementById('pag-fields').innerHTML = `<p style="color:#b91c1c;font-size:.85rem">Error al cargar la página: ${esc(e.message)}</p>`;
   }
-}
-
-function syncFieldsToRaw(){
-  // Update raw textarea from auto fields using simple text replacement
-  let raw = document.getElementById('pag-raw').value;
-  const fieldIds = ['f_hero_title','f_hero_sub','f_eyebrow'];
-  const selectors = [
-    ['.hero__title','.hero-title'],
-    ['.hero__subtitle'],
-    ['.section__eyebrow']
-  ];
-  // Simple approach: re-parse and replace text nodes
-  const doc = new DOMParser().parseFromString(raw,'text/html');
-  fieldIds.forEach((fid, i)=>{
-    const el = document.getElementById(fid);
-    if(!el) return;
-    const val = el.value;
-    const targets = selectors[i];
-    for(const sel of targets){
-      const found = doc.querySelector(sel);
-      if(found){ found.textContent = val; break; }
-    }
-  });
-  document.getElementById('pag-raw').value = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
 }
 
 function closePageEditor(){
@@ -778,15 +838,30 @@ function closePageEditor(){
 }
 
 async function savePage(){
-  const raw = document.getElementById('pag-raw').value.trim();
-  if(!raw){ toast('El contenido está vacío','err'); return; }
+  const cfg = PAGE_CONFIG[currentPageFile];
+  if(!cfg || !currentPageRaw){ toast('Error: recargá la página','err'); return; }
+
+  const doc = new DOMParser().parseFromString(currentPageRaw, 'text/html');
+
+  cfg.fields.forEach(f => {
+    const input = document.getElementById('pf_' + f.id);
+    if(!input) return;
+    const newVal = input.value;
+    for(const sel of f.sel.split(',')){
+      const el = doc.querySelector(sel.trim());
+      if(el){ el.textContent = newVal; break; }
+    }
+  });
+
+  const updated = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
+
   try{
-    await ghPutFile(currentPageFile, raw, 'Actualizar página: ' + currentPageFile, currentPageSha);
-    // Refresh sha
+    await ghPutFile(currentPageFile, updated, 'Actualizar textos: ' + cfg.name, currentPageSha);
     const ex = await ghGet(`repos/${REPO}/contents/${currentPageFile}?ref=${BRANCH}`);
     currentPageSha = ex.sha;
-    toast('Página guardada y publicada');
-  }catch(e){ toast(e.message||'Error','err'); }
+    currentPageRaw = updated;
+    toast('Cambios guardados y publicados');
+  }catch(e){ toast(e.message||'Error al guardar','err'); }
 }
 
 // ── HISTORIAL ─────────────────────────────────────────────────────────────
