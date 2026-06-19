@@ -1,0 +1,890 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nivel Secundario | Colegio San Carlos Diálogos</title>
+  <meta name="description" content="Nivel Secundario San Carlos Diálogos — Bachiller Bilingüe con orientación en Ciencias Sociales o Economía y Administración. 1° a 6° año en Olivos, Buenos Aires." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── nivel-secundario.html — estilos específicos ── */
+
+    .icon-svg {
+      display:block; width:26px; height:26px;
+      stroke:var(--primary); fill:none;
+      stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;
+      flex-shrink:0;
+    }
+
+    /* HERO */
+    .hero-sub {
+      position:relative;
+      height:calc(100vh - var(--header-h));
+      min-height:520px; max-height:800px;
+      overflow:hidden; display:flex; align-items:center;
+      background-image:url('img/hero/hero-secundario.jpg');
+      background-size:cover; background-position:center;
+    }
+    .hero-sub__overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(108deg,rgba(0,51,82,.90) 0%,rgba(0,71,108,.62) 55%,rgba(0,71,108,.18) 100%);
+    }
+    .hero-sub__content{position:relative;z-index:2;max-width:680px;color:#fff}
+    .hero-sub__tag{
+      display:inline-block;background:var(--accent);color:#fff;
+      font-family:'Raleway',sans-serif;font-size:12px;font-weight:700;
+      letter-spacing:2px;text-transform:uppercase;
+      padding:5px 16px;border-radius:20px;margin-bottom:20px;
+    }
+    .hero-sub__title{
+      font-family:'Raleway',sans-serif;
+      font-size:clamp(2.6rem,6vw,4.2rem);font-weight:800;
+      color:#fff;line-height:1.08;margin-bottom:22px;
+    }
+    .hero-sub__subtitle{font-size:1.2rem;color:rgba(255,255,255,.92);font-weight:500;margin-bottom:14px;max-width:560px;line-height:1.6}
+    .hero-sub__desc{font-size:1rem;color:rgba(255,255,255,.76);margin-bottom:38px;max-width:530px;line-height:1.75}
+    .hero-sub__actions{display:flex;gap:14px;flex-wrap:wrap}
+    .hero-sub__scroll{
+      position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+      z-index:3;display:flex;flex-direction:column;align-items:center;gap:4px;
+      color:rgba(255,255,255,.55);font-family:'Raleway',sans-serif;
+      font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+      cursor:pointer;text-decoration:none;
+      animation:heroScroll 2.2s ease-in-out infinite;
+    }
+    .hero-sub__scroll svg{width:22px;height:22px;stroke:rgba(255,255,255,.55);fill:none;stroke-width:2}
+    @keyframes heroScroll{
+      0%,100%{transform:translateX(-50%) translateY(0);opacity:.55}
+      50%{transform:translateX(-50%) translateY(7px);opacity:1}
+    }
+
+    /* SUBNAV */
+    .subnav{position:sticky;top:var(--header-h);z-index:900;background:var(--primary);border-bottom:3px solid var(--accent)}
+    .subnav__list{display:flex;align-items:stretch;justify-content:center;overflow-x:auto;scrollbar-width:none}
+    .subnav__list::-webkit-scrollbar{display:none}
+    .subnav__link{
+      display:flex;align-items:center;padding:15px 20px;
+      font-family:'Raleway',sans-serif;font-size:13px;font-weight:600;letter-spacing:.3px;
+      color:rgba(255,255,255,.75);white-space:nowrap;
+      border-bottom:3px solid transparent;margin-bottom:-3px;
+      transition:color .2s ease,border-color .2s ease;
+    }
+    .subnav__link:hover,.subnav__link.active{color:#fff;border-bottom-color:#ff4d5e}
+
+    /* EQUIPO */
+    .equipo__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;justify-items:center;justify-content:center}
+    .equipo__grid .equipo-card{max-width:340px;width:100%}
+    .equipo-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;text-align:center;transition:transform .3s ease,box-shadow .3s ease}
+    .equipo-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+    .equipo-card__photo{width:100%;aspect-ratio:1/1;background:var(--light);display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .equipo-card__initials{
+      width:100px;height:100px;border-radius:50%;
+      background:var(--primary);color:#fff;
+      font-family:'Raleway',sans-serif;font-size:2.4rem;font-weight:800;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .equipo-card__body{padding:22px 20px 26px}
+    .equipo-card__role{font-family:'Raleway',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+    .equipo-card h3{font-size:1.1rem;color:var(--primary)}
+
+    /* PROPUESTA */
+    .propuesta__inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+
+    /* ASPECTOS DISTINTIVOS */
+    .aspectos__label{font-family:'Raleway',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--primary);margin:44px 0 16px}
+    .aspectos__grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .aspecto-item{display:flex;gap:12px;align-items:flex-start;background:var(--white);border-radius:var(--radius-sm);padding:15px 18px;border:1px solid var(--gray-border)}
+    .aspecto-item__check{width:20px;height:20px;min-width:20px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:1px;flex-shrink:0}
+    .aspecto-item__check svg{width:11px;height:11px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+    .aspecto-item p{font-size:14px;color:var(--text-lt);line-height:1.6;margin:0}
+    .propuesta__text .section__eyebrow,.propuesta__text .section__title{text-align:left}
+    .propuesta__text .section__title{margin-bottom:18px}
+    .propuesta__text p{color:var(--text-lt);margin-bottom:14px;line-height:1.8}
+    .propuesta__image{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:4/3}
+    .propuesta__image img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;display:block}
+    .propuesta__image:hover img{transform:scale(1.04)}
+    .propuesta__badge{position:absolute;bottom:20px;left:20px;background:var(--accent);color:#fff;font-family:'Raleway',sans-serif;font-weight:700;font-size:13px;padding:10px 18px;border-radius:var(--radius-sm)}
+
+    /* ÁREAS */
+    .areas__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .area-item{background:var(--white);border-radius:var(--radius);padding:26px 22px;border-left:4px solid var(--accent);box-shadow:var(--shadow);transition:transform .25s ease}
+    .area-item:hover{transform:translateX(4px)}
+    .area-item__icon{margin-bottom:14px}
+    .area-item h3{font-size:1rem;color:var(--primary);margin-bottom:8px}
+    .area-item p{font-size:14px;color:var(--text-lt);line-height:1.65}
+
+    /* FORMACIÓN INTEGRAL */
+    .formacion__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+    .formacion-card{background:var(--white);border-radius:var(--radius);padding:36px 28px 32px;border:1px solid var(--gray-border);box-shadow:var(--shadow);display:flex;gap:20px;align-items:flex-start;transition:transform .3s ease,box-shadow .3s ease}
+    .formacion-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+    .formacion-card__icon{width:54px;height:54px;min-width:54px;background:var(--light);border-radius:12px;display:flex;align-items:center;justify-content:center}
+    .formacion-card__body h3{font-size:1.05rem;color:var(--primary);margin-bottom:10px}
+    .formacion-card__body p{color:var(--text-lt);font-size:14px;line-height:1.7}
+
+    /* EXPERIENCIAS */
+    .experiencias__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .experiencia-item{background:var(--white);border-radius:var(--radius);padding:24px 22px;border:1px solid var(--gray-border);box-shadow:var(--shadow);display:flex;gap:16px;align-items:flex-start;transition:transform .25s ease,box-shadow .25s ease}
+    .experiencia-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+    .experiencia-item__icon{width:44px;min-width:44px;height:44px;background:var(--light);border-radius:10px;display:flex;align-items:center;justify-content:center}
+    .experiencia-item h3{font-size:1rem;color:var(--primary);margin-bottom:6px}
+    .experiencia-item p{font-size:14px;color:var(--text-lt);line-height:1.65}
+
+    /* ORIENTACIONES */
+    .orientaciones{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}
+    .orientacion-card{background:var(--primary);border-radius:var(--radius);padding:36px 32px;color:#fff}
+    .orientacion-card__eyebrow{font-family:'Raleway',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:12px}
+    .orientacion-card h3{font-family:'Raleway',sans-serif;font-size:1.25rem;font-weight:800;color:#fff;margin-bottom:12px}
+    .orientacion-card p{font-size:14px;color:rgba(255,255,255,.8);line-height:1.7}
+    .orientacion-card__badge{display:inline-block;background:var(--accent);color:#fff;font-family:'Raleway',sans-serif;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:16px}
+
+    /* SERVICIOS */
+    .jornada-unica{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid var(--gray-border)}
+    .jornada-unica__header{display:grid;grid-template-columns:2fr 1.5fr 3fr;padding:14px 28px;background:var(--primary)}
+    .jornada-unica__header span{font-family:'Raleway',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.75)}
+    .jornada-row{display:grid;grid-template-columns:2fr 1.5fr 3fr;padding:18px 28px;align-items:center;border-bottom:1px solid var(--gray-border);transition:background .2s}
+    .jornada-row:last-child{border-bottom:none}
+    .jornada-row:hover{background:var(--light)}
+    .jornada-row__name{font-family:'Raleway',sans-serif;font-size:15px;font-weight:600;color:var(--primary)}
+    .jornada-row__hora{font-family:'Raleway',sans-serif;font-size:15px;font-weight:700;color:var(--accent)}
+    .jornada-row__tags{display:flex;flex-wrap:wrap;gap:6px}
+    .jornada-tag{display:inline-block;background:var(--light);color:var(--primary);font-family:'Raleway',sans-serif;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px}
+    .jornada-tag--accent{background:#fde8ea;color:var(--accent)}
+    .jornada-nota{margin-top:16px;padding:14px 20px;background:var(--light);border-radius:var(--radius-sm);font-size:14px;color:var(--text-lt)}
+    .jornada-nota strong{color:var(--primary)}
+
+    /* SERVICIOS EXTRA */
+    .servicios-extra{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+    .servicio-extra{background:var(--white);border-radius:var(--radius);padding:28px 22px;border:1px solid var(--gray-border);box-shadow:var(--shadow);transition:transform .25s ease}
+    .servicio-extra:hover{transform:translateY(-4px)}
+    .servicio-extra__icon{width:48px;height:48px;background:var(--primary);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+    .servicio-extra__icon .icon-svg{stroke:#fff}
+    .servicio-extra h3{font-size:.95rem;color:var(--primary);margin-bottom:7px}
+    .servicio-extra p{font-size:14px;color:var(--text-lt);line-height:1.6}
+
+    /* CTA FINAL */
+    .cta-final{background:linear-gradient(135deg,var(--primary-dk) 0%,var(--primary) 100%);padding:80px 0;text-align:center}
+    .cta-final .section__eyebrow{color:rgba(255,255,255,.6)}
+    .cta-final h2{color:#fff;margin-bottom:16px}
+    .cta-final p{color:rgba(255,255,255,.82);max-width:520px;margin:0 auto 38px;font-size:1.05rem}
+    .cta-final__actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+
+    /* ── MODAL ── */
+    .modal-overlay{position:fixed;inset:0;z-index:9000;background:rgba(0,20,40,.65);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s ease}
+    .modal-overlay.open{opacity:1;pointer-events:auto}
+    .modal{background:#fff;border-radius:16px;max-width:700px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.28);transform:translateY(22px);transition:transform .3s ease;position:relative}
+    .modal-overlay.open .modal{transform:translateY(0)}
+    .modal__close{position:sticky;top:0;float:right;margin:16px 16px 0 0;background:var(--light);border:none;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:20px;font-weight:700;line-height:1;transition:background .2s;z-index:2;font-family:sans-serif}
+    .modal__close:hover{background:#d0dfe9}
+    .modal__header{padding:30px 40px 22px;border-bottom:1px solid var(--gray-border)}
+    .modal__icon{width:52px;height:52px;background:var(--light);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+    .modal__title{font-family:'Raleway',sans-serif;font-size:1.45rem;font-weight:800;color:var(--primary);line-height:1.2}
+    .modal__body{padding:26px 40px 44px}
+    .modal__body p{color:var(--text-lt);line-height:1.85;margin-bottom:14px;font-size:15px}
+    .modal__body h4{font-family:'Raleway',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--primary);margin:22px 0 10px}
+    .modal__body ul{padding-left:20px;margin-bottom:14px}
+    .modal__body ul li{color:var(--text-lt);font-size:15px;line-height:1.8;margin-bottom:5px}
+    @media(max-width:680px){.modal__header,.modal__body{padding-left:22px;padding-right:22px}}
+    .btn-info{display:inline-flex;align-items:center;gap:5px;margin-top:12px;font-family:'Raleway',sans-serif;font-size:11px;font-weight:700;letter-spacing:.4px;color:var(--primary);background:var(--light);border:none;border-radius:20px;padding:5px 12px;cursor:pointer;transition:background .2s,color .2s}
+    .btn-info:hover{background:var(--primary);color:#fff}
+    .btn-info svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+    /* RESPONSIVE */
+    @media(max-width:960px){
+      .propuesta__inner{grid-template-columns:1fr;gap:40px}
+      .aspectos__grid{grid-template-columns:1fr}
+      .equipo__grid{grid-template-columns:1fr 1fr}
+      .areas__grid{grid-template-columns:1fr 1fr}
+      .formacion__grid{grid-template-columns:1fr}
+      .experiencias__grid{grid-template-columns:1fr}
+      .orientaciones{grid-template-columns:1fr}
+      .servicios-extra{grid-template-columns:1fr 1fr}
+      .jornada-unica__header,.jornada-row{grid-template-columns:1fr 1fr;row-gap:6px}
+      .jornada-row__tags{grid-column:1/-1}
+    }
+    @media(max-width:640px){
+      .hero-sub__title{font-size:2.2rem}
+      .hero-sub__actions{flex-direction:column}
+      .hero-sub__actions .btn{justify-content:center}
+      .equipo__grid{grid-template-columns:1fr;max-width:340px;margin:0 auto}
+      .areas__grid{grid-template-columns:1fr}
+      .jornada-unica__header,.jornada-row{grid-template-columns:1fr;gap:4px}
+      .servicios-extra{grid-template-columns:1fr}
+      .subnav__link{padding:13px 12px;font-size:12px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── TOP BAR ─── -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <div class="topbar__contact">
+        <a href="tel:+541147960504">
+          <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          (+11) 4796-0504
+        </a>
+        <a href="mailto:administracion@sancarlos.edu.ar">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          administracion@sancarlos.edu.ar
+        </a>
+        <span>
+          <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+          7:30 a 19:00 hs
+        </span>
+      </div>
+      <div class="topbar__social">
+        <a href="https://www.instagram.com/sancarlos_colegio" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/p/San-Carlos-Colegio-100089961152583/?locale=es_LA" target="_blank" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://ar.linkedin.com/company/san-carlos-dialogos" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://www.youtube.com/@ColegioSanCarlosD" target="_blank" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── HEADER ─── -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo">
+        <img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="Colegio San Carlos Diálogos" />
+      </a>
+      <button class="header__burger" id="burger" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="nav">
+        <button class="nav__close" id="navClose" aria-label="Cerrar menú">✕</button>
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Inicio</a></li>
+          <li class="has-dropdown">
+            <a href="#" class="nav__link active">Niveles <svg viewBox="0 0 24 24" class="chevron"><path d="M7 10l5 5 5-5z"/></svg></a>
+            <ul class="dropdown">
+              <li><a href="nivel-inicial.html">Nivel Inicial</a></li>
+              <li><a href="nivel-primario.html">Nivel Primario</a></li>
+              <li><a href="nivel-secundario.html">Nivel Secundario</a></li>
+            </ul>
+          </li>
+          <li><a href="nuestra-identidad.html" class="nav__link">Nuestra Identidad</a></li>
+          <li><a href="index.html#talleres"  class="nav__link">Talleres</a></li>
+          <li><a href="index.html#novedades" class="nav__link">Novedades</a></li>
+          <li><a href="index.html#contacto"  class="nav__link">Contacto</a></li>
+        </ul>
+        <a href="https://linktr.ee/sancarlos_colegio" target="_blank" rel="noopener" class="btn btn--primary nav__cta">Admisiones</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero-sub" id="inicio">
+    <div class="hero-sub__overlay"></div>
+    <div class="container hero-sub__content">
+      <span class="hero-sub__tag">1° a 6° año &middot; Olivos, Buenos Aires</span>
+      <h1 class="hero-sub__title">Nivel Secundario</h1>
+      <p class="hero-sub__subtitle">Bachiller Bilingüe con sólida formación académica, pensamiento crítico y proyección universitaria.</p>
+      <p class="hero-sub__desc">Acompañamos a los jóvenes en una etapa de profundos cambios personales e intelectuales, preparándolos para el mundo universitario, laboral y ciudadano.</p>
+      <div class="hero-sub__actions">
+        <a href="#propuesta" class="btn btn--primary">Conocer nuestra propuesta</a>
+        <a href="https://wa.me/541147964918?text=Hola%2C%20quisiera%20solicitar%20una%20entrevista%20para%20Nivel%20Secundario." class="btn btn--outline-white" target="_blank" rel="noopener">Solicitar entrevista</a>
+      </div>
+    </div>
+    <a href="#equipo" class="hero-sub__scroll" aria-label="Conocer más">
+      <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+      Conocer más
+    </a>
+  </section>
+
+  <!-- ─── SUBNAV ─── -->
+  <nav class="subnav" id="subnav" aria-label="Secciones Nivel Secundario">
+    <div class="container">
+      <ul class="subnav__list">
+        <li><a href="#equipo"       class="subnav__link active">Equipo</a></li>
+        <li><a href="#propuesta"    class="subnav__link">Propuesta</a></li>
+        <li><a href="#areas"        class="subnav__link">Áreas</a></li>
+        <li><a href="#formacion"    class="subnav__link">Propuestas que enriquecen</a></li>
+        <li><a href="#experiencias" class="subnav__link">Experiencias</a></li>
+        <li><a href="#servicios"    class="subnav__link">Servicios</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ─── ① EQUIPO ─── -->
+  <section class="section" id="equipo">
+    <div class="container">
+      <div class="section__header slide-up">
+        <p class="section__eyebrow">Quiénes nos acompañan</p>
+        <h2 class="section__title">Equipo de Conducción</h2>
+        <p class="section__desc">Un equipo comprometido con la adolescencia y la excelencia académica, que acompaña a cada estudiante con cercanía y profundo sentido pedagógico.</p>
+      </div>
+      <div class="equipo__grid">
+        <div class="equipo-card fade-in">
+          <div class="equipo-card__photo"><div class="equipo-card__initials">KD</div></div>
+          <div class="equipo-card__body">
+            <p class="equipo-card__role">Directora</p>
+            <h3>Karina D'angelo</h3>
+          </div>
+        </div>
+        <div class="equipo-card fade-in">
+          <div class="equipo-card__photo"><div class="equipo-card__initials">NL</div></div>
+          <div class="equipo-card__body">
+            <p class="equipo-card__role">Vicedirectora</p>
+            <h3>Nancy Ledesma</h3>
+          </div>
+        </div>
+        <div class="equipo-card fade-in">
+          <div class="equipo-card__photo"><div class="equipo-card__initials">LL</div></div>
+          <div class="equipo-card__body">
+            <p class="equipo-card__role">Secretaria</p>
+            <h3>Laura Lema</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ② PROPUESTA ─── -->
+  <section class="section bg-light" id="propuesta">
+    <div class="container">
+      <div class="propuesta__inner">
+        <div class="propuesta__text slide-left">
+          <h2 class="section__title">Nuestra secundaria</h2>
+          <p>En el Nivel Secundario acompañamos a los estudiantes en una etapa de profundos cambios personales, sociales e intelectuales, promoviendo una formación integral que los prepare para continuar sus estudios, insertarse activamente en la sociedad y construir sus propios proyectos de vida.</p>
+          <p>Nuestra propuesta combina una sólida formación académica con el desarrollo de habilidades personales y sociales, favoreciendo el pensamiento crítico, la autonomía, la responsabilidad y el compromiso con los demás. Entendemos el aprendizaje como un proceso que desafía a los estudiantes a comprender, reflexionar, crear y participar activamente en la construcción de conocimientos.</p>
+          <p>Los contenidos curriculares se desarrollan a partir de una mirada equilibrada entre las ciencias, las humanidades y las distintas formas de expresión, brindando una formación amplia que permita a los alumnos explorar intereses diversos y construir progresivamente su orientación vocacional.</p>
+        </div>
+        <div class="propuesta__image slide-right">
+          <img src="img/niveles/secundaria.jpg" alt="Nivel Secundario San Carlos" loading="lazy" />
+          <span class="propuesta__badge">Título Bachiller Bilingüe</span>
+        </div>
+      </div>
+
+      <p class="aspectos__label">Aspectos distintivos</p>
+      <div class="aspectos__grid">
+        <div class="aspecto-item"><div class="aspecto-item__check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><p>Promovemos la excelencia académica entendida no solo como el logro de resultados, sino también como la calidad de los procesos de aprendizaje que los hacen posibles.</p></div>
+        <div class="aspecto-item"><div class="aspecto-item__check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><p>Implementamos metodologías de enseñanza y evaluación que fortalecen el pensamiento crítico, la comprensión lectora, el razonamiento lógico y la capacidad de comunicar ideas de manera clara y fundamentada.</p></div>
+        <div class="aspecto-item"><div class="aspecto-item__check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><p>Favorecemos el desarrollo de habilidades emocionales que permiten afrontar desafíos, perseverar ante las dificultades y valorar el esfuerzo como parte del aprendizaje.</p></div>
+        <div class="aspecto-item"><div class="aspecto-item__check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><p>Contamos con un equipo docente de sólida formación profesional y compromiso pedagógico que acompaña de manera cercana y personalizada a cada estudiante.</p></div>
+        <div class="aspecto-item"><div class="aspecto-item__check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><p>Llevamos adelante una educación en valores que promueve la convivencia, el respeto, la empatía, la solidaridad y la participación responsable en la vida escolar.</p></div>
+        <div class="aspecto-item"><div class="aspecto-item__check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><p>Generamos espacios que favorecen el desarrollo de habilidades sociales y ciudadanas, preparando a los alumnos para desenvolverse en una sociedad plural, democrática y en constante transformación.</p></div>
+        <div class="aspecto-item"><div class="aspecto-item__check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><p>Brindamos una formación integral que articula el pensamiento científico y humanístico, evitando especializaciones tempranas y manteniendo abiertas múltiples posibilidades para la futura elección vocacional.</p></div>
+        <div class="aspecto-item"><div class="aspecto-item__check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><p>Acompañamos el recorrido de los estudiantes a través de una mirada atenta a las particularidades de la adolescencia, promoviendo el bienestar, la autonomía y el desarrollo personal.</p></div>
+        <div class="aspecto-item"><div class="aspecto-item__check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><p>Ofrecemos las orientaciones de Bachiller en Ciencias Sociales y Bachiller en Economía y Administración, en el marco de una propuesta bilingüe que culmina con la obtención del título de Bachiller Bilingüe.</p></div>
+      </div>
+
+      <!-- Orientaciones -->
+      <div class="orientaciones">
+        <div class="orientacion-card fade-in">
+          <p class="orientacion-card__eyebrow">Orientación</p>
+          <h3>Bachiller en Ciencias Sociales</h3>
+          <p>Una formación humanística que desarrolla el pensamiento crítico sobre los fenómenos sociales, culturales y políticos. Prepara a los alumnos para estudios en Ciencias Sociales, Humanidades, Comunicación, Derecho y afines.</p>
+          <span class="orientacion-card__badge">Título Bachiller Bilingüe</span>
+        </div>
+        <div class="orientacion-card fade-in">
+          <p class="orientacion-card__eyebrow">Orientación</p>
+          <h3>Bachiller en Economía y Administración</h3>
+          <p>Formación en los fundamentos de la economía, la administración y la gestión. Prepara para estudios universitarios en Economía, Administración, Contabilidad, Comercio Internacional y afines.</p>
+          <span class="orientacion-card__badge">Título Bachiller Bilingüe</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ③ ÁREAS ─── -->
+  <section class="section" id="areas">
+    <div class="container">
+      <div class="section__header slide-up">
+        <p class="section__eyebrow">Propuesta curricular</p>
+        <h2 class="section__title">Áreas de aprendizaje</h2>
+        <p class="section__desc">Un currículum equilibrado entre las ciencias, las humanidades y la expresión, con metodologías que desafían a comprender, reflexionar y crear.</p>
+      </div>
+      <div class="areas__grid">
+
+        <div class="area-item fade-in">
+          <div class="area-item__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          </div>
+          <h3>Matemática</h3>
+          <p>Metodología ABP: secuencias de problemas que propician el trabajo exploratorio, la elaboración de conjeturas, la generalización, la argumentación y la aplicación de conceptos.</p>
+          <button class="btn-info" data-modal="s-area-mat"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+        </div>
+
+        <div class="area-item fade-in">
+          <div class="area-item__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <h3>Lengua y Literatura</h3>
+          <p>Dominio correcto y rico del español en la comunicación, apreciación literaria y fortalecimiento de la comprensión y expresión textual oral y escrita.</p>
+          <button class="btn-info" data-modal="s-area-lengua"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+        </div>
+
+        <div class="area-item fade-in">
+          <div class="area-item__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3>Ciencias Sociales</h3>
+          <p>Comunicación, Sociología, Economía, Psicología, Humanidades. Ampliación del horizonte cultural y construcción de una mirada científica y crítica sobre los conjuntos humanos.</p>
+          <button class="btn-info" data-modal="s-area-sociales"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+        </div>
+
+        <div class="area-item fade-in">
+          <div class="area-item__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+          </div>
+          <h3>Ciencias Naturales</h3>
+          <p>Química, Física, Biología. Consolidación de la visión científica del mundo y del método hipotético-deductivo, hasta el nivel de inicio de estudios universitarios.</p>
+          <button class="btn-info" data-modal="s-area-naturales"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+        </div>
+
+        <div class="area-item fade-in">
+          <div class="area-item__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+          </div>
+          <h3>Educación Artística</h3>
+          <p>Descubrimiento y formación de los talentos expresivos de los jóvenes. Educación de la capacidad de apreciación y disfrute de la belleza estética en sus distintas formas.</p>
+          <button class="btn-info" data-modal="s-area-artes"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+        </div>
+
+        <div class="area-item fade-in">
+          <div class="area-item__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h3>Economía y Gestión</h3>
+          <p>Fundamentos de la organización de la producción, la administración y las actividades comerciales. Introducción a los temas para estudios universitarios en el área.</p>
+          <button class="btn-info" data-modal="s-area-economia"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+        </div>
+
+        <div class="area-item fade-in">
+          <div class="area-item__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <h3>Inglés</h3>
+          <p>Proyecto bilingüe (Res. 02/05) con dictado en inglés de asignaturas curriculares: Culture, History, Literature, Geography, Philosophy, Global Perspectives. Certificados PET, FCE y CAE.</p>
+          <button class="btn-info" data-modal="s-area-ingles"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+        </div>
+
+        <div class="area-item fade-in">
+          <div class="area-item__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 22v-6"/><path d="M9.5 22h5"/><path d="M12 16l-2-2.5m2 2.5l2-2.5"/><path d="M18.5 10.5c0-3.6-2.9-6.5-6.5-6.5S5.5 6.9 5.5 10.5c0 1.6.6 3.1 1.6 4.2-.4.4-.6 1-.6 1.6C6.5 17.8 7.7 19 9.2 19h5.6c1.5 0 2.7-1.2 2.7-2.7 0-.6-.2-1.2-.6-1.6 1-1.1 1.6-2.6 1.6-4.2z"/></svg>
+          </div>
+          <h3>Educación Física</h3>
+          <p>Deporte educativo en el Club Buenavista con encuentros inter-colegios. Desarrollo de aptitudes motrices, valores y autonomía. Pareja pedagógica en cada grupo.</p>
+          <button class="btn-info" data-modal="s-area-efisica"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ④ FORMACIÓN INTEGRAL ─── -->
+  <section class="section bg-light" id="formacion">
+    <div class="container">
+      <div class="section__header slide-up">
+        <p class="section__eyebrow">Más allá del aula</p>
+        <h2 class="section__title">Propuestas que enriquecen</h2>
+        <p class="section__desc">Propuestas que conectan a los estudiantes con el mundo universitario, profesional y tecnológico, ampliando su visión y sus posibilidades de futuro.</p>
+      </div>
+      <div class="formacion__grid">
+
+        <div class="formacion-card fade-in">
+          <div class="formacion-card__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div class="formacion-card__body">
+            <h3>Aula Tech</h3>
+            <p>Tecnología como herramienta para crear, investigar y resolver problemas con impacto real. Proyectos de diseño e impresión 3D, programación, producción de contenidos digitales y comunicación responsable.</p>
+            <button class="btn-info" data-modal="s-fi-tec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+          </div>
+        </div>
+
+        <div class="formacion-card fade-in">
+          <div class="formacion-card__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="formacion-card__body">
+            <h3>Vinculación con Universidades</h3>
+            <p>Convenios con Di Tella, Palermo, ESEADE, UCES y otras instituciones. Propuestas de orientación vocacional, talleres y actividades académicas que permiten a los estudiantes acercarse al mundo universitario, explorar intereses y comenzar a proyectar su futuro académico y profesional.</p>
+            <button class="btn-info" data-modal="s-fi-uni"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ⑤ EXPERIENCIAS ─── -->
+  <section class="section" id="experiencias">
+    <div class="container">
+      <div class="section__header slide-up">
+        <p class="section__eyebrow">Vida escolar</p>
+        <h2 class="section__title">Experiencias educativas</h2>
+        <p class="section__desc">Pasá el mouse sobre cada card para conocer más.</p>
+      </div>
+      <div class="flip-grid">
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg><h3>Intercambio con Winnipeg, Canadá</h3></div>
+          <div class="flip-card__back"><p>En el marco de nuestro Proyecto Bilingüe, alumnos de los últimos años participan de una experiencia de intercambio académico y cultural en Canadá. Durante su estadía asisten a clases, conviven con estudiantes de otra cultura y recorren distintos lugares de interés.</p></div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg><h3>Intercambio con Baltimore, EE.UU.</h3></div>
+          <div class="flip-card__back"><p>A través de un convenio con la escuela femenina Bryn Mawr de Baltimore, nuestras alumnas tienen la posibilidad de acceder a una beca para cursar un mes de clases en Estados Unidos, alojándose con familias de la comunidad educativa.</p></div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><h3>Viaje estudiantil a Londres</h3></div>
+          <div class="flip-card__back"><p>Esta experiencia les permite profundizar el uso del idioma inglés en contextos reales, asistir a clases en una institución local, alojarse en una residencia universitaria y recorrer distintos espacios emblemáticos de la ciudad.</p></div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg><h3>Salidas educativas</h3></div>
+          <div class="flip-card__back"><p>Las salidas educativas enriquecen los contenidos trabajados en el aula a través de experiencias directas y significativas. Museos, universidades, empresas, instituciones y espacios culturales se convierten en escenarios de aprendizaje.</p></div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><path d="M3 18l9-14 9 14H3z"/><path d="M9 18v-5l3-2 3 2v5"/></svg><h3>Campamentos de vida en la naturaleza</h3></div>
+          <div class="flip-card__back"><p>Los campamentos y propuestas de vida en la naturaleza ofrecen experiencias que promueven la convivencia, la autonomía y el trabajo en equipo. A través del contacto con el entorno natural, los alumnos desarrollan habilidades personales y fortalecen los vínculos con sus compañeros.</p></div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><h3>Escuela de líderes</h3></div>
+          <div class="flip-card__back"><p>Este espacio busca formar jóvenes comprometidos, solidarios y capaces de generar un impacto positivo en su comunidad. A través de diferentes experiencias y proyectos, los estudiantes desarrollan habilidades de liderazgo, organización, trabajo colaborativo y participación.</p></div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><path d="M9 19V6l12-2v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-2c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-2"/></svg><h3>Taller musical de banda</h3></div>
+          <div class="flip-card__back"><p>Este espacio invita a los alumnos a explorar el lenguaje musical desde una experiencia colectiva y creativa. A través de la interpretación instrumental y vocal, desarrollan habilidades artísticas, expresivas y de trabajo en equipo.</p></div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><h3>TED-Ed Clubs</h3></div>
+          <div class="flip-card__back"><p>Buscamos acompañar a nuestros alumnos en la búsqueda de sus pasiones y en el desarrollo de capacidades para generar y comunicar ideas. A lo largo de una serie de encuentros los alumnos desarrollan una idea propia y aprenden a comunicarla, llegando a una instancia final en la que comparten sus ideas en una charla corta al estilo de TED.</p></div>
+        </div></div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ⑥ SERVICIOS ─── -->
+  <section class="section bg-light" id="servicios">
+    <div class="container">
+      <div class="section__header slide-up">
+        <p class="section__eyebrow">Para las familias</p>
+        <h2 class="section__title">Horarios y servicios</h2>
+        <p class="section__desc">Jornada completa bilingüe organizada en bloques de 80 minutos, con mañanas en castellano y tardes en inglés, y talleres extraprogramáticos al cierre del día.</p>
+      </div>
+
+      <div class="jornada-unica fade-in">
+        <div class="jornada-unica__header">
+          <span>Bloque</span>
+          <span>Horario</span>
+          <span>Propuesta</span>
+        </div>
+        <div class="jornada-row">
+          <div class="jornada-row__name">Mañana</div>
+          <div class="jornada-row__hora">7:45 – 12:00 hs</div>
+          <div class="jornada-row__tags">
+            <span class="jornada-tag">Áreas en castellano</span>
+            <span class="jornada-tag">Bloques de 80 min</span>
+            <span class="jornada-tag">2 recreos de 15 min</span>
+          </div>
+        </div>
+        <div class="jornada-row">
+          <div class="jornada-row__name">Almuerzo</div>
+          <div class="jornada-row__hora">12:00 – 13:00 hs</div>
+          <div class="jornada-row__tags">
+            <span class="jornada-tag">Comedor</span>
+          </div>
+        </div>
+        <div class="jornada-row">
+          <div class="jornada-row__name">Tarde</div>
+          <div class="jornada-row__hora">13:00 – 16:30 hs</div>
+          <div class="jornada-row__tags">
+            <span class="jornada-tag">Áreas en inglés</span>
+            <span class="jornada-tag">1 recreo de 20 min</span>
+          </div>
+        </div>
+        <div class="jornada-row">
+          <div class="jornada-row__name">Extraprogramático</div>
+          <div class="jornada-row__hora">desde 16:30 hs</div>
+          <div class="jornada-row__tags">
+            <span class="jornada-tag jornada-tag--accent">Talleres según intereses</span>
+          </div>
+        </div>
+      </div>
+      <p class="jornada-nota"><strong>Servicio abierto todo el año.</strong> Los alumnos pueden optar por el <strong>comedor escolar</strong>, por vianda propia o por un servicio mixto.</p>
+
+      <div class="servicios-extra">
+
+        <div class="servicio-extra fade-in">
+          <div class="servicio-extra__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          </div>
+          <h3>Comedor propio</h3>
+          <p>Menú saludable elaborado en el día. Opción de comedor, vianda o servicio mixto según la preferencia de cada familia.</p>
+        </div>
+
+        <div class="servicio-extra fade-in">
+          <div class="servicio-extra__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <h3>Equipo de Orientación Escolar</h3>
+          <p>Acompañamiento a estudiantes, familias y docentes. Favorece el desarrollo socioemocional, la convivencia y los procesos de aprendizaje propios de la adolescencia.</p>
+        </div>
+
+        <div class="servicio-extra fade-in">
+          <div class="servicio-extra__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <h3>Transporte escolar</h3>
+          <p>Servicio con empresas habilitadas y de confianza. Cobertura en zonas aledañas con acompañante en cada recorrido.</p>
+        </div>
+
+        <div class="servicio-extra fade-in">
+          <div class="servicio-extra__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </div>
+          <h3>Capacitación docente</h3>
+          <p>Capacitaciones periódicas del equipo para garantizar una propuesta pedagógica actualizada, innovadora y de alta calidad.</p>
+        </div>
+
+        <div class="servicio-extra fade-in">
+          <div class="servicio-extra__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 22v-6"/><path d="M9.5 22h5"/><path d="M12 16l-2-2.5m2 2.5l2-2.5"/><path d="M18.5 10.5c0-3.6-2.9-6.5-6.5-6.5S5.5 6.9 5.5 10.5c0 1.6.6 3.1 1.6 4.2-.4.4-.6 1-.6 1.6C6.5 17.8 7.7 19 9.2 19h5.6c1.5 0 2.7-1.2 2.7-2.7 0-.6-.2-1.2-.6-1.6 1-1.1 1.6-2.6 1.6-4.2z"/></svg>
+          </div>
+          <h3>Campo de deportes</h3>
+          <p>Clases de Educación Física en el Club Buenavista y encuentros deportivos con otros colegios. Equipo docente especializado.</p>
+        </div>
+
+        <div class="servicio-extra fade-in">
+          <div class="servicio-extra__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Vinculación universitaria</h3>
+          <p>Convenios con Di Tella, Palermo, ESEADE y UCES para orientación vocacional, talleres y beneficios en el ingreso a la educación superior.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA FINAL ─── -->
+  <section class="cta-final">
+    <div class="container">
+      <p class="section__eyebrow">Inscripciones abiertas</p>
+      <h2>¿Querés que tu hijo sea parte de San Carlos?</h2>
+      <p>Solicitá una entrevista y conocé nuestra propuesta de cerca.</p>
+      <div class="cta-final__actions">
+        <a href="https://wa.me/541147964918?text=Hola%2C%20quisiera%20solicitar%20una%20entrevista%20para%20Nivel%20Secundario." class="btn btn--white" target="_blank" rel="noopener">Solicitar entrevista</a>
+        <a href="index.html" class="btn btn--outline-white">Volver al inicio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="Colegio San Carlos Diálogos" class="footer__logo" loading="lazy" />
+        <div class="footer__social">
+          <a href="https://www.instagram.com/sancarlos_colegio" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+          <a href="https://www.facebook.com/p/San-Carlos-Colegio-100089961152583/?locale=es_LA" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://ar.linkedin.com/company/san-carlos-dialogos" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://www.youtube.com/@ColegioSanCarlosD" target="_blank" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h5>Nivel Secundario</h5>
+        <ul>
+          <li><a href="#equipo">Equipo de Conducción</a></li>
+          <li><a href="#propuesta">Propuesta educativa</a></li>
+          <li><a href="#areas">Áreas de aprendizaje</a></li>
+          <li><a href="#formacion">Propuestas que enriquecen</a></li>
+          <li><a href="#experiencias">Experiencias</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>El Colegio</h5>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="nivel-inicial.html">Nivel Inicial</a></li>
+          <li><a href="nivel-primario.html">Nivel Primario</a></li>
+          <li><a href="nuestra-identidad.html">Nuestra Identidad</a></li>
+          <li><a href="index.html#talleres">Talleres</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Contacto</h5>
+        <ul>
+          <li>José María Paz 2431, Olivos</li>
+          
+          <li><a href="tel:+541147960504">(+11) 4796-0504</a></li>
+          <li><a href="mailto:administracion@sancarlos.edu.ar">administracion@sancarlos.edu.ar</a></li>
+          <li>Lun–Vie 7:30 a 19:00 hs</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2025 Colegio San Carlos Diálogos. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ─── MODAL ─── -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal" id="modalBox">
+      <button class="modal__close" id="modalClose" aria-label="Cerrar">&#x2715;</button>
+      <div class="modal__header">
+        <div class="modal__icon" id="modalIcon"></div>
+        <h3 class="modal__title" id="modalTitle"></h3>
+      </div>
+      <div class="modal__body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const burger   = document.getElementById('burger');
+    const nav      = document.getElementById('nav');
+    const navClose = document.getElementById('navClose');
+    burger.addEventListener('click',   () => nav.classList.toggle('open'));
+    navClose.addEventListener('click', () => nav.classList.remove('open'));
+
+    const offset = () =>
+      document.getElementById('header').offsetHeight +
+      (document.getElementById('subnav') ? document.getElementById('subnav').offsetHeight : 0) + 8;
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const id = link.getAttribute('href');
+        if (id === '#') return;
+        const target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - offset(), behavior: 'smooth' });
+        nav.classList.remove('open');
+      });
+    });
+
+    const sections = document.querySelectorAll('section[id]');
+    const allLinks = document.querySelectorAll('.subnav__link, .nav__link');
+    sections.forEach(s => {
+      new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting)
+            allLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+        });
+      }, { rootMargin: '-40% 0px -55% 0px' }).observe(s);
+    });
+
+    document.querySelectorAll('.flip-card').forEach(card => {
+      card.addEventListener('click', () => card.classList.toggle('flipped'));
+    });
+
+    document.querySelectorAll('.fade-in, .slide-left, .slide-right, .slide-up').forEach(el => {
+      new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+      }, { threshold: 0.1 }).observe(el);
+    });
+
+    /* ── MODAL DATA ── */
+    const modalData = {
+
+      's-area-mat': {
+        title: 'Matemática — Metodología ABP',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>',
+        body: `<p>Nuestra metodología de enseñanza, ABP (Aprendizaje Basado en Problemas) se basa en la presentación de secuencias de problemas que propician el trabajo exploratorio, la elaboración y validación de conjeturas, la generalización, la argumentación y la aplicación de los conceptos adquiridos.</p>`
+      },
+
+      's-area-lengua': {
+        title: 'Lengua y Literatura',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>',
+        body: `<p>Lengua y Literatura tiene como objetivo el dominio correcto y rico del idioma español en la comunicación, la apreciación de la literatura y el fortalecimiento y perfeccionamiento de la comprensión y de la expresión textual.</p>`
+      },
+
+      's-area-sociales': {
+        title: 'Ciencias Sociales',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>',
+        body: `<p>Con el estudio de las Ciencias Sociales (Comunicación, Sociología, Economía, Psicología, Humanidades) buscamos la ampliación del horizonte cultural de nuestros alumnos y fortalecer su comprensión de significados intersubjetivos y la mirada científica y crítica sobre los conjuntos humanos.</p>`
+      },
+
+      's-area-naturales': {
+        title: 'Ciencias Naturales — Química, Física y Biología',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>',
+        body: `<p>En el área de Ciencias Naturales (Química, Física, Biología) se busca la consolidación de la visión científica del mundo, de conocimientos básicos en estas áreas hasta el nivel de inicio de estudios universitarios y la interiorización del método de razonamiento hipotético-deductivo, con la diferenciación de los niveles empírico y teórico.</p>`
+      },
+
+      's-area-artes': {
+        title: 'Educación Artística',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>',
+        body: `<p>La Educación Artística permite descubrir y formar los talentos expresivos de los jóvenes y educar la capacidad de apreciación y disfrute de la belleza estética.</p>`
+      },
+
+      's-area-economia': {
+        title: 'Economía y Gestión',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+        body: `<p>En las asignaturas de Economía y Gestión se estudian los fundamentos de la organización de la producción, la administración y las actividades comerciales. La capacitación recibida, si bien tiene una aplicación práctica, es entendida como una introducción de esos temas para los estudios universitarios.</p>`
+      },
+
+      's-area-ingles': {
+        title: 'Inglés — Proyecto Bilingüe y Certificados Cambridge',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>',
+        body: `<p>El colegio San Carlos, con su proyecto bilingüe, se esfuerza en mantener su currículum abierto al mundo contemporáneo para que las exigencias planteadas por la movilidad del presente se traduzcan en habilidades que permitan a nuestros alumnos desempeñarse en las distintas áreas del conocimiento y la actividad laboral tanto en su lengua nativa como en el idioma inglés, integrado a nuestro plan de enseñanza.</p><p>Los alumnos logran a lo largo de los seis años competencias lingüísticas que les permiten obtener los certificados internacionales: Preliminary English Test (PET), First Certificate in English (FCE), y Certificate of Advanced English (CAE).</p><p>Nuestro plan bilingüe (Res. 02/05) incluye el dictado en inglés de asignaturas curriculares: Culture, History, Literature, Geography, Philosophy y Global Perspectives, que permiten ampliar horizontes culturales y fortalecer el dominio del idioma.</p><p>Los medios audiovisuales e informáticos utilizados en clase, el nivel de nuestro plantel docente y el frecuente contacto con native speakers —que promueven nuestros intercambios con Canadá, el viaje a Londres y el intercambio en Baltimore— permiten a los alumnos lograr el aprendizaje del inglés de manera natural, desarrollando las habilidades de comprensión y expresión oral y escrita desde las etapas iniciales hasta la finalización de la escuela.</p>`
+      },
+
+      's-area-efisica': {
+        title: 'Educación Física y Deporte Educativo',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
+        body: `<p>Partimos de la base de que la Educación Física en la etapa escolar es absolutamente educativa y formativa.</p><p><strong>Objetivos:</strong> Desarrollar las habilidades motoras; desarrollar valores a través de los cuales forme una actitud reflexiva, comprensiva y positiva; tomar conciencia en el cuidado de la salud; desarrollar comprensión y acciones de distintas lógicas lúdicas y/o pre-deportivas o deportivas.</p><p>Las actividades se desarrollan en las instalaciones del colegio y en el espacio del campo de deportes del Club Buena Vista. A lo largo del año se llevan a cabo encuentros deportivos con otros colegios.</p>`
+      },
+
+      's-fi-tec': {
+        title: 'Aula Tech — Tecnología con propósito',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+        body: `<p>Entendemos la tecnología como una herramienta para crear, investigar, resolver problemas y generar soluciones con impacto en el mundo real. Por eso, los estudiantes participan de experiencias que los desafían a observar su entorno, identificar necesidades, diseñar propuestas y materializarlas a través de diferentes recursos tecnológicos.</p><p>En el Aula Tech, la tecnología se integra de manera transversal a los aprendizajes, promoviendo el trabajo colaborativo, el pensamiento crítico, la creatividad y la innovación. Proyectos vinculados con diseño e impresión 3D, producción de contenidos, programación y comunicación digital permiten a los alumnos desarrollar competencias fundamentales para desenvolverse en una sociedad en constante transformación.</p><p>Buscamos que los estudiantes no sean solo usuarios de tecnología, sino creadores capaces de utilizarla de manera reflexiva, responsable y con propósito.</p>`
+      },
+
+      's-fi-uni': {
+        title: 'Vinculación con Universidades',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+        body: `<p>A través de convenios con distintas universidades, nuestros estudiantes acceden a propuestas de orientación vocacional, talleres, actividades académicas y beneficios para continuar su formación superior. Estas experiencias les permiten acercarse al mundo universitario, explorar intereses y comenzar a proyectar su futuro académico y profesional.</p><p>Actualmente contamos con acuerdos de colaboración con universidades como Di Tella, Palermo, ESEADE y UCES, entre otras instituciones con las que continuamos fortaleciendo vínculos para enriquecer nuestra propuesta educativa.</p>`
+      }
+
+    };
+
+    /* ── Lógica modal ── */
+    const overlay = document.getElementById('modalOverlay');
+    const mTitle  = document.getElementById('modalTitle');
+    const mBody   = document.getElementById('modalBody');
+    const mIcon   = document.getElementById('modalIcon');
+    const mClose  = document.getElementById('modalClose');
+
+    function openModal(key) {
+      const d = modalData[key]; if (!d) return;
+      mTitle.textContent = d.title;
+      mBody.innerHTML    = d.body;
+      mIcon.innerHTML    = d.icon;
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      mClose.focus();
+    }
+    function closeModal() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.btn-info').forEach(btn =>
+      btn.addEventListener('click', () => openModal(btn.dataset.modal))
+    );
+    mClose.addEventListener('click', closeModal);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  </script>
+</body>
+</html>

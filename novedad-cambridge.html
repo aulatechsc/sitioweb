@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exámenes Internacionales Cambridge 2025 | Colegio San Carlos Diálogos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .article-hero { position:relative; height:55vh; min-height:380px; max-height:580px; overflow:hidden; display:flex; align-items:flex-end; }
+    .article-hero__img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .article-hero__overlay { position:absolute; inset:0; background:linear-gradient(0deg,rgba(0,51,82,.88) 0%,rgba(0,71,108,.45) 55%,rgba(0,71,108,.10) 100%); }
+    .article-hero__content { position:relative; z-index:2; padding-bottom:48px; color:#fff; max-width:760px; }
+    .article-cat { display:inline-block; background:var(--accent); color:#fff; font-family:'Raleway',sans-serif; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:4px 12px; border-radius:20px; margin-bottom:16px; }
+    .article-hero__content h1 { font-family:'Raleway',sans-serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; color:#fff; line-height:1.15; margin-bottom:12px; }
+    .article-hero__content time { font-family:'Raleway',sans-serif; font-size:13px; color:rgba(255,255,255,.75); font-weight:500; }
+    .article-container { max-width:760px; margin:0 auto; }
+    .article-back { display:inline-flex; align-items:center; gap:8px; font-family:'Raleway',sans-serif; font-size:13px; font-weight:600; color:var(--primary); text-decoration:none; margin-bottom:40px; padding:8px 0; border-bottom:2px solid transparent; transition:border-color .2s; }
+    .article-back:hover { border-bottom-color:var(--primary); }
+    .article-text p { color:var(--text-lt); line-height:1.85; margin-bottom:18px; font-size:16px; }
+    .article-text h2 { font-family:'Raleway',sans-serif; font-size:1.35rem; font-weight:800; color:var(--primary); margin:36px 0 14px; }
+    .article-text ul { padding-left:22px; margin-bottom:18px; }
+    .article-text ul li { color:var(--text-lt); font-size:16px; line-height:1.8; margin-bottom:6px; }
+    .article-text .highlight { background:var(--light); border-left:4px solid var(--accent); padding:18px 22px; border-radius:0 var(--radius-sm) var(--radius-sm) 0; margin:28px 0; }
+    .article-text .highlight p { margin-bottom:0; font-size:15px; font-style:italic; }
+    .related-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .related-card { background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); border:1px solid var(--gray-border); text-decoration:none; transition:transform .25s ease; display:block; }
+    .related-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+    .related-card img { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; }
+    .related-card__body { padding:14px 16px 18px; }
+    .related-card__cat { font-family:'Raleway',sans-serif; font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:6px; }
+    .related-card__body h4 { font-size:.9rem; color:var(--primary); line-height:1.3; }
+    @media(max-width:700px){ .related-grid { grid-template-columns:1fr; } }
+    .carousel{position:relative;border-radius:var(--radius);overflow:hidden;background:#111}
+    .carousel__track{display:flex;transition:transform .5s ease}
+    .carousel__slide{min-width:100%;aspect-ratio:16/9;overflow:hidden}
+    .carousel__slide img{width:100%;height:100%;object-fit:contain;display:block}
+    .carousel__btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.9);border:none;border-radius:50%;width:44px;height:44px;cursor:pointer;font-size:1.4rem;font-weight:700;color:var(--primary);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.2);transition:background .2s;z-index:3}
+    .carousel__btn:hover{background:#fff}.carousel__btn--prev{left:14px}.carousel__btn--next{right:14px}
+    .carousel__dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3}
+    .carousel__dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.45);border:none;cursor:pointer;padding:0;transition:background .2s}
+    .carousel__dot.active{background:#fff}
+    .carousel__counter{position:absolute;top:12px;right:14px;background:rgba(0,0,0,.45);color:#fff;font-family:'Raleway',sans-serif;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;z-index:3}
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <div class="topbar__contact">
+        <span><svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:rgba(255,255,255,.7);flex-shrink:0"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> José María Paz 2431 – Olivos – Vte. López</span>
+        <a href="tel:+541147960504"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg> +54 (11) 4796-0504</a>
+      </div>
+      <div class="topbar__social">
+        <a href="https://www.instagram.com/sancarlos_colegio" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://www.facebook.com/p/San-Carlos-Colegio-100089961152583/?locale=es_LA" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://ar.linkedin.com/company/san-carlos-dialogos" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://www.youtube.com/@ColegioSanCarlosD" target="_blank" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo"><img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="Colegio San Carlos Diálogos" /></a>
+      <button class="header__burger" id="burger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      <nav class="nav" id="nav">
+        <button class="nav__close" id="navClose" aria-label="Cerrar menú">✕</button>
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Inicio</a></li>
+          <li class="has-dropdown"><a href="index.html#niveles" class="nav__link">Niveles <svg viewBox="0 0 24 24" class="chevron"><path d="M7 10l5 5 5-5z"/></svg></a>
+            <ul class="dropdown">
+              <li><a href="nivel-inicial.html">Nivel Inicial</a></li>
+              <li><a href="nivel-primario.html">Nivel Primario</a></li>
+              <li><a href="nivel-secundario.html">Nivel Secundario</a></li>
+            </ul>
+          </li>
+          <li><a href="nuestra-identidad.html" class="nav__link">Nuestra Identidad</a></li>
+          <li><a href="talleres.html" class="nav__link">Talleres</a></li>
+          <li><a href="novedades.html" class="nav__link active">Novedades</a></li>
+          <li><a href="contacto.html" class="nav__link">Contacto</a></li>
+        </ul>
+        <a href="https://linktr.ee/sancarlos_colegio" target="_blank" rel="noopener" class="btn btn--primary nav__cta">Admisiones</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ARTICLE HERO -->
+  <div class="article-hero">
+    <img src="img/novedades/examenes-internacionales/img-20260331-wa0011.jpg" alt="Entrega de certificados Cambridge" class="article-hero__img" />
+    <div class="article-hero__overlay"></div>
+    <div class="container article-hero__content">
+      <span class="article-cat">Académico</span>
+      <h1>82 alumnos certificados por Cambridge University Press</h1>
+      <time>Abril 2026</time>
+    </div>
+  </div>
+
+  <!-- ARTICLE BODY -->
+  <section class="section">
+    <div class="container">
+      <div class="article-container">
+        <a href="novedades.html" class="article-back">← Volver a Novedades</a>
+        <div class="article-text">
+          <p>El Colegio San Carlos Diálogos celebró la entrega de certificados internacionales de Cambridge a 82 alumnos de Nivel Primario y Secundario que rindieron sus exámenes en noviembre y diciembre de 2025. Este logro refleja el esfuerzo sostenido de los estudiantes y la solidez de nuestro proyecto bilingüe.</p>
+          <h2>Niveles certificados</h2>
+          <p>Los alumnos rindieron en distintas instancias del Marco Europeo Común de Referencia para las Lenguas (CEFR), obteniendo los siguientes títulos:</p>
+          <ul>
+            <li><strong>A2 Key (KET):</strong> alumnos de Nivel Primario que acreditaron el nivel A2</li>
+            <li><strong>B1 Preliminary (PET):</strong> estudiantes de los primeros años del secundario</li>
+            <li><strong>B2 First Certificate in English (FCE):</strong> alumnos de los años medios</li>
+            <li><strong>C1 Certificate of Advanced English (CAE):</strong> egresantes y alumnos avanzados</li>
+          </ul>
+          <div class="highlight"><p>"Estos certificados son el resultado de años de trabajo sostenido, tanto de los alumnos como de nuestro equipo docente bilingüe. Cada certificado representa no solo un logro académico, sino también una apertura al mundo."</p></div>
+          <h2>Nuestro proyecto bilingüe</h2>
+          <p>El Colegio San Carlos cuenta con un proyecto bilingüe reconocido oficialmente (Res. 02/05), que garantiza una inmersión progresiva en inglés desde el Nivel Inicial hasta la finalización del secundario. El contacto intenso, significativo y sistemático con el idioma prepara a los estudiantes para comunicarse con fluidez en contextos académicos y laborales internacionales.</p>
+          <p>Felicitamos a todos los alumnos, sus familias y al equipo docente por este logro que orgullo a toda la comunidad San Carlos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARRUSEL FOTOS -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="article-container">
+        <h3 style="font-family:'Raleway',sans-serif;font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:18px">Galería de fotos</h3>
+        <div class="carousel" id="carousel-cambridge">
+          <div class="carousel__track">
+            <div class="carousel__slide"><img src="img/novedades/examenes-internacionales/img-20260331-wa0011.jpg" alt="Cambridge 1" loading="lazy"/></div>
+            <div class="carousel__slide"><img src="img/novedades/examenes-internacionales/img-20260401-wa0032__1_.jpg" alt="Cambridge 2" loading="lazy"/></div>
+          </div>
+          <button class="carousel__btn carousel__btn--prev" aria-label="Anterior">&#8249;</button>
+          <button class="carousel__btn carousel__btn--next" aria-label="Siguiente">&#8250;</button>
+          <div class="carousel__dots">
+            <button class="carousel__dot active" aria-label="Foto 1"></button>
+            <button class="carousel__dot" aria-label="Foto 2"></button>
+          </div>
+          <div class="carousel__counter">1 / 2</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MORE NEWS -->
+  <section class="section bg-light">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">Seguí leyendo</p>
+        <h2 class="section__title">Más novedades</h2>
+      </div>
+      <div class="related-grid">
+        <a href="novedad-celulares.html" class="related-card">
+          <img src="img/novedades/uso-celulares.png" alt="Uso de celulares en secundaria" loading="lazy" />
+          <div class="related-card__body">
+            <span class="related-card__cat">Institucional</span>
+            <h4>Entorno libre de dispositivos móviles</h4>
+          </div>
+        </a>
+        <a href="novedad-ted-ed.html" class="related-card">
+          <img src="img/novedades/clubes-ted-ed.jpg" alt="Proyecto Clubes TED-Ed San Carlos" loading="lazy" />
+          <div class="related-card__body">
+            <span class="related-card__cat">Académico</span>
+            <h4>Proyecto Clubes TED-Ed</h4>
+          </div>
+        </a>
+        <a href="novedad-baltimore.html" class="related-card">
+          <img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2025/06/The-girls-in-Baltimore-2025.jpg" alt="Intercambio estudiantil en Baltimore" loading="lazy" />
+          <div class="related-card__body">
+            <span class="related-card__cat">Internacional</span>
+            <h4>Intercambio en Baltimore</h4>
+          </div>
+        </a>
+      </div>
+      <div style="text-align:center;margin-top:40px">
+        <a href="novedades.html" class="btn btn--primary">Ver todas las novedades</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="Colegio San Carlos Diálogos" class="footer__logo" loading="lazy" />
+        <div class="footer__social">
+          <a href="https://www.instagram.com/sancarlos_colegio" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+          <a href="https://www.facebook.com/p/San-Carlos-Colegio-100089961152583/?locale=es_LA" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://ar.linkedin.com/company/san-carlos-dialogos" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://www.youtube.com/@ColegioSanCarlosD" target="_blank" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer__col"><h5>Novedades</h5><ul><li><a href="novedades.html">Todas las novedades</a></li><li><a href="index.html">Inicio</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+      <div class="footer__col"><h5>El Colegio</h5><ul><li><a href="nivel-inicial.html">Nivel Inicial</a></li><li><a href="nivel-primario.html">Nivel Primario</a></li><li><a href="nivel-secundario.html">Nivel Secundario</a></li><li><a href="nuestra-identidad.html">Nuestra Identidad</a></li></ul></div>
+      <div class="footer__col"><h5>Contacto</h5><ul><li>José María Paz 2431, Olivos</li><li><a href="tel:+541147960504">(+11) 4796-0504</a></li><li>Lun–Vie 7:30 a 19:00 hs</li></ul></div>
+    </div>
+    <div class="footer__bottom"><p>&copy; 2025 Colegio San Carlos Diálogos. Todos los derechos reservados.</p></div>
+  </footer>
+
+  <script>
+    const burger=document.getElementById('burger'),nav=document.getElementById('nav'),navClose=document.getElementById('navClose');
+    burger.addEventListener('click',()=>nav.classList.toggle('open'));
+    navClose.addEventListener('click',()=>nav.classList.remove('open'));
+    function initCarousel(id){const el=document.getElementById(id);if(!el)return;const track=el.querySelector('.carousel__track'),slides=el.querySelectorAll('.carousel__slide'),dots=el.querySelectorAll('.carousel__dot'),counter=el.querySelector('.carousel__counter');let cur=0,timer;function go(n){cur=(n+slides.length)%slides.length;track.style.transform=`translateX(-${cur*100}%)`;dots.forEach((d,i)=>d.classList.toggle('active',i===cur));if(counter)counter.textContent=(cur+1)+' / '+slides.length;}el.querySelector('.carousel__btn--prev').addEventListener('click',()=>{clearInterval(timer);go(cur-1);start();});el.querySelector('.carousel__btn--next').addEventListener('click',()=>{clearInterval(timer);go(cur+1);start();});dots.forEach((d,i)=>d.addEventListener('click',()=>{clearInterval(timer);go(i);start();}));function start(){timer=setInterval(()=>go(cur+1),4500);}go(0);start();}
+    initCarousel('carousel-cambridge');
+  </script>
+</body>
+</html>

@@ -1,0 +1,610 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Colegio San Carlos Diálogos | Olivos, Buenos Aires</title>
+  <meta name="description" content="Colegio San Carlos Diálogos — Formación laica, bilingüe e inclusiva. Niveles Inicial, Primario y Secundario en Olivos, Buenos Aires." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    #splash {
+      position: fixed; inset: 0; z-index: 99999;
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity .6s ease;
+    }
+    #splash.hide { opacity: 0; pointer-events: none; }
+    #splash__logo {
+      width: 200px;
+      animation: splashIn .9s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    @keyframes splashIn {
+      from { opacity: 0; transform: scale(.75); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body style="overflow:hidden">
+
+  <!-- SPLASH -->
+  <div id="splash">
+    <img id="splash__logo"
+         src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png"
+         alt="Colegio San Carlos Diálogos" />
+  </div>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <div class="topbar__contact">
+        <span>
+          <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:rgba(255,255,255,.7);flex-shrink:0"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          José María Paz 2431 &ndash; Olivos &ndash; Vte. López
+        </span>
+        <a href="tel:+541147960504">
+          <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          +54 (11) 4796-0504
+        </a>
+      </div>
+      <div class="topbar__social">
+        <a href="https://www.instagram.com/sancarlos_colegio" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/p/San-Carlos-Colegio-100089961152583/?locale=es_LA" target="_blank" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://ar.linkedin.com/company/san-carlos-dialogos" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://www.youtube.com/@ColegioSanCarlosD" target="_blank" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER / NAVBAR -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#inicio" class="header__logo">
+        <img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="Colegio San Carlos Diálogos" />
+      </a>
+
+      <button class="header__burger" id="burger" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav">
+        <button class="nav__close" id="navClose" aria-label="Cerrar menú">✕</button>
+        <ul class="nav__list">
+          <li><a href="#inicio" class="nav__link">Inicio</a></li>
+          <li class="has-dropdown">
+            <a href="#niveles" class="nav__link">Niveles <svg viewBox="0 0 24 24" class="chevron"><path d="M7 10l5 5 5-5z"/></svg></a>
+            <ul class="dropdown">
+              <li><a href="nivel-inicial.html">Nivel Inicial</a></li>
+              <li><a href="nivel-primario.html">Nivel Primario</a></li>
+              <li><a href="nivel-secundario.html">Nivel Secundario</a></li>
+            </ul>
+          </li>
+          <li><a href="nuestra-identidad.html" class="nav__link">Nuestra Identidad</a></li>
+          <li><a href="talleres.html" class="nav__link">Talleres</a></li>
+          <li><a href="novedades.html" class="nav__link">Novedades</a></li>
+          <li><a href="contacto.html" class="nav__link">Contacto</a></li>
+        </ul>
+        <a href="https://linktr.ee/sancarlos_colegio" target="_blank" rel="noopener" class="btn btn--primary nav__cta">Admisiones</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero__slider" id="heroSlider">
+      <div class="hero__slide active" style="background-image: url('img/hero/hero-primario.jpg')"></div>
+      <div class="hero__slide" style="background-image: url('img/hero/hero-secundario.jpg')"></div>
+      <div class="hero__slide" style="background-image: url('img/hero/hero-inicial.jpg')"></div>
+    </div>
+    <div class="hero__overlay"></div>
+    <div class="container hero__content">
+      <p class="hero__eyebrow">Olivos, Buenos Aires</p>
+      <h1 class="hero__title">Colegio San Carlos<br /><span>Diálogos</span></h1>
+      <p class="hero__subtitle">Formación laica, bilingüe e integral para desarrollar el máximo potencial de cada estudiante, acompañando a las familias en cada etapa de su recorrido escolar.</p>
+      <div class="hero__actions">
+        <a href="#niveles" class="btn btn--primary">Conocé los niveles</a>
+        <a href="#contacto" class="btn btn--outline-white">Admisiones</a>
+      </div>
+    </div>
+    <div class="hero__dots" id="heroDots">
+      <button class="dot active" data-index="0"></button>
+      <button class="dot" data-index="1"></button>
+      <button class="dot" data-index="2"></button>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="container stats__grid">
+      <div class="stat">
+        <span class="stat__number">+30</span>
+        <span class="stat__label">Años de trayectoria</span>
+      </div>
+      <div class="stat">
+        <span class="stat__number">+600</span>
+        <span class="stat__label">Alumnos</span>
+      </div>
+      <div class="stat">
+        <span class="stat__number">3</span>
+        <span class="stat__label">Niveles educativos</span>
+      </div>
+      <div class="stat">
+        <span class="stat__number">3</span>
+        <span class="stat__label">Programas de intercambio internacional</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section class="section nosotros" id="nosotros">
+    <div class="container">
+      <div class="nosotros__inner slide-left">
+        <p class="section__eyebrow">Quiénes somos</p>
+        <h2 class="section__title">Lo que nos hace únicos</h2>
+        <p>El Colegio San Carlos Diálogos es una institución laica, bilingüe e inclusiva ubicada en Olivos. Acompañamos a niños, niñas y jóvenes desde el Nivel Inicial hasta la Escuela Secundaria, promoviendo una educación académicamente sólida, centrada en las personas y conectada con el mundo actual.</p>
+      </div>
+      <div style="text-align:center;margin-top:40px;">
+        <img src="img/arbol.valores.png" alt="Valores del Colegio San Carlos Diálogos: Educación bilingüe, Horario extendido, Acompañamiento personalizado, Desarrollo socioemocional, Tecnología con propósito, Vida en la naturaleza, Liderazgo y compromiso social" style="max-width:75%;height:auto;display:inline-block;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- NIVELES -->
+  <section class="section niveles bg-light" id="niveles">
+    <div class="container">
+      <div class="section__header slide-up">
+        <p class="section__eyebrow">Educación completa</p>
+        <h2 class="section__title">Nuestros Niveles Educativos</h2>
+        <p class="section__desc">Acompañamos a los alumnos desde los 3 años hasta el egreso secundario con una propuesta pedagógica integrada.</p>
+      </div>
+      <div class="niveles__grid">
+
+        <article class="nivel-card" id="inicial">
+          <div class="nivel-card__img">
+            <img src="img/niveles/inicial.jpg" alt="Nivel Inicial" loading="lazy" />
+          </div>
+          <div class="nivel-card__body">
+            <span class="nivel-card__tag">3 a 5 años</span>
+            <h3>Nivel Inicial</h3>
+            <p>Un espacio cálido y estimulante donde los niños aprenden a través del juego, la exploración y los vínculos. Una propuesta pedagógica que respeta los tiempos y las particularidades de cada niño.</p>
+            <ul>
+              <li>Educación emocional, juego y exploración significativa</li>
+              <li>Propuesta de inglés desde sala de 3</li>
+              <li>Taller de natación dentro del horario escolar</li>
+              <li>Jornada flexible según necesidad familiar (desde 7:30 a 18:45 hs)</li>
+              <li>Desayuno, almuerzo y merienda incluidos según la modalidad horaria seleccionada</li>
+            </ul>
+            <a href="nivel-inicial.html" class="btn btn--outline">Más información</a>
+          </div>
+        </article>
+
+        <article class="nivel-card nivel-card--accent" id="primario">
+          <div class="nivel-card__img">
+            <img src="img/niveles/primaria.jpg" alt="Nivel Primario" loading="lazy" />
+          </div>
+          <div class="nivel-card__body">
+            <span class="nivel-card__tag">1° a 6° grado</span>
+            <h3>Nivel Primario</h3>
+            <p>Jornada completa bilingüe con metodologías activas que potencian el pensamiento crítico, la creatividad y el trabajo colaborativo. Formamos alumnos autónomos y comprometidos.</p>
+            <ul>
+              <li>Proyecto bilingüe reconocido · Cambridge A2 Key</li>
+              <li>Aprendizaje Basado en Problemas (ABP), indagación científica, enfoque comunicativo en Inglés y otras estrategias que promueven un aprendizaje activo y significativo</li>
+              <li>Jornada 8:00–16:45 hs · Mañana castellano, tarde inglés con posibilidad de extensión horaria 7:30–18:45 hs</li>
+              <li>Espacio de habilidades sociales</li>
+            </ul>
+            <a href="nivel-primario.html" class="btn btn--outline">Más información</a>
+          </div>
+        </article>
+
+        <article class="nivel-card" id="secundario">
+          <div class="nivel-card__img">
+            <img src="img/niveles/secundaria.jpg" alt="Nivel Secundario" loading="lazy" />
+          </div>
+          <div class="nivel-card__body">
+            <span class="nivel-card__tag">1° a 6° año</span>
+            <h3>Nivel Secundario</h3>
+            <p>Bachiller Bilingüe con orientación en Ciencias Sociales o Economía y Administración. Formación sólida, pensamiento crítico y proyección hacia la universidad y el mundo.</p>
+            <ul>
+              <li>Certificados Cambridge: PET, FCE y CAE</li>
+              <li>Intercambios internacionales: Canadá, EE.UU. y Londres</li>
+              <li>TED-Ed Clubs, Escuela de Líderes y Aula Tech</li>
+              <li>Vinculación con Di Tella, Palermo, ESEADE y UCES</li>
+              <li>Un espacio para desarrollar el talento musical en la banda del colegio</li>
+            </ul>
+            <a href="nivel-secundario.html" class="btn btn--outline">Más información</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- UN MISMO PROYECTO EDUCATIVO -->
+  <section id="proyecto-educativo" style="background:var(--light);padding:64px 0;border-top:1px solid var(--gray-border)">
+    <div class="container">
+      <div style="display:flex;align-items:center;gap:64px;flex-wrap:wrap;justify-content:center">
+
+        <!-- Logo -->
+        <div style="flex-shrink:0">
+          <img src="img/logo-jardines/logo-jardines.png" alt="Jardines Maternales Diálogos" style="height:280px;width:auto;object-fit:contain;display:block" />
+        </div>
+
+        <!-- Texto -->
+        <div style="max-width:460px">
+          <p style="font-family:'Raleway',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:12px">Un mismo proyecto educativo</p>
+          <h2 style="font-family:'Raleway',sans-serif;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:800;color:var(--primary);line-height:1.2;margin-bottom:16px">Un recorrido que comienza a los 45 días</h2>
+          <p style="color:var(--text-lt);font-size:1.05rem;line-height:1.75;margin-bottom:28px">En nuestros Jardines Maternales Diálogos comienza el recorrido educativo que continúa en el Colegio San Carlos, con una propuesta coherente, afectuosa e inclusiva de principio a fin.</p>
+          <a href="https://www.jardinesdialogos.com.ar" target="_blank" rel="noopener" class="btn btn--primary" style="display:inline-flex;align-items:center;gap:8px">
+            <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Conocer más
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NUESTRA IDENTIDAD -->
+  <section class="section proyectos" id="proyectos">
+    <div class="container">
+      <div class="section__header slide-up">
+        <p class="section__eyebrow">Lo que nos define</p>
+        <h2 class="section__title">Nuestra Identidad</h2>
+        <p class="section__desc">Los pilares que guían cada decisión pedagógica y construyen la experiencia San Carlos desde el Jardín hasta la graduación.</p>
+      </div>
+      <div class="proyectos__grid">
+
+        <div class="proyecto-card">
+          <div class="proyecto-card__icon">
+            <svg viewBox="0 0 24 24" style="width:44px;height:44px;stroke:var(--primary);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <h4>Educación bilingüe</h4>
+          <p>Proyecto bilingüe reconocido oficialmente, con certificados Cambridge en los tres niveles.</p>
+        </div>
+
+        <div class="proyecto-card">
+          <div class="proyecto-card__icon">
+            <svg viewBox="0 0 24 24" style="width:44px;height:44px;stroke:var(--primary);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h4>Tecnología con propósito</h4>
+          <p>Herramientas digitales, robótica, impresión 3D y programación integradas al aprendizaje.</p>
+        </div>
+
+        <div class="proyecto-card">
+          <div class="proyecto-card__icon">
+            <svg viewBox="0 0 24 24" style="width:44px;height:44px;stroke:var(--primary);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <h4>Desarrollo socioemocional</h4>
+          <p>Espacio semanal de habilidades sociales y equipos de orientación para toda la comunidad.</p>
+        </div>
+
+        <div class="proyecto-card">
+          <div class="proyecto-card__icon">
+            <svg viewBox="0 0 24 24" style="width:44px;height:44px;stroke:var(--primary);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h4>Inclusión</h4>
+          <p>Acompañamiento personalizado para que cada alumno desarrolle al máximo sus capacidades.</p>
+        </div>
+
+        <div class="proyecto-card">
+          <div class="proyecto-card__icon">
+            <svg viewBox="0 0 24 24" style="width:44px;height:44px;stroke:var(--primary);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          </div>
+          <h4>Plan de lectura</h4>
+          <p>Plan Institucional de Lectura que forma lectores comprometidos desde la primera infancia.</p>
+        </div>
+
+        <div class="proyecto-card">
+          <div class="proyecto-card__icon">
+            <svg viewBox="0 0 24 24" style="width:44px;height:44px;stroke:var(--primary);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+          </div>
+          <h4>Ambiente y sostenibilidad</h4>
+          <p>Hábitos responsables y conciencia ecológica para construir un futuro más sostenible.</p>
+        </div>
+
+        <div class="proyecto-card">
+          <div class="proyecto-card__icon">
+            <svg viewBox="0 0 24 24" style="width:44px;height:44px;stroke:var(--primary);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><path d="M3 18l9-14 9 14H3z"/><path d="M9 18v-5l3-2 3 2v5"/></svg>
+          </div>
+          <h4>Naturaleza y aventura</h4>
+          <p>Campamentos y experiencias al aire libre desde Sala de 5 hasta la graduación secundaria.</p>
+        </div>
+
+        <div class="proyecto-card">
+          <div class="proyecto-card__icon">
+            <svg viewBox="0 0 24 24" style="width:44px;height:44px;stroke:var(--primary);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h4>Escuela de líderes</h4>
+          <p>Programa de Líderes que forma jóvenes comprometidos, organizados y referentes positivos.</p>
+        </div>
+
+      </div>
+      <div style="text-align:center;margin-top:48px">
+        <a href="nuestra-identidad.html" class="btn btn--primary">Conocer nuestra identidad completa</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TALLERES CAROUSEL -->
+  <section class="section talleres bg-light" id="talleres">
+    <div class="container">
+      <div class="section__header slide-up">
+        <p class="section__eyebrow">Extracurricular</p>
+        <h2 class="section__title">Talleres</h2>
+        <p class="section__desc">Arte, deporte y tecnología para el desarrollo integral. 12 propuestas para que cada alumno encuentre su espacio.</p>
+      </div>
+    </div>
+    <div class="talleres-carousel">
+      <div class="talleres-track">
+        <!-- Set 1 -->
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/acrotela.jpg" alt="Acrotela" loading="lazy"/></div><div class="taller-slide__info"><h4>Acrotela</h4><span class="taller-slide__badge">Inicial · Primaria (3° en adelante)</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/ajedrez.jpg" alt="Ajedrez" loading="lazy"/></div><div class="taller-slide__info"><h4>Ajedrez</h4><span class="taller-slide__badge">Primaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/arte-reciclado.jpg" alt="Arte y reciclaje" loading="lazy"/></div><div class="taller-slide__info"><h4>Arte y reciclaje</h4><span class="taller-slide__badge">Inicial · Primaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/cocina.jpg" alt="Cocina" loading="lazy"/></div><div class="taller-slide__info"><h4>Cocina</h4><span class="taller-slide__badge">Inicial · Primaria · Secundaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/dibujo-humoristico.jpg" alt="Dibujo humorístico" loading="lazy"/></div><div class="taller-slide__info"><h4>Dibujo humorístico</h4><span class="taller-slide__badge">Inicial · Primaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/coreos.jpg" alt="Coreo" loading="lazy"/></div><div class="taller-slide__info"><h4>Coreo</h4><span class="taller-slide__badge">Inicial · Primaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/futbol.jpg" alt="Fútbol" loading="lazy"/></div><div class="taller-slide__info"><h4>Fútbol</h4><span class="taller-slide__badge">Inicial · Primaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/gimnasia-artistica.jpg" alt="Gimnasia artística" loading="lazy"/></div><div class="taller-slide__info"><h4>Gimnasia artística</h4><span class="taller-slide__badge">Inicial · Primaria · Secundaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/mini-deportes.jpg" alt="Mini deportes" loading="lazy"/></div><div class="taller-slide__info"><h4>Mini deportes</h4><span class="taller-slide__badge">Inicial · Primaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/natacion.jpg" alt="Natación" loading="lazy"/></div><div class="taller-slide__info"><h4>Natación</h4><span class="taller-slide__badge">Inicial · Primaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/taekwondo.jpg" alt="Taekwondo" loading="lazy"/></div><div class="taller-slide__info"><h4>Taekwondo</h4><span class="taller-slide__badge">Inicial · Primaria · Secundaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/tecnologia.jpg" alt="Tecnología" loading="lazy"/></div><div class="taller-slide__info"><h4>Tecnología</h4><span class="taller-slide__badge">Inicial · Primaria · Secundaria</span></div></div>
+        <!-- Set 2 (duplicado para loop infinito) -->
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/acrotela.jpg" alt="Acrotela" loading="lazy"/></div><div class="taller-slide__info"><h4>Acrotela</h4><span class="taller-slide__badge">Inicial · Primaria (3° en adelante)</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/ajedrez.jpg" alt="Ajedrez" loading="lazy"/></div><div class="taller-slide__info"><h4>Ajedrez</h4><span class="taller-slide__badge">Primaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/arte-reciclado.jpg" alt="Arte y reciclaje" loading="lazy"/></div><div class="taller-slide__info"><h4>Arte y reciclaje</h4><span class="taller-slide__badge">Inicial · Primaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/cocina.jpg" alt="Cocina" loading="lazy"/></div><div class="taller-slide__info"><h4>Cocina</h4><span class="taller-slide__badge">Inicial · Primaria · Secundaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/dibujo-humoristico.jpg" alt="Dibujo humorístico" loading="lazy"/></div><div class="taller-slide__info"><h4>Dibujo humorístico</h4><span class="taller-slide__badge">Inicial · Primaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/coreos.jpg" alt="Coreo" loading="lazy"/></div><div class="taller-slide__info"><h4>Coreo</h4><span class="taller-slide__badge">Inicial · Primaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/futbol.jpg" alt="Fútbol" loading="lazy"/></div><div class="taller-slide__info"><h4>Fútbol</h4><span class="taller-slide__badge">Inicial · Primaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/gimnasia-artistica.jpg" alt="Gimnasia artística" loading="lazy"/></div><div class="taller-slide__info"><h4>Gimnasia artística</h4><span class="taller-slide__badge">Inicial · Primaria · Secundaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/mini-deportes.jpg" alt="Mini deportes" loading="lazy"/></div><div class="taller-slide__info"><h4>Mini deportes</h4><span class="taller-slide__badge">Inicial · Primaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/natacion.jpg" alt="Natación" loading="lazy"/></div><div class="taller-slide__info"><h4>Natación</h4><span class="taller-slide__badge">Inicial · Primaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/taekwondo.jpg" alt="Taekwondo" loading="lazy"/></div><div class="taller-slide__info"><h4>Taekwondo</h4><span class="taller-slide__badge">Inicial · Primaria · Secundaria</span></div></div>
+        <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/tecnologia.jpg" alt="Tecnología" loading="lazy"/></div><div class="taller-slide__info"><h4>Tecnología</h4><span class="taller-slide__badge">Inicial · Primaria · Secundaria</span></div></div>
+      </div>
+    </div>
+    <div class="container" style="text-align:center;margin-top:44px">
+      <a href="talleres.html" class="btn btn--primary">Ver todos los talleres</a>
+    </div>
+  </section>
+
+  <!-- NOVEDADES -->
+  <section class="section novedades" id="novedades">
+    <div class="container">
+      <div class="section__header slide-up">
+        <p class="section__eyebrow">Actualidad</p>
+        <h2 class="section__title">Novedades</h2>
+        <p class="section__desc">Las últimas noticias de nuestra comunidad educativa.</p>
+      </div>
+      <div class="novedades__grid">
+
+        <article class="novedad-card">
+          <a href="novedad-cambridge.html" class="novedad-card__img">
+            <img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2026/04/img-20260331-wa0011-300x225.jpg" alt="Exámenes Internacionales" loading="lazy" />
+            <span class="novedad-card__cat">Académico</span>
+          </a>
+          <div class="novedad-card__body">
+            <time>Abril 2026</time>
+            <h4>Exámenes Internacionales</h4>
+            <p>Entregamos a nuestros estudiantes sus certificados de KET, PET, First y Advanced. 82 alumnos rindieron los exámenes de Cambridge en noviembre y diciembre de 2025.</p>
+            <a href="novedad-cambridge.html" class="link-arrow">Leer más →</a>
+          </div>
+        </article>
+
+        <article class="novedad-card">
+          <a href="novedad-celulares.html" class="novedad-card__img">
+            <img src="img/novedades/uso-celulares.png" alt="Uso de celulares" loading="lazy" />
+            <span class="novedad-card__cat">Institucional</span>
+          </a>
+          <div class="novedad-card__body">
+            <time>Marzo 2026</time>
+            <h4>Uso de celulares</h4>
+            <p>A partir del 9 de marzo, el nivel secundario implementó un entorno libre de dispositivos móviles durante la jornada escolar para mejorar la concentración y la salud mental.</p>
+            <a href="novedad-celulares.html" class="link-arrow">Leer más →</a>
+          </div>
+        </article>
+
+        <article class="novedad-card">
+          <a href="novedad-torneo.html" class="novedad-card__img">
+            <img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2025/11/1761919322513.jpg" alt="Torneo Deportivo" loading="lazy" />
+            <span class="novedad-card__cat">Deportes</span>
+          </a>
+          <div class="novedad-card__body">
+            <time>Noviembre 2025</time>
+            <h4>Torneo Deportivo</h4>
+            <p>Chicos y chicas del secundario participaron del torneo de fútbol AQUA en Parque Norte. 6° año varones se consagró 1° puesto y 6° año mujeres obtuvo el 2° puesto.</p>
+            <a href="novedad-torneo.html" class="link-arrow">Leer más →</a>
+          </div>
+        </article>
+
+        <article class="novedad-card">
+          <a href="novedad-alegria.html" class="novedad-card__img">
+            <img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2025/09/IMG_6864.jpg" alt="Alianza con Alegría Intensiva" loading="lazy" />
+            <span class="novedad-card__cat">Comunidad</span>
+          </a>
+          <div class="novedad-card__body">
+            <time>Septiembre 2025</time>
+            <h4>Alianza con Alegría Intensiva</h4>
+            <p>Renovamos 17 años de colaboración con Alegría Intensiva, organización de médicos y artistas que transforma la experiencia hospitalaria a través del arte y el humor.</p>
+            <a href="novedad-alegria.html" class="link-arrow">Leer más →</a>
+          </div>
+        </article>
+
+      </div>
+      <div style="text-align:center;margin-top:44px">
+        <a href="novedades.html" class="btn btn--primary">Ver todas las novedades</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <div class="container cta-band__inner">
+      <div>
+        <h2>¿Querés conocer el colegio?</h2>
+        <p>Agendá una visita y descubrí nuestra propuesta educativa en persona.</p>
+      </div>
+      <div class="cta-band__actions">
+        <a href="#contacto" class="btn btn--white">Solicitar información</a>
+        <a href="tel:+541147960504" class="btn btn--outline-white">Llamanos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="section contacto bg-light" id="contacto">
+    <div class="container">
+      <div class="section__header slide-up">
+        <p class="section__eyebrow">Estamos para ayudarte</p>
+        <h2 class="section__title">Contacto</h2>
+      </div>
+      <div class="contacto__inner">
+
+        <div class="contacto__info">
+          <div class="info-item">
+            <div class="info-item__icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <div>
+              <h4>Dirección</h4>
+              <p>José María Paz 2431<br />Olivos, Provincia de Buenos Aires</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-item__icon">
+              <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            </div>
+            <div>
+              <h4>Teléfono</h4>
+              <p><a href="tel:+541147960504">(+11) 4796-0504</a></p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-item__icon">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <div>
+              <h4>Correos</h4>
+              <p><a href="mailto:administracion@sancarlos.edu.ar">administracion@sancarlos.edu.ar</a></p>
+              <p><a href="mailto:secretariainicial@sancarlos.edu.ar">secretariainicial@sancarlos.edu.ar</a></p>
+              <p><a href="mailto:secretariaprimaria@sancarlos.edu.ar">secretariaprimaria@sancarlos.edu.ar</a></p>
+              <p><a href="mailto:secretariasecundaria@sancarlos.edu.ar">secretariasecundaria@sancarlos.edu.ar</a></p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-item__icon">
+              <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+            </div>
+            <div>
+              <h4>Horario de atención</h4>
+              <p>Lunes a viernes<br />7:30 a 19:00 horas</p>
+            </div>
+          </div>
+
+          <div class="contacto__social">
+            <a href="https://www.instagram.com/sancarlos_colegio" target="_blank" class="social-btn">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              @sancarlos_colegio
+            </a>
+          </div>
+        </div>
+
+        <div class="contacto__map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.3!2d-58.5034!3d-34.5079!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb1e68f1e1f1f%3A0x1a2b3c4d5e6f7a8b!2sJos%C3%A9%20Mar%C3%ADa%20Paz%202431%2C%20Olivos%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1234567890"
+            width="100%"
+            height="400"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación Colegio San Carlos"
+          ></iframe>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="Colegio San Carlos" class="footer__logo" style="height:80px;filter:brightness(0) invert(1);margin-bottom:16px;" />
+        <div class="footer__social">
+          <a href="https://www.instagram.com/sancarlos_colegio" target="_blank" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/p/San-Carlos-Colegio-100089961152583/?locale=es_LA" target="_blank" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://ar.linkedin.com/company/san-carlos-dialogos" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://www.youtube.com/@ColegioSanCarlosD" target="_blank" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h5>Niveles</h5>
+        <ul>
+          <li><a href="#inicial">Nivel Inicial</a></li>
+          <li><a href="nivel-primario.html">Nivel Primario</a></li>
+          <li><a href="nivel-secundario.html">Nivel Secundario</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h5>Institucional</h5>
+        <ul>
+          <li><a href="#nosotros">Quiénes somos</a></li>
+          <li><a href="nuestra-identidad.html">Nuestra Identidad</a></li>
+          <li><a href="talleres.html">Talleres</a></li>
+          <li><a href="novedades.html">Novedades</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h5>Contacto</h5>
+        <ul>
+          <li>José María Paz 2431, Olivos</li>
+          
+          <li><a href="tel:+541147960504">(+11) 4796-0504</a></li>
+          <li>Lun–Vie 7:30 a 19:00 hs</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="container">
+        <p>&copy; 2026 Colegio San Carlos Diálogos. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    (function(){
+      var splash = document.getElementById('splash');
+      setTimeout(function(){
+        splash.classList.add('hide');
+        document.body.style.overflow = '';
+        setTimeout(function(){ splash.remove(); }, 650);
+      }, 1800);
+    })();
+  </script>
+</body>
+</html>

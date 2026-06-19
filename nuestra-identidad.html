@@ -1,0 +1,397 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuestra Identidad | Colegio San Carlos Diálogos</title>
+  <meta name="description" content="Nuestra Identidad — los pilares que definen al Colegio San Carlos Diálogos: bilingüismo, tecnología, desarrollo socioemocional, inclusión, lectura, ambiente, naturaleza, liderazgo y compromiso social." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── nuestra-identidad.html ── */
+
+    .icon-svg {
+      display:block; width:30px; height:30px;
+      stroke:var(--primary); fill:none;
+      stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;
+    }
+
+    /* HERO */
+    .hero-identidad {
+      position:relative;
+      height:68vh; min-height:480px; max-height:720px;
+      overflow:hidden; display:flex; align-items:center;
+      background-image:url('img/hero/hero-nuestra-identidad.jpg');
+      background-size:cover; background-position:center;
+    }
+    .hero-identidad__overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(108deg,rgba(0,51,82,.88) 0%,rgba(0,71,108,.65) 55%,rgba(0,71,108,.15) 100%);
+    }
+    .hero-identidad__content { position:relative; z-index:2; max-width:700px; color:#fff; }
+    .hero-identidad__tag {
+      display:inline-block; background:var(--accent); color:#fff;
+      font-family:'Raleway',sans-serif; font-size:12px; font-weight:700;
+      letter-spacing:2px; text-transform:uppercase;
+      padding:5px 16px; border-radius:20px; margin-bottom:20px;
+    }
+    .hero-identidad__title {
+      font-family:'Raleway',sans-serif;
+      font-size:clamp(2.6rem,6vw,4rem); font-weight:800;
+      color:#fff; line-height:1.08; margin-bottom:20px;
+    }
+    .hero-identidad__subtitle {
+      font-size:1.15rem; color:rgba(255,255,255,.88); font-weight:500;
+      max-width:560px; line-height:1.65; margin-bottom:36px;
+    }
+    .hero-identidad__actions { display:flex; gap:14px; flex-wrap:wrap; }
+
+    /* INTRO */
+    .identidad-intro {
+      background:var(--light); padding:56px 0;
+      border-bottom:1px solid var(--gray-border);
+    }
+    .identidad-intro__inner { max-width:780px; margin:0 auto; text-align:center; }
+    .identidad-intro__inner p { font-size:1.05rem; color:var(--text-lt); line-height:1.85; }
+
+    /* PILARES GRID */
+    .pilares-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+
+    .pilar-card {
+      background:var(--white); border-radius:var(--radius);
+      box-shadow:var(--shadow); border:1px solid var(--gray-border);
+      padding:36px 32px; display:flex; gap:24px; align-items:flex-start;
+      transition:transform .3s ease, box-shadow .3s ease;
+    }
+    .pilar-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-lg); }
+
+    .pilar-card__icon {
+      width:60px; height:60px; min-width:60px;
+      background:var(--light); border-radius:14px;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .pilar-card__body h3 {
+      font-family:'Raleway',sans-serif; font-size:1.1rem;
+      font-weight:800; color:var(--primary); margin-bottom:12px;
+    }
+    .pilar-card__body p {
+      font-size:14.5px; color:var(--text-lt); line-height:1.8;
+      margin-bottom:10px;
+    }
+    .pilar-card__body p:last-child { margin-bottom:0; }
+
+
+    /* CTA FINAL */
+    .cta-final { background:linear-gradient(135deg,var(--primary-dk) 0%,var(--primary) 100%); padding:80px 0; text-align:center; }
+    .cta-final .section__eyebrow { color:rgba(255,255,255,.6); }
+    .cta-final h2 { color:#fff; margin-bottom:16px; }
+    .cta-final p  { color:rgba(255,255,255,.82); max-width:520px; margin:0 auto 38px; font-size:1.05rem; }
+    .cta-final__actions { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; }
+
+    /* RESPONSIVE */
+    @media(max-width:860px) {
+      .pilares-grid { grid-template-columns:1fr; }
+      .pilar-card--wide { grid-column:auto; }
+    }
+    @media(max-width:600px) {
+      .hero-identidad__title { font-size:2.2rem; }
+      .hero-identidad__actions { flex-direction:column; }
+      .pilar-card { flex-direction:column; gap:16px; padding:28px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── TOP BAR ─── -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <div class="topbar__contact">
+        <a href="tel:+541147960504">
+          <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          (+11) 4796-0504
+        </a>
+        <a href="mailto:administracion@sancarlos.edu.ar">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          administracion@sancarlos.edu.ar
+        </a>
+        <span>
+          <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+          7:30 a 19:00 hs
+        </span>
+      </div>
+      <div class="topbar__social">
+        <a href="https://www.instagram.com/sancarlos_colegio" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://www.facebook.com/p/San-Carlos-Colegio-100089961152583/?locale=es_LA" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://ar.linkedin.com/company/san-carlos-dialogos" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://www.youtube.com/@ColegioSanCarlosD" target="_blank" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── HEADER ─── -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo">
+        <img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="Colegio San Carlos Diálogos" />
+      </a>
+      <button class="header__burger" id="burger" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="nav">
+        <button class="nav__close" id="navClose" aria-label="Cerrar menú">✕</button>
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Inicio</a></li>
+          <li class="has-dropdown">
+            <a href="#" class="nav__link">Niveles <svg viewBox="0 0 24 24" class="chevron"><path d="M7 10l5 5 5-5z"/></svg></a>
+            <ul class="dropdown">
+              <li><a href="nivel-inicial.html">Nivel Inicial</a></li>
+              <li><a href="nivel-primario.html">Nivel Primario</a></li>
+              <li><a href="nivel-secundario.html">Nivel Secundario</a></li>
+            </ul>
+          </li>
+          <li><a href="nuestra-identidad.html" class="nav__link active">Nuestra Identidad</a></li>
+          <li><a href="talleres.html" class="nav__link">Talleres</a></li>
+          <li><a href="index.html#novedades" class="nav__link">Novedades</a></li>
+          <li><a href="index.html#contacto"  class="nav__link">Contacto</a></li>
+        </ul>
+        <a href="https://linktr.ee/sancarlos_colegio" target="_blank" rel="noopener" class="btn btn--primary nav__cta">Admisiones</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero-identidad">
+    <div class="hero-identidad__overlay"></div>
+    <div class="container hero-identidad__content">
+      <span class="hero-identidad__tag">Lo que nos define</span>
+      <h1 class="hero-identidad__title">Nuestra Identidad</h1>
+      <p class="hero-identidad__subtitle">Los pilares que guían cada decisión pedagógica, cada proyecto y cada vínculo en la comunidad San Carlos.</p>
+      <div class="hero-identidad__actions">
+        <a href="#pilares" class="btn btn--primary">Conocer nuestros pilares</a>
+        <a href="index.html#contacto" class="btn btn--outline-white">Admisiones 2026</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── INTRO ─── -->
+  <div class="identidad-intro">
+    <div class="container identidad-intro__inner">
+      <p>San Carlos es mucho más que una escuela. Es una comunidad que comparte valores, sueños y una manera de entender la educación. Estos son los pilares que construyen nuestra identidad día a día.</p>
+    </div>
+  </div>
+
+  <!-- ─── PILARES ─── -->
+  <section class="section" id="pilares">
+    <div class="container">
+      <div class="section__header slide-up">
+        <p class="section__eyebrow">Nuestros pilares</p>
+        <h2 class="section__title">Lo que nos hace únicos</h2>
+        <p class="section__desc">Diez dimensiones que atraviesan toda la propuesta educativa, desde Nivel Inicial hasta la graduación en Secundaria.</p>
+      </div>
+
+      <div class="pilares-grid">
+
+        <div class="pilar-card fade-in">
+          <div class="pilar-card__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <div class="pilar-card__body">
+            <h3>Educación bilingüe</h3>
+            <p>Creemos que aprender un idioma es también abrirse a nuevas culturas y formas de comprender el mundo. Nuestro proyecto bilingüe acompaña a los alumnos desde los primeros años, favoreciendo el desarrollo de competencias lingüísticas y una mirada global que los prepare para los desafíos del futuro.</p>
+            <p>A lo largo de su trayectoria, los estudiantes rinden exámenes internacionales de Cambridge que certifican los niveles alcanzados y evidencian su progreso en el dominio del idioma.</p>
+          </div>
+        </div>
+
+        <div class="pilar-card fade-in">
+          <div class="pilar-card__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div class="pilar-card__body">
+            <h3>Tecnología con propósito</h3>
+            <p>Incorporamos la tecnología como herramienta para crear, investigar, resolver problemas y desarrollar nuevas formas de aprender. Buscamos que nuestros alumnos no solo sean usuarios, sino creadores y productores de soluciones, contenidos y proyectos innovadores.</p>
+            <p>De este modo los preparamos para desempeñarse en un mundo en constante transformación, promoviendo competencias que les permitan adaptarse a escenarios y profesiones emergentes.</p>
+          </div>
+        </div>
+
+        <div class="pilar-card fade-in">
+          <div class="pilar-card__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <div class="pilar-card__body">
+            <h3>Desarrollo socioemocional</h3>
+            <p>Entendemos que la convivencia se aprende. Por eso promovemos el desarrollo de habilidades sociales que permitan a los alumnos construir vínculos saludables, gestionar emociones, resolver conflictos y desenvolverse de manera respetuosa y empática en distintos contextos.</p>
+            <p>Contamos con equipos de profesionales que acompañan, asesoran y orientan a los estudiantes, a los educadores y a las familias, fortaleciendo el bienestar integral de toda la comunidad educativa.</p>
+          </div>
+        </div>
+
+        <div class="pilar-card fade-in">
+          <div class="pilar-card__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="pilar-card__body">
+            <h3>Inclusión</h3>
+            <p>Creemos en una educación que valore la diversidad y brinde oportunidades de aprendizaje para todos. Nuestro proyecto de inclusión promueve el acompañamiento de los alumnos de acuerdo con sus necesidades y potencialidades, favoreciendo su participación plena en la vida escolar.</p>
+            <p>Trabajamos para que cada estudiante encuentre las condiciones necesarias para desarrollar al máximo sus capacidades, dentro de una comunidad que respeta y celebra las diferencias.</p>
+          </div>
+        </div>
+
+        <div class="pilar-card fade-in">
+          <div class="pilar-card__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          </div>
+          <div class="pilar-card__body">
+            <h3>Plan de lectura</h3>
+            <p>Fomentamos el encuentro con la literatura como una experiencia de disfrute, imaginación y crecimiento personal. A través de nuestro Plan Institucional de Lectura, acercamos a los alumnos a diversos textos y autores, fortaleciendo el hábito lector a lo largo de toda la trayectoria escolar.</p>
+            <p>Creemos que la lectura amplía horizontes, estimula la creatividad y contribuye a la formación de ciudadanos críticos y comprometidos con la cultura.</p>
+          </div>
+        </div>
+
+        <div class="pilar-card fade-in">
+          <div class="pilar-card__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+          </div>
+          <div class="pilar-card__body">
+            <h3>Ambiente y sostenibilidad</h3>
+            <p>Promovemos el compromiso con el cuidado del ambiente a través de experiencias que ayudan a comprender la importancia de nuestras acciones y su impacto en el planeta.</p>
+            <p>Trabajamos junto a alumnos, docentes y familias para construir hábitos responsables y una conciencia ambiental que contribuya al desarrollo de un futuro más sostenible.</p>
+          </div>
+        </div>
+
+        <div class="pilar-card fade-in">
+          <div class="pilar-card__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 18l9-14 9 14H3z"/><path d="M9 18v-5l3-2 3 2v5"/></svg>
+          </div>
+          <div class="pilar-card__body">
+            <h3>Naturaleza y aventura</h3>
+            <p>Desde Sala de 5 hasta la finalización del secundario, los estudiantes participan de experiencias al aire libre que fortalecen la autonomía, la convivencia, el trabajo en equipo y el aprendizaje experiencial.</p>
+            <p>Campamentos, viajes educativos y propuestas de aventura permiten aprender en contacto con la naturaleza, asumir nuevos desafíos y construir recuerdos compartidos que acompañan a los alumnos a lo largo de toda su trayectoria.</p>
+          </div>
+        </div>
+
+        <div class="pilar-card fade-in">
+          <div class="pilar-card__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="pilar-card__body">
+            <h3>Escuela de líderes</h3>
+            <p>Buscamos formar jóvenes comprometidos, responsables y participativos, capaces de asumir desafíos y convertirse en referentes positivos dentro de la comunidad educativa.</p>
+            <p>A través de nuestro Programa de Líderes, los estudiantes desarrollan habilidades de liderazgo, comunicación, organización y trabajo en equipo, participando en proyectos recreativos, solidarios, campamentos y diversas experiencias de servicio.</p>
+          </div>
+        </div>
+
+        <div class="pilar-card fade-in">
+          <div class="pilar-card__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="pilar-card__body">
+            <h3>Compromiso social</h3>
+            <p>Creemos en una educación comprometida con la realidad y orientada al servicio de los demás. Por eso impulsamos proyectos solidarios que permiten a nuestros estudiantes involucrarse activamente con su comunidad y desarrollar una mirada empática sobre las necesidades de los otros.</p>
+            <p>A través de campañas solidarias, acciones comunitarias, intercambios socioculturales y actividades de servicio, promovemos valores como la solidaridad, la responsabilidad y el compromiso ciudadano.</p>
+          </div>
+        </div>
+
+        <div class="pilar-card fade-in">
+          <div class="pilar-card__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="pilar-card__body">
+            <h3>Comunidad y participación</h3>
+            <p>Entendemos la educación como una construcción compartida entre escuela y familia. Generamos espacios de encuentro, participación y experiencias que fortalecen el sentido de pertenencia y consolidan una comunidad educativa cercana y comprometida.</p>
+            <p>A lo largo de la trayectoria escolar, promovemos propuestas que favorecen el encuentro y la construcción de vínculos significativos entre alumnos, familias y educadores. Celebraciones, jornadas recreativas, pernoctadas y actividades comunitarias forman parte de una vida escolar que busca que cada alumno se sienta parte de algo que lo acompaña en su crecimiento.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA ─── -->
+  <section class="cta-final">
+    <div class="container">
+      <p class="section__eyebrow">Inscripciones abiertas 2026</p>
+      <h2>Sumate a la comunidad San Carlos</h2>
+      <p>Conocé nuestra propuesta de cerca. Estamos recibiendo familias para el ciclo lectivo 2026 en los tres niveles.</p>
+      <div class="cta-final__actions">
+        <a href="https://wa.me/541147964918?text=Hola%2C%20quisiera%20solicitar%20una%20entrevista%20para%20conocer%20el%20colegio." class="btn btn--white" target="_blank" rel="noopener">Solicitar entrevista</a>
+        <a href="index.html" class="btn btn--outline-white">Volver al inicio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="Colegio San Carlos Diálogos" class="footer__logo" loading="lazy" />
+        <div class="footer__social">
+          <a href="https://www.instagram.com/sancarlos_colegio" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+          <a href="https://www.facebook.com/p/San-Carlos-Colegio-100089961152583/?locale=es_LA" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://ar.linkedin.com/company/san-carlos-dialogos" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://www.youtube.com/@ColegioSanCarlosD" target="_blank" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h5>Nuestra Identidad</h5>
+        <ul>
+          <li><a href="#pilares">Nuestros pilares</a></li>
+          <li><a href="talleres.html">Talleres</a></li>
+          <li><a href="nivel-inicial.html">Nivel Inicial</a></li>
+          <li><a href="nivel-primario.html">Nivel Primario</a></li>
+          <li><a href="nivel-secundario.html">Nivel Secundario</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>El Colegio</h5>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="index.html#nosotros">Quiénes somos</a></li>
+          <li><a href="index.html#novedades">Novedades</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Contacto</h5>
+        <ul>
+          <li>José María Paz 2431, Olivos</li>
+          
+          <li><a href="tel:+541147960504">(+11) 4796-0504</a></li>
+          <li><a href="mailto:administracion@sancarlos.edu.ar">administracion@sancarlos.edu.ar</a></li>
+          <li>Lun–Vie 7:30 a 19:00 hs</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2025 Colegio San Carlos Diálogos. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    const burger   = document.getElementById('burger');
+    const nav      = document.getElementById('nav');
+    const navClose = document.getElementById('navClose');
+    burger.addEventListener('click',   () => nav.classList.toggle('open'));
+    navClose.addEventListener('click', () => nav.classList.remove('open'));
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const id = link.getAttribute('href');
+        if (id === '#') return;
+        const target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        const headerH = document.getElementById('header').offsetHeight;
+        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - headerH - 8, behavior: 'smooth' });
+        nav.classList.remove('open');
+      });
+    });
+
+    document.querySelectorAll('.fade-in, .slide-left, .slide-right, .slide-up').forEach(el => {
+      new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+      }, { threshold: 0.1 }).observe(el);
+    });
+  </script>
+</body>
+</html>

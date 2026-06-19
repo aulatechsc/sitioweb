@@ -1,0 +1,981 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nivel Primario | Colegio San Carlos Diálogos</title>
+  <meta name="description" content="Nivel Primario San Carlos Diálogos — Propuesta bilingüe, metodologías activas y formación integral para 1° a 6° grado en Olivos, Buenos Aires." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── nivel-primario.html — estilos específicos ── */
+
+    .icon-svg {
+      display:block; width:26px; height:26px;
+      stroke:var(--primary); fill:none;
+      stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;
+      flex-shrink:0;
+    }
+
+    /* HERO */
+    .hero-sub {
+      position:relative;
+      height:calc(100vh - var(--header-h));
+      min-height:520px; max-height:800px;
+      overflow:hidden; display:flex; align-items:center;
+      background-image:url('img/hero/hero-primario.jpg');
+      background-size:cover; background-position:center top;
+    }
+    .hero-sub__overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(108deg,rgba(0,51,82,.88) 0%,rgba(0,71,108,.60) 55%,rgba(0,71,108,.18) 100%);
+    }
+    .hero-sub__content{position:relative;z-index:2;max-width:680px;color:#fff}
+    .hero-sub__tag{
+      display:inline-block;background:var(--accent);color:#fff;
+      font-family:'Raleway',sans-serif;font-size:12px;font-weight:700;
+      letter-spacing:2px;text-transform:uppercase;
+      padding:5px 16px;border-radius:20px;margin-bottom:20px;
+    }
+    .hero-sub__title{
+      font-family:'Raleway',sans-serif;
+      font-size:clamp(2.6rem,6vw,4.2rem);font-weight:800;
+      color:#fff;line-height:1.08;margin-bottom:22px;
+    }
+    .hero-sub__subtitle{font-size:1.2rem;color:rgba(255,255,255,.92);font-weight:500;margin-bottom:14px;max-width:560px;line-height:1.6}
+    .hero-sub__desc{font-size:1rem;color:rgba(255,255,255,.76);margin-bottom:38px;max-width:530px;line-height:1.75}
+    .hero-sub__actions{display:flex;gap:14px;flex-wrap:wrap}
+    .hero-sub__scroll{
+      position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+      z-index:3;display:flex;flex-direction:column;align-items:center;gap:4px;
+      color:rgba(255,255,255,.55);font-family:'Raleway',sans-serif;
+      font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+      cursor:pointer;text-decoration:none;
+      animation:heroScroll 2.2s ease-in-out infinite;
+    }
+    .hero-sub__scroll svg{width:22px;height:22px;stroke:rgba(255,255,255,.55);fill:none;stroke-width:2}
+    @keyframes heroScroll{
+      0%,100%{transform:translateX(-50%) translateY(0);opacity:.55}
+      50%{transform:translateX(-50%) translateY(7px);opacity:1}
+    }
+
+    /* SUBNAV */
+    .subnav{position:sticky;top:var(--header-h);z-index:900;background:var(--primary);border-bottom:3px solid var(--accent)}
+    .subnav__list{display:flex;align-items:stretch;justify-content:center;overflow-x:auto;scrollbar-width:none}
+    .subnav__list::-webkit-scrollbar{display:none}
+    .subnav__link{
+      display:flex;align-items:center;padding:15px 20px;
+      font-family:'Raleway',sans-serif;font-size:13px;font-weight:600;letter-spacing:.3px;
+      color:rgba(255,255,255,.75);white-space:nowrap;
+      border-bottom:3px solid transparent;margin-bottom:-3px;
+      transition:color .2s ease,border-color .2s ease;
+    }
+    .subnav__link:hover,.subnav__link.active{color:#fff;border-bottom-color:#ff4d5e}
+
+    /* EQUIPO */
+    .equipo__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:28px}
+    .equipo-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;text-align:center;transition:transform .3s ease,box-shadow .3s ease}
+    .equipo-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+    .equipo-card__photo{width:100%;aspect-ratio:1/1;background:var(--light);display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .equipo-card__initials{
+      width:90px;height:90px;border-radius:50%;
+      background:var(--primary);color:#fff;
+      font-family:'Raleway',sans-serif;font-size:2rem;font-weight:800;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .equipo-card__body{padding:20px 18px 24px}
+    .equipo-card__role{font-family:'Raleway',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+    .equipo-card h3{font-size:1rem;color:var(--primary)}
+
+    /* PROPUESTA */
+    .propuesta__inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+
+    /* ASPECTOS DISTINTIVOS */
+    .aspectos__label{font-family:'Raleway',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--primary);margin:44px 0 16px}
+    .aspectos__grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .aspecto-item{display:flex;gap:12px;align-items:flex-start;background:var(--white);border-radius:var(--radius-sm);padding:15px 18px;border:1px solid var(--gray-border)}
+    .aspecto-item__check{width:20px;height:20px;min-width:20px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:1px;flex-shrink:0}
+    .aspecto-item__check svg{width:11px;height:11px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+    .aspecto-item p{font-size:14px;color:var(--text-lt);line-height:1.6;margin:0}
+    .propuesta__text .section__eyebrow,.propuesta__text .section__title{text-align:left}
+    .propuesta__text .section__title{margin-bottom:18px}
+    .propuesta__text p{color:var(--text-lt);margin-bottom:14px;line-height:1.8}
+    .propuesta__image{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:4/3}
+    .propuesta__image img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;display:block}
+    .propuesta__image:hover img{transform:scale(1.04)}
+    .propuesta__badge{position:absolute;bottom:20px;left:20px;background:var(--accent);color:#fff;font-family:'Raleway',sans-serif;font-weight:700;font-size:13px;padding:10px 18px;border-radius:var(--radius-sm)}
+
+    /* ÁREAS */
+    .areas__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .area-item{background:var(--white);border-radius:var(--radius);padding:26px 22px;border-left:4px solid var(--accent);box-shadow:var(--shadow);transition:transform .25s ease}
+    .area-item:hover{transform:translateX(4px)}
+    .area-item__icon{margin-bottom:14px}
+    .area-item h3{font-size:1rem;color:var(--primary);margin-bottom:8px}
+    .area-item p{font-size:14px;color:var(--text-lt);line-height:1.65}
+
+    /* FORMACIÓN INTEGRAL */
+    .formacion__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+    .formacion-card{background:var(--white);border-radius:var(--radius);padding:36px 28px 32px;border:1px solid var(--gray-border);box-shadow:var(--shadow);display:flex;gap:20px;align-items:flex-start;transition:transform .3s ease,box-shadow .3s ease}
+    .formacion-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+    .formacion-card__icon{width:54px;height:54px;min-width:54px;background:var(--light);border-radius:12px;display:flex;align-items:center;justify-content:center}
+    .formacion-card__body h3{font-size:1.05rem;color:var(--primary);margin-bottom:10px}
+    .formacion-card__body p{color:var(--text-lt);font-size:14px;line-height:1.7}
+
+    /* EXPERIENCIAS */
+    .experiencias__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .experiencia-item{background:var(--white);border-radius:var(--radius);padding:22px 20px;border:1px solid var(--gray-border);box-shadow:var(--shadow);display:flex;gap:14px;align-items:flex-start;transition:transform .25s ease,box-shadow .25s ease}
+    .experiencia-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+    .experiencia-item__icon{width:40px;min-width:40px;height:40px;background:var(--light);border-radius:10px;display:flex;align-items:center;justify-content:center}
+    .experiencia-item h3{font-size:.95rem;color:var(--primary);margin-bottom:5px}
+    .experiencia-item p{font-size:13px;color:var(--text-lt);line-height:1.6}
+
+    /* SERVICIOS — horario bilingüe */
+    .jornada-unica{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid var(--gray-border)}
+    .jornada-unica__header{display:grid;grid-template-columns:2fr 1.5fr 3fr;padding:14px 28px;background:var(--primary)}
+    .jornada-unica__header span{font-family:'Raleway',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.75)}
+    .jornada-row{display:grid;grid-template-columns:2fr 1.5fr 3fr;padding:18px 28px;align-items:center;border-bottom:1px solid var(--gray-border);transition:background .2s}
+    .jornada-row:last-child{border-bottom:none}
+    .jornada-row:hover{background:var(--light)}
+    .jornada-row__name{font-family:'Raleway',sans-serif;font-size:15px;font-weight:600;color:var(--primary)}
+    .jornada-row__hora{font-family:'Raleway',sans-serif;font-size:15px;font-weight:700;color:var(--accent)}
+    .jornada-row__tags{display:flex;flex-wrap:wrap;gap:6px}
+    .jornada-tag{display:inline-block;background:var(--light);color:var(--primary);font-family:'Raleway',sans-serif;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px}
+    .jornada-tag--accent{background:#fde8ea;color:var(--accent)}
+    .jornada-tag--blue{background:#dbeeff;color:#1a6fa8}
+    .jornada-row--blue{background:#eef6ff}
+    .jornada-row--blue:hover{background:#dbeeff}
+    .jornada-nota{margin-top:16px;padding:14px 20px;background:var(--light);border-radius:var(--radius-sm);font-size:14px;color:var(--text-lt)}
+    .jornada-nota strong{color:var(--primary)}
+
+    /* SERVICIOS EXTRA */
+    .servicios-extra{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+    .servicio-extra{background:var(--white);border-radius:var(--radius);padding:28px 22px;border:1px solid var(--gray-border);box-shadow:var(--shadow);transition:transform .25s ease}
+    .servicio-extra:hover{transform:translateY(-4px)}
+    .servicio-extra__icon{width:48px;height:48px;background:var(--primary);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+    .servicio-extra__icon .icon-svg{stroke:#fff}
+    .servicio-extra h3{font-size:.95rem;color:var(--primary);margin-bottom:7px}
+    .servicio-extra p{font-size:14px;color:var(--text-lt);line-height:1.6}
+
+    /* CTA FINAL */
+    .cta-final{background:linear-gradient(135deg,var(--primary-dk) 0%,var(--primary) 100%);padding:80px 0;text-align:center}
+    .cta-final .section__eyebrow{color:rgba(255,255,255,.6)}
+    .cta-final h2{color:#fff;margin-bottom:16px}
+    .cta-final p{color:rgba(255,255,255,.82);max-width:520px;margin:0 auto 38px;font-size:1.05rem}
+    .cta-final__actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+
+    /* ── MODAL ── */
+    .modal-overlay{position:fixed;inset:0;z-index:9000;background:rgba(0,20,40,.65);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s ease}
+    .modal-overlay.open{opacity:1;pointer-events:auto}
+    .modal{background:#fff;border-radius:16px;max-width:700px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.28);transform:translateY(22px);transition:transform .3s ease;position:relative}
+    .modal-overlay.open .modal{transform:translateY(0)}
+    .modal__close{position:sticky;top:0;float:right;margin:16px 16px 0 0;background:var(--light);border:none;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:20px;font-weight:700;line-height:1;transition:background .2s;z-index:2;font-family:sans-serif}
+    .modal__close:hover{background:#d0dfe9}
+    .modal__header{padding:30px 40px 22px;border-bottom:1px solid var(--gray-border)}
+    .modal__icon{width:52px;height:52px;background:var(--light);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+    .modal__title{font-family:'Raleway',sans-serif;font-size:1.45rem;font-weight:800;color:var(--primary);line-height:1.2}
+    .modal__body{padding:26px 40px 44px}
+    .modal__body p{color:var(--text-lt);line-height:1.85;margin-bottom:14px;font-size:15px}
+    .modal__body h4{font-family:'Raleway',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--primary);margin:22px 0 10px}
+    .modal__body ul{padding-left:20px;margin-bottom:14px}
+    .modal__body ul li{color:var(--text-lt);font-size:15px;line-height:1.8;margin-bottom:5px}
+    @media(max-width:680px){.modal__header,.modal__body{padding-left:22px;padding-right:22px}}
+
+    /* Botón +info */
+    .btn-info{display:inline-flex;align-items:center;gap:5px;margin-top:12px;font-family:'Raleway',sans-serif;font-size:11px;font-weight:700;letter-spacing:.4px;color:var(--primary);background:var(--light);border:none;border-radius:20px;padding:5px 12px;cursor:pointer;transition:background .2s,color .2s}
+    .btn-info:hover{background:var(--primary);color:#fff}
+    .btn-info svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+    /* RESPONSIVE */
+    @media(max-width:960px){
+      .propuesta__inner{grid-template-columns:1fr;gap:40px}
+      .aspectos__grid{grid-template-columns:1fr}
+      .areas__grid{grid-template-columns:1fr 1fr}
+      .formacion__grid{grid-template-columns:1fr}
+      .experiencias__grid{grid-template-columns:1fr 1fr}
+      .servicios-extra{grid-template-columns:1fr 1fr}
+      .jornada-unica__header,.jornada-row{grid-template-columns:1fr 1fr;row-gap:6px}
+      .jornada-row__tags{grid-column:1/-1}
+    }
+    @media(max-width:640px){
+      .hero-sub__title{font-size:2.2rem}
+      .hero-sub__actions{flex-direction:column}
+      .hero-sub__actions .btn{justify-content:center}
+      .equipo__grid{grid-template-columns:1fr 1fr}
+      .areas__grid{grid-template-columns:1fr}
+      .experiencias__grid{grid-template-columns:1fr}
+      .jornada-unica__header,.jornada-row{grid-template-columns:1fr;gap:4px}
+      .servicios-extra{grid-template-columns:1fr}
+      .subnav__link{padding:13px 12px;font-size:12px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── TOP BAR ─── -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <div class="topbar__contact">
+        <a href="tel:+541147960504">
+          <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          (+11) 4796-0504
+        </a>
+        <a href="mailto:administracion@sancarlos.edu.ar">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          administracion@sancarlos.edu.ar
+        </a>
+        <span>
+          <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+          7:30 a 19:00 hs
+        </span>
+      </div>
+      <div class="topbar__social">
+        <a href="https://www.instagram.com/sancarlos_colegio" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/p/San-Carlos-Colegio-100089961152583/?locale=es_LA" target="_blank" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://ar.linkedin.com/company/san-carlos-dialogos" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://www.youtube.com/@ColegioSanCarlosD" target="_blank" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── HEADER ─── -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo">
+        <img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="Colegio San Carlos Diálogos" />
+      </a>
+      <button class="header__burger" id="burger" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="nav">
+        <button class="nav__close" id="navClose" aria-label="Cerrar menú">✕</button>
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Inicio</a></li>
+          <li class="has-dropdown">
+            <a href="#" class="nav__link active">Niveles <svg viewBox="0 0 24 24" class="chevron"><path d="M7 10l5 5 5-5z"/></svg></a>
+            <ul class="dropdown">
+              <li><a href="nivel-inicial.html">Nivel Inicial</a></li>
+              <li><a href="nivel-primario.html">Nivel Primario</a></li>
+              <li><a href="nivel-secundario.html">Nivel Secundario</a></li>
+            </ul>
+          </li>
+          <li><a href="nuestra-identidad.html" class="nav__link">Nuestra Identidad</a></li>
+          <li><a href="index.html#talleres"  class="nav__link">Talleres</a></li>
+          <li><a href="index.html#novedades" class="nav__link">Novedades</a></li>
+          <li><a href="index.html#contacto"  class="nav__link">Contacto</a></li>
+        </ul>
+        <a href="https://linktr.ee/sancarlos_colegio" target="_blank" rel="noopener" class="btn btn--primary nav__cta">Admisiones</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero-sub" id="inicio">
+    <div class="hero-sub__overlay"></div>
+    <div class="container hero-sub__content">
+      <span class="hero-sub__tag">1° a 6° grado &middot; Olivos, Buenos Aires</span>
+      <h1 class="hero-sub__title">Nivel Primario</h1>
+      <p class="hero-sub__subtitle">Una propuesta bilingüe que potencia el desarrollo cognitivo, personal y social en una etapa clave.</p>
+      <p class="hero-sub__desc">Acompañamos a cada alumno con metodologías activas, pensamiento crítico y un ambiente donde aprender, colaborar y crecer tienen sentido.</p>
+      <div class="hero-sub__actions">
+        <a href="#propuesta" class="btn btn--primary">Conocer nuestra propuesta</a>
+        <a href="https://wa.me/541147964918?text=Hola%2C%20quisiera%20solicitar%20una%20entrevista%20para%20Nivel%20Primario." class="btn btn--outline-white" target="_blank" rel="noopener">Solicitar entrevista</a>
+      </div>
+    </div>
+    <a href="#equipo" class="hero-sub__scroll" aria-label="Conocer más">
+      <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+      Conocer más
+    </a>
+  </section>
+
+  <!-- ─── SUBNAV ─── -->
+  <nav class="subnav" id="subnav" aria-label="Secciones Nivel Primario">
+    <div class="container">
+      <ul class="subnav__list">
+        <li><a href="#equipo"      class="subnav__link active">Equipo</a></li>
+        <li><a href="#propuesta"   class="subnav__link">Propuesta</a></li>
+        <li><a href="#areas"       class="subnav__link">Áreas</a></li>
+        <li><a href="#formacion"   class="subnav__link">Propuestas que enriquecen</a></li>
+        <li><a href="#experiencias" class="subnav__link">Experiencias</a></li>
+        <li><a href="#servicios"   class="subnav__link">Servicios</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ─── ① EQUIPO ─── -->
+  <section class="section" id="equipo">
+    <div class="container">
+      <div class="section__header slide-up">
+        <p class="section__eyebrow">Quiénes nos acompañan</p>
+        <h2 class="section__title">Equipo de Conducción</h2>
+        <p class="section__desc">Un equipo comprometido con la educación primaria, que acompaña a cada alumno con profesionalismo, cercanía y vocación de servicio.</p>
+      </div>
+      <div class="equipo__grid">
+        <div class="equipo-card fade-in">
+          <div class="equipo-card__photo"><div class="equipo-card__initials">RH</div></div>
+          <div class="equipo-card__body">
+            <p class="equipo-card__role">Directora General</p>
+            <h3>Rocío Halperín</h3>
+          </div>
+        </div>
+        <div class="equipo-card fade-in">
+          <div class="equipo-card__photo"><div class="equipo-card__initials">GS</div></div>
+          <div class="equipo-card__body">
+            <p class="equipo-card__role">Directora</p>
+            <h3>Giselle Sanz</h3>
+          </div>
+        </div>
+        <div class="equipo-card fade-in">
+          <div class="equipo-card__photo"><div class="equipo-card__initials">NO</div></div>
+          <div class="equipo-card__body">
+            <p class="equipo-card__role">Vicedirectora</p>
+            <h3>Natalia Olmo</h3>
+          </div>
+        </div>
+        <div class="equipo-card fade-in">
+          <div class="equipo-card__photo"><div class="equipo-card__initials">NA</div></div>
+          <div class="equipo-card__body">
+            <p class="equipo-card__role">Vicedirectora</p>
+            <h3>Natalia Antinori</h3>
+          </div>
+        </div>
+        <div class="equipo-card fade-in">
+          <div class="equipo-card__photo"><div class="equipo-card__initials">GD</div></div>
+          <div class="equipo-card__body">
+            <p class="equipo-card__role">Coordinadora</p>
+            <h3>Gabriela Dominguez</h3>
+          </div>
+        </div>
+        <div class="equipo-card fade-in">
+          <div class="equipo-card__photo"><div class="equipo-card__initials">MC</div></div>
+          <div class="equipo-card__body">
+            <p class="equipo-card__role">Secretaria</p>
+            <h3>Marcela Cortella</h3>
+          </div>
+        </div>
+        <div class="equipo-card fade-in">
+          <div class="equipo-card__photo"><div class="equipo-card__initials">PM</div></div>
+          <div class="equipo-card__body">
+            <p class="equipo-card__role">Secretaria</p>
+            <h3>Patricia Martinez</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ② PROPUESTA ─── -->
+  <section class="section bg-light" id="propuesta">
+    <div class="container">
+      <div class="propuesta__inner">
+        <div class="propuesta__text slide-left">
+          <h2 class="section__title">Nuestra primaria</h2>
+          <p>En el Nivel Primario acompañamos a los alumnos y las alumnas en una etapa clave de su desarrollo, promoviendo aprendizajes significativos que les permitan comprender el mundo, desarrollar su autonomía y construir herramientas para desenvolverse en una sociedad en constante transformación.</p>
+          <p>Nuestra propuesta educativa busca potenciar tanto el desarrollo cognitivo como el personal y social, favoreciendo la construcción de conocimientos, el pensamiento crítico, la creatividad, el trabajo colaborativo y el respeto por la diversidad. Entendemos que aprender implica participar activamente, reflexionar sobre lo aprendido y construir saberes junto a otros en un entorno de confianza y acompañamiento.</p>
+        </div>
+        <div class="propuesta__image slide-right">
+          <img src="img/niveles/primaria.jpg" alt="Nivel Primario San Carlos" loading="lazy" />
+          <span class="propuesta__badge">Bilingüe certificado · Cambridge</span>
+        </div>
+      </div>
+
+      <p class="aspectos__label">Aspectos distintivos</p>
+      <div class="aspectos__grid">
+        <div class="aspecto-item"><div class="aspecto-item__check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><p>Generamos espacios de convivencia donde la escucha, el diálogo, el respeto y la valoración de diferentes perspectivas forman parte de la experiencia cotidiana.</p></div>
+        <div class="aspecto-item"><div class="aspecto-item__check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><p>Implementamos metodologías activas que fomentan la resolución de problemas, la creatividad, la investigación, el trabajo cooperativo y el pensamiento crítico.</p></div>
+        <div class="aspecto-item"><div class="aspecto-item__check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><p>Desarrollamos habilidades metacognitivas que les permiten reflexionar sobre sus procesos de aprendizaje y asumir un rol cada vez más autónomo.</p></div>
+        <div class="aspecto-item"><div class="aspecto-item__check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><p>Trabajamos en aulas heterogéneas, reconociendo las particularidades de cada estudiante para potenciar sus posibilidades de aprendizaje.</p></div>
+        <div class="aspecto-item"><div class="aspecto-item__check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><p>Brindamos acompañamiento a los alumnos con necesidades específicas a través de un equipo interdisciplinario que trabaja en conjunto con los docentes.</p></div>
+        <div class="aspecto-item"><div class="aspecto-item__check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><p>Concebimos la evaluación como un proceso continuo, integral y participativo que acompaña el aprendizaje y orienta la enseñanza.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ③ ÁREAS ─── -->
+  <section class="section" id="areas">
+    <div class="container">
+      <div class="section__header slide-up">
+        <p class="section__eyebrow">Propuesta curricular</p>
+        <h2 class="section__title">Áreas de aprendizaje</h2>
+        <p class="section__desc">Una propuesta amplia e integrada que combina el rigor académico con metodologías que hacen del aprendizaje una experiencia con sentido.</p>
+      </div>
+      <div class="areas__grid">
+
+        <div class="area-item fade-in">
+          <div class="area-item__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          </div>
+          <h3>Matemática</h3>
+          <p>Aprendizaje Basado en Problemas (ABP): los alumnos resuelven situaciones reales, elaboran estrategias y construyen conocimientos matemáticos de manera contextualizada y significativa.</p>
+          <button class="btn-info" data-modal="p-area-mat"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+        </div>
+
+        <div class="area-item fade-in">
+          <div class="area-item__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <h3>Prácticas del Lenguaje</h3>
+          <p>Comprensión y producción del lenguaje oral y escrito. Plan Institucional de Lectura, rincón literario, trabajo con distintos géneros textuales y desarrollo de la escritura creativa.</p>
+          <button class="btn-info" data-modal="p-area-lenguaje"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+        </div>
+
+        <div class="area-item fade-in">
+          <div class="area-item__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="14" cy="10" r="7"/><line x1="7" y1="10" x2="21" y2="10"/><path d="M14 3a12 12 0 013 7 12 12 0 01-3 7"/><path d="M14 3a12 12 0 00-3 7 12 12 0 003 7"/><circle cx="5" cy="19" r="3"/><line x1="2.8" y1="21.2" x2="7" y2="17"/></svg>
+          </div>
+          <h3>Ciencias Sociales</h3>
+          <p>Desde la curiosidad de los alumnos, con abordaje lúdico, experiencia significativa, reflexión crítica y construcción de una mirada comprensiva sobre los conjuntos humanos y la sociedad.</p>
+          <button class="btn-info" data-modal="p-area-sociales"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+        </div>
+
+        <div class="area-item fade-in">
+          <div class="area-item__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+          </div>
+          <h3>Ciencias Naturales</h3>
+          <p>Resolución de situaciones problemáticas experimentales: los alumnos formulan hipótesis, diseñan y ejecutan experimentos y construyen una mirada científica y crítica sobre la naturaleza.</p>
+          <button class="btn-info" data-modal="p-area-naturales"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+        </div>
+
+        <div class="area-item fade-in">
+          <div class="area-item__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+          </div>
+          <h3>Educación Artística</h3>
+          <p>Plástica, música y drama (en inglés). Tres lenguajes para crear, disfrutar y desarrollar sensibilidad estética. En el segundo ciclo los alumnos aprenden a tocar un instrumento musical.</p>
+          <button class="btn-info" data-modal="p-area-artes"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+        </div>
+
+        <div class="area-item fade-in">
+          <div class="area-item__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 22v-6"/><path d="M9.5 22h5"/><path d="M12 16l-2-2.5m2 2.5l2-2.5"/><path d="M18.5 10.5c0-3.6-2.9-6.5-6.5-6.5S5.5 6.9 5.5 10.5c0 1.6.6 3.1 1.6 4.2-.4.4-.6 1-.6 1.6C6.5 17.8 7.7 19 9.2 19h5.6c1.5 0 2.7-1.2 2.7-2.7 0-.6-.2-1.2-.6-1.6 1-1.1 1.6-2.6 1.6-4.2z"/></svg>
+          </div>
+          <h3>Educación Física</h3>
+          <p>Clases en el Club Buenavista y encuentros deportivos inter-colegios. Deporte educativo como herramienta de formación integral, desarrollo motor y construcción de valores.</p>
+          <button class="btn-info" data-modal="p-area-efisica"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+        </div>
+
+        <div class="area-item fade-in" style="grid-column:2">
+          <div class="area-item__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <h3>Inglés</h3>
+          <p>Proyecto bilingüe reconocido oficialmente. Metodología comunicativa intensa y progresiva, alineada con el CEFR. Los alumnos rinden el examen internacional Cambridge A2 Key.</p>
+          <button class="btn-info" data-modal="p-area-ingles"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ④ FORMACIÓN INTEGRAL ─── -->
+  <section class="section bg-light" id="formacion">
+    <div class="container">
+      <div class="section__header slide-up">
+        <p class="section__eyebrow">Más allá del aula</p>
+        <h2 class="section__title">Propuestas que enriquecen</h2>
+        <p class="section__desc">Propuestas que amplían la mirada, fortalecen el vínculo con el entorno y preparan a los alumnos para ser ciudadanos plenos, responsables y creativos.</p>
+      </div>
+      <div class="formacion__grid">
+
+        <div class="formacion-card fade-in slide-up">
+          <div class="formacion-card__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          </div>
+          <div class="formacion-card__body">
+            <h3>Rincón Literario</h3>
+            <p>Un espacio semanal de lectura placentera con acceso a una biblioteca diversa. Fomentamos el amor por los libros, la lectura en el hogar y el cuidado responsable de los materiales compartidos.</p>
+            <button class="btn-info" data-modal="p-fi-rincon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+          </div>
+        </div>
+
+        <div class="formacion-card fade-in slide-up">
+          <div class="formacion-card__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div class="formacion-card__body">
+            <h3>Inclusión de Tecnología</h3>
+            <p>Proyectores y notebooks en todas las aulas, Aula Digital Móvil con tablets, aula de tecnología con notebooks, impresora 3D, robots (Botley, mBot, Lego), realidad virtual y makey-makey.</p>
+            <button class="btn-info" data-modal="p-fi-tec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+          </div>
+        </div>
+
+        <div class="formacion-card fade-in slide-up">
+          <div class="formacion-card__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <div class="formacion-card__body">
+            <h3>Desarrollo Socioemocional</h3>
+            <p>Espacio semanal de Habilidades Sociales donde los alumnos trabajan el autoconocimiento, la empatía, la comunicación asertiva, la resolución pacífica de conflictos y el autocuidado.</p>
+            <button class="btn-info" data-modal="p-fi-soc"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+          </div>
+        </div>
+
+        <div class="formacion-card fade-in slide-up">
+          <div class="formacion-card__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+          </div>
+          <div class="formacion-card__body">
+            <h3>Conciencia Ambiental</h3>
+            <p>Propuestas que promueven la reflexión sobre el impacto de nuestras acciones, el cuidado de los recursos naturales, la reducción de residuos y el consumo responsable desde edades tempranas.</p>
+            <button class="btn-info" data-modal="p-fi-ambiental"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+          </div>
+        </div>
+
+        <div class="formacion-card fade-in slide-up">
+          <div class="formacion-card__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <div class="formacion-card__body">
+            <h3>Educación Financiera</h3>
+            <p>A través de situaciones cercanas a la vida cotidiana, los alumnos comprenden el valor del dinero, la planificación, el ahorro, el consumo responsable y la toma de decisiones informadas.</p>
+            <p>La propuesta promueve hábitos financieros saludables y fomenta la reflexión sobre el dinero como herramienta para alcanzar objetivos, favoreciendo una mirada crítica y responsable sobre su uso.</p>
+          </div>
+        </div>
+
+        <div class="formacion-card fade-in slide-up">
+          <div class="formacion-card__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 3v7.5L4.5 18A2 2 0 006.3 21h11.4a2 2 0 001.8-3L15 10.5V3"/><path d="M9 3h6"/><circle cx="9.5" cy="15" r=".8"/><circle cx="13" cy="17" r="1.1"/></svg>
+          </div>
+          <div class="formacion-card__body">
+            <h3>Ciencias en laboratorio</h3>
+            <p>Los alumnos y alumnas experimentan, observan y ponen a prueba sus ideas en un espacio especialmente diseñado para aprender haciendo. A través del método científico, desarrollan el pensamiento crítico, la curiosidad y el gusto por descubrir.</p>
+            <button class="btn-info" data-modal="p-fi-lab"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ⑤ EXPERIENCIAS ─── -->
+  <section class="section" id="experiencias">
+    <div class="container">
+      <div class="section__header slide-up">
+        <p class="section__eyebrow">Vida escolar</p>
+        <h2 class="section__title">Experiencias educativas</h2>
+        <p class="section__desc">Pasá el mouse sobre cada card para conocer más.</p>
+      </div>
+      <div class="flip-grid">
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg><h3>Olimpíadas de Matemática</h3></div>
+          <div class="flip-card__back"><p>Los alumnos de 5° y 6° grado participan de las Olimpíadas Matemáticas Ñandú, una propuesta que promueve el razonamiento, la creatividad y la resolución de problemas. A lo largo de los años, nuestros estudiantes han obtenido destacados resultados, alcanzando incluso instancias nacionales.</p></div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><h3>Actos</h3></div>
+          <div class="flip-card__back"><p>Las fechas patrias y otros acontecimientos significativos se convierten en oportunidades para aprender, reflexionar y compartir con las familias. A través de propuestas creativas y participativas, los alumnos presentan lo trabajado de maneras originales y significativas.</p></div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><h3>Charlas TED-Ed</h3></div>
+          <div class="flip-card__back"><p>Los alumnos de 6° grado preparan y presentan una charla inspirada en el formato TED, en la que comparten temas que los apasionan y consideran valiosos para otros. Esta experiencia fortalece la investigación, la comunicación oral y la confianza para expresar ideas con impacto.</p></div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg><h3>Salidas Didácticas</h3></div>
+          <div class="flip-card__back"><p>El objetivo es enriquecer los aprendizajes a través del contacto directo con distintos espacios y contextos. Museos, fábricas, instituciones y sitios históricos permiten vivenciar los contenidos trabajados en el aula y construir aprendizajes significativos.</p></div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg><h3>Familias Activas</h3></div>
+          <div class="flip-card__back"><p>Las familias participan activamente de la vida escolar compartiendo sus conocimientos, experiencias y profesiones con los alumnos. Estos encuentros fortalecen los vínculos entre escuela y hogar, enriqueciendo las experiencias de aprendizaje.</p></div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><h3>Expoarte</h3></div>
+          <div class="flip-card__back"><p>Una muestra abierta a las familias en la que se exhiben las producciones artísticas realizadas por los alumnos. A través de diferentes lenguajes y expresión los chicos comparten sus procesos creativos y aprendizajes.</p></div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><polygon points="12 2 2 22 22 22"/><line x1="12" y1="22" x2="12" y2="9"/></svg><h3>Muestra de drama</h3></div>
+          <div class="flip-card__back"><p>Como cierre de la propuesta de drama, se presenta una obra frente a las familias, poniendo en práctica las habilidades desarrolladas a lo largo del año. La muestra constituye una oportunidad para celebrar el trabajo realizado, fortalecer la confianza en el uso del idioma y disfrutar de una experiencia artística compartida.</p></div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg><h3>Open Classes</h3></div>
+          <div class="flip-card__back"><p>Estas clases brindan a las familias la oportunidad de participar de una clase de inglés y conocer de cerca las dinámicas de aprendizaje. Es un espacio que permite visibilizar el progreso de los alumnos y compartir experiencias dentro del aula.</p></div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg><h3>Día de la Niñez</h3></div>
+          <div class="flip-card__back"><p>Cada año celebramos el Día de la Niñez con una jornada especialmente pensada para homenajear a los chicos. Juegos, desafíos, actividades recreativas y una gran kermesse organizada por el equipo de recreación y líderes transforman el colegio en una verdadera fiesta.</p></div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><h3>Egresanca</h3></div>
+          <div class="flip-card__back"><p>Los alumnos de 6° grado participan de diferentes propuestas especialmente diseñadas para celebrar el cierre de una etapa muy importante de sus vidas. Son experiencias que fortalecen los vínculos del grupo y generan recuerdos que los acompañarán para siempre.</p></div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg><h3>Pizza Party y Pernoctada</h3></div>
+          <div class="flip-card__back"><p>La Pizza Party es una oportunidad para que los más chicos compartan junto a sus familias un momento de encuentro y celebración. Los alumnos más grandes viven además la experiencia de la pernoctada en el colegio, culminando con un desayuno compartido al día siguiente.</p></div>
+        </div></div>
+
+        <div class="flip-card"><div class="flip-card__inner">
+          <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><path d="M3 18l9-14 9 14H3z"/><path d="M9 18v-5l3-2 3 2v5"/></svg><h3>Campamentos</h3></div>
+          <div class="flip-card__back"><p>Una vez al año, los alumnos participan de campamentos que combinan aprendizaje, convivencia y contacto con la naturaleza. Estas experiencias promueven la autonomía, el trabajo en equipo y el disfrute de actividades al aire libre.</p></div>
+        </div></div>
+
+        <div style="grid-column:1/-1;display:flex;gap:18px;justify-content:center">
+
+          <div class="flip-card" style="width:calc(25% - 14px);flex-shrink:0"><div class="flip-card__inner">
+            <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><h3>Be Kind</h3></div>
+            <div class="flip-card__back"><p>Un programa institucional que forma parte de nuestra identidad y promueve la construcción de una convivencia respetuosa y empática. Una vez por mes, todo el colegio trabaja sobre distintos valores y habilidades socioemocionales.</p></div>
+          </div></div>
+
+          <div class="flip-card" style="width:calc(25% - 14px);flex-shrink:0"><div class="flip-card__inner">
+            <div class="flip-card__front"><svg class="fc-icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg><h3>Articulación</h3></div>
+            <div class="flip-card__back"><p>El paso de 6° grado al Nivel Secundario representa una etapa de grandes cambios y nuevos desafíos. Por eso, desarrollamos un proceso de articulación que acompaña a los alumnos en la construcción de las herramientas necesarias para transitar esta nueva etapa con confianza y autonomía.</p></div>
+          </div></div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ⑥ SERVICIOS ─── -->
+  <section class="section bg-light" id="servicios">
+    <div class="container">
+      <div class="section__header slide-up">
+        <p class="section__eyebrow">Para las familias</p>
+        <h2 class="section__title">Horarios y servicios</h2>
+        <p class="section__desc">Una jornada completa bilingüe que integra el trabajo en castellano por la mañana y en inglés por la tarde, con flexibilidad para acompañar las necesidades de cada familia.</p>
+      </div>
+
+      <div class="jornada-unica fade-in">
+        <div class="jornada-unica__header">
+          <span>Bloque</span>
+          <span>Horario</span>
+          <span>Propuesta</span>
+        </div>
+        <div class="jornada-row">
+          <div class="jornada-row__name">Ingreso flex</div>
+          <div class="jornada-row__hora">7:30 – 8:00 hs</div>
+          <div class="jornada-row__tags">
+            <span class="jornada-tag jornada-tag--blue">Opcional</span>
+            <span class="jornada-tag jornada-tag--blue">Recibidos por docentes del nivel</span>
+          </div>
+        </div>
+        <div class="jornada-row">
+          <div class="jornada-row__name">Mañana</div>
+          <div class="jornada-row__hora">8:00 – 12:00 hs</div>
+          <div class="jornada-row__tags">
+            <span class="jornada-tag">Áreas en castellano</span>
+            <span class="jornada-tag">2 recreos de 15 min</span>
+          </div>
+        </div>
+        <div class="jornada-row">
+          <div class="jornada-row__name">Almuerzo</div>
+          <div class="jornada-row__hora">12:00 – 13:00 hs</div>
+          <div class="jornada-row__tags">
+            <span class="jornada-tag">Comedor</span>
+            <span class="jornada-tag">Recreo</span>
+          </div>
+        </div>
+        <div class="jornada-row">
+          <div class="jornada-row__name">Tarde</div>
+          <div class="jornada-row__hora">13:00 – 16:45 hs</div>
+          <div class="jornada-row__tags">
+            <span class="jornada-tag">Áreas en inglés</span>
+            <span class="jornada-tag">2 recreos de 15 min</span>
+          </div>
+        </div>
+        <div class="jornada-row">
+          <div class="jornada-row__name">Extraprogramático</div>
+          <div class="jornada-row__hora">hasta 18:45 hs</div>
+          <div class="jornada-row__tags">
+            <span class="jornada-tag jornada-tag--accent">Talleres y actividades</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="servicios-extra">
+
+        <div class="servicio-extra fade-in">
+          <div class="servicio-extra__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          </div>
+          <h3>Comedor propio</h3>
+          <p>Menú saludable elaborado en el día. Los alumnos pueden optar por el comedor, por vianda propia o por un servicio mixto.</p>
+        </div>
+
+        <div class="servicio-extra fade-in">
+          <div class="servicio-extra__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <h3>Acompañamiento psicopedagógico</h3>
+          <p>Equipo de orientación que trabaja junto a docentes y familias, brindando herramientas y espacios de reflexión para el bienestar y el aprendizaje de los alumnos.</p>
+        </div>
+
+        <div class="servicio-extra fade-in">
+          <div class="servicio-extra__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </div>
+          <h3>Colonia de invierno y verano</h3>
+          <p>Actividades lúdicas y recreativas en los períodos de receso escolar, en un marco de cuidado y diversión para las familias que lo necesitan.</p>
+        </div>
+
+        <div class="servicio-extra fade-in">
+          <div class="servicio-extra__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <h3>Transporte escolar</h3>
+          <p>Servicio con empresas habilitadas y de confianza. Cobertura en zonas aledañas con acompañante en cada recorrido.</p>
+        </div>
+
+        <div class="servicio-extra fade-in">
+          <div class="servicio-extra__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </div>
+          <h3>Capacitación docente</h3>
+          <p>Capacitaciones periódicas del equipo para garantizar una propuesta pedagógica actualizada, innovadora y de alta calidad.</p>
+        </div>
+
+        <div class="servicio-extra fade-in">
+          <div class="servicio-extra__icon">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 22v-6"/><path d="M9.5 22h5"/><path d="M12 16l-2-2.5m2 2.5l2-2.5"/><path d="M18.5 10.5c0-3.6-2.9-6.5-6.5-6.5S5.5 6.9 5.5 10.5c0 1.6.6 3.1 1.6 4.2-.4.4-.6 1-.6 1.6C6.5 17.8 7.7 19 9.2 19h5.6c1.5 0 2.7-1.2 2.7-2.7 0-.6-.2-1.2-.6-1.6 1-1.1 1.6-2.6 1.6-4.2z"/></svg>
+          </div>
+          <h3>Campo de deportes</h3>
+          <p>Clases de Educación Física y encuentros deportivos en el Club Buenavista. Espacio al aire libre con equipo docente especializado.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA FINAL ─── -->
+  <section class="cta-final">
+    <div class="container">
+      <p class="section__eyebrow">Inscripciones abiertas</p>
+      <h2>¿Querés que tu hijo sea parte de San Carlos?</h2>
+      <p>Solicitá una entrevista y conocé nuestra propuesta de cerca.</p>
+      <div class="cta-final__actions">
+        <a href="https://wa.me/541147964918?text=Hola%2C%20quisiera%20solicitar%20una%20entrevista%20para%20Nivel%20Primario." class="btn btn--white" target="_blank" rel="noopener">Solicitar entrevista</a>
+        <a href="index.html" class="btn btn--outline-white">Volver al inicio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="Colegio San Carlos Diálogos" class="footer__logo" loading="lazy" />
+        <div class="footer__social">
+          <a href="https://www.instagram.com/sancarlos_colegio" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+          <a href="https://www.facebook.com/p/San-Carlos-Colegio-100089961152583/?locale=es_LA" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://ar.linkedin.com/company/san-carlos-dialogos" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://www.youtube.com/@ColegioSanCarlosD" target="_blank" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h5>Nivel Primario</h5>
+        <ul>
+          <li><a href="#equipo">Equipo de Conducción</a></li>
+          <li><a href="#propuesta">Propuesta educativa</a></li>
+          <li><a href="#areas">Áreas de aprendizaje</a></li>
+          <li><a href="#formacion">Propuestas que enriquecen</a></li>
+          <li><a href="#experiencias">Experiencias</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>El Colegio</h5>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="nivel-inicial.html">Nivel Inicial</a></li>
+          <li><a href="nivel-secundario.html">Nivel Secundario</a></li>
+          <li><a href="nuestra-identidad.html">Nuestra Identidad</a></li>
+          <li><a href="index.html#talleres">Talleres</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Contacto</h5>
+        <ul>
+          <li>José María Paz 2431, Olivos</li>
+          
+          <li><a href="tel:+541147960504">(+11) 4796-0504</a></li>
+          <li><a href="mailto:administracion@sancarlos.edu.ar">administracion@sancarlos.edu.ar</a></li>
+          <li>Lun–Vie 7:30 a 19:00 hs</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2025 Colegio San Carlos Diálogos. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ─── MODAL ─── -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal" id="modalBox">
+      <button class="modal__close" id="modalClose" aria-label="Cerrar">&#x2715;</button>
+      <div class="modal__header">
+        <div class="modal__icon" id="modalIcon"></div>
+        <h3 class="modal__title" id="modalTitle"></h3>
+      </div>
+      <div class="modal__body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const burger   = document.getElementById('burger');
+    const nav      = document.getElementById('nav');
+    const navClose = document.getElementById('navClose');
+    burger.addEventListener('click',   () => nav.classList.toggle('open'));
+    navClose.addEventListener('click', () => nav.classList.remove('open'));
+
+    const offset = () =>
+      document.getElementById('header').offsetHeight +
+      (document.getElementById('subnav') ? document.getElementById('subnav').offsetHeight : 0) + 8;
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const id = link.getAttribute('href');
+        if (id === '#') return;
+        const target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - offset(), behavior: 'smooth' });
+        nav.classList.remove('open');
+      });
+    });
+
+    const sections = document.querySelectorAll('section[id]');
+    const allLinks = document.querySelectorAll('.subnav__link, .nav__link');
+    sections.forEach(s => {
+      new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting)
+            allLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+        });
+      }, { rootMargin: '-40% 0px -55% 0px' }).observe(s);
+    });
+
+    document.querySelectorAll('.flip-card').forEach(card => {
+      card.addEventListener('click', () => card.classList.toggle('flipped'));
+    });
+
+    document.querySelectorAll('.fade-in, .slide-left, .slide-right, .slide-up').forEach(el => {
+      new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+      }, { threshold: 0.1 }).observe(el);
+    });
+
+    /* ── MODAL DATA ── */
+    const modalData = {
+
+      'p-area-mat': {
+        title: 'Matemática — Aprendizaje Basado en Problemas',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>',
+        body: `<p>En nuestro colegio abordamos la enseñanza de la matemática a través del Aprendizaje Basado en Problemas (ABP), una metodología que propone desafíos vinculados con situaciones de la vida real para que los alumnos pongan en juego sus conocimientos, elaboren estrategias y construyan nuevos aprendizajes.</p><p>A través de la exploración, el razonamiento y el intercambio de ideas, los estudiantes desarrollan habilidades para analizar situaciones, resolver problemas y comunicar sus procedimientos, mientras adquieren los conceptos matemáticos de manera significativa y contextualizada.</p><p>Nuestra propuesta tiene características que promueven el éxito de los aprendizajes: incluye a todos los alumnos cualesquiera sean sus puntos de partida; contempla la composición heterogénea de los grupos y la aprovecha como factor de enriquecimiento; promueve la formación de alumnos autónomos; adopta un modelo de intervención adaptado a la capacidad, ritmo, motivación e intereses de cada alumno/a; y concibe el trabajo en equipo como facilitador de la construcción cooperativa del conocimiento.</p><p>Al aplicar el ABP, los estudiantes adquieren aptitudes que perdurarán a lo largo de toda su vida, como la capacidad de encontrar y usar recursos apropiados de aprendizaje.</p>`
+      },
+
+      'p-area-lenguaje': {
+        title: 'Prácticas del Lenguaje',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>',
+        body: `<p>El trabajo en el área está destinado a desarrollar estrategias de comprensión y producción del lenguaje escrito y oral.</p><p>El Plan Institucional de lectura ofrece la posibilidad de apreciar diferentes textos que van creciendo en complejidad y se desarrollan tanto en el ámbito del hogar como en horas especiales dedicadas exclusivamente a la lectura en el espacio del rincón literario.</p><p>La escritura, en consonancia con el estudio de la gramática textual, se propone como un espacio de desarrollo continuo a través de la elaboración de distintos tipos de textos. Se fomenta tanto la adecuación al registro de los géneros propuestos como la intención comunicativa.</p><p>El estudio de la ortografía y el vocabulario se intensifica en el segundo ciclo a través del trabajo con libros que ofrecen la posibilidad de deducir usos ortográficos y estructuras morfosintácticas a partir de diferentes portadores de texto.</p><p>El enfoque comunicativo de la enseñanza dentro del área permite abordar diferentes ámbitos de estudio con el objetivo de desarrollar las prácticas sociales del lenguaje y formar hablantes, lectores y escritores conscientes y capaces de interactuar en las distintas esferas sociales y culturales.</p>`
+      },
+
+      'p-area-sociales': {
+        title: 'Ciencias Sociales',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><circle cx="14" cy="10" r="7"/><line x1="7" y1="10" x2="21" y2="10"/><path d="M14 3a12 12 0 013 7 12 12 0 01-3 7"/><path d="M14 3a12 12 0 00-3 7 12 12 0 003 7"/><circle cx="5" cy="19" r="3"/><line x1="2.8" y1="21.2" x2="7" y2="17"/></svg>',
+        body: `<p>Enfocamos el proceso de enseñanza y aprendizaje de las Ciencias Sociales desde la curiosidad de los chicos, con el primer objetivo de despertar el interés en los contenidos.</p><p>Centramos el aprendizaje tomando distancia de las prácticas memorísticas, considerando el abordaje lúdico, la experiencia significativa, la reflexión grupal e individual y la visión crítica, valores fundamentales del área.</p>`
+      },
+
+      'p-area-naturales': {
+        title: 'Ciencias Naturales',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>',
+        body: `<p>El aspecto fundamental de la metodología que proponemos en Ciencias Naturales es la resolución de situaciones problemáticas experimentales, para promover la participación activa del alumno/a.</p><p>Se trata de elegir aquellas preguntas o problemas que sean capaces de darle sentido a la tarea, así como de planificar actividades a partir de las cuales los alumnos puedan hacer conjeturas o anticipaciones y plantear "experimentos", pensarlos, ponerlos a prueba y hablar y escribir sobre ellos. La idea central es que la única forma de aprender ciencia es haciendo ciencia.</p>`
+      },
+
+      'p-area-artes': {
+        title: 'Educación Artística — Plástica, Música y Drama',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>',
+        body: `<p>Entendemos al arte como una manera privilegiada para poder desplegar todas las potencialidades del niño/a. Pensamos un modelo de educación artística que promueve el hacer, el crear, el compartir y el disfrutar. Consideramos que el aprendizaje de los diferentes lenguajes del arte contribuye a desarrollar la capacidad de abstracción, la formación del pensamiento crítico y la sensibilidad estética.</p><p><strong>Plástica:</strong> Acompañamos a los chicos brindándoles herramientas y espacios de aprendizaje necesarios para que incorporen la expresión plástica como un modo de expresión y vínculo con el mundo. A través de imágenes de artistas, experiencias directas en museos y videos, los alumnos se contactan con la obra, el artista y el contexto de producción. El colegio cuenta con una sala de arte adecuadamente equipada.</p><p><strong>Música:</strong> En el Primer Ciclo las propuestas se centran en la exploración del ritmo, la percusión, el movimiento y el uso de diversos instrumentos, favoreciendo la coordinación, la escucha atenta y la expresión corporal y sonora. En el Segundo Ciclo los estudiantes incorporan el aprendizaje sistemático de un instrumento musical, aprenden a acompañar canciones, explorar ritmos y participan en producciones musicales grupales.</p><p><strong>Drama:</strong> Se desarrolla íntegramente en inglés y brinda a los alumnos un espacio lúdico y creativo para utilizar el idioma en contextos significativos. A través de juegos teatrales, dramatizaciones, improvisaciones, canciones y actividades de expresión corporal, los estudiantes amplían su vocabulario y ganan confianza en el uso del inglés. El trabajo teatral fortalece también habilidades sociales como la cooperación, la empatía y el trabajo en equipo.</p>`
+      },
+
+      'p-area-efisica': {
+        title: 'Educación Física',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M12 22v-7"/><path d="M12 15a5 5 0 005-5 5 5 0 00-5-5 5 5 0 00-5 5 5 5 0 005 5z"/><path d="M12 8a3 3 0 013 3"/><path d="M9 17H6a2 2 0 010-4h.5A5.5 5.5 0 0112 8v0a5.5 5.5 0 015.5 5H18a2 2 0 010 4h-3"/></svg>',
+        body: `<p>Partimos de la base de que la Educación Física en la etapa escolar es absolutamente educativa y formativa.</p><p><strong>Objetivos:</strong> Desarrollar las habilidades motoras; desarrollar valores a través de los cuales forme una actitud reflexiva, comprensiva y positiva; tomar conciencia en el cuidado de la salud; desarrollar comprensión y acciones de distintas lógicas lúdicas y/o pre-deportivas o deportivas.</p><p>Las actividades se desarrollan en las instalaciones del colegio y en el Campo de Deportes del Club Buena Vista. A lo largo del año se llevan a cabo encuentros deportivos con otros colegios.</p>`
+      },
+
+      'p-area-ingles': {
+        title: 'Inglés — Proyecto Bilingüe',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>',
+        body: `<p>Nuestro proyecto bilingüe está reconocido oficialmente de acuerdo al Diseño Curricular vigente. Nuestra filosofía se basa en la convicción de que el aprendizaje de una lengua extranjera debe ser dinámico, contextualizado y significativo, permitiendo que los alumnos adquieran una mirada multicultural pudiendo interactuar fluidamente en distintos ámbitos de habla inglesa.</p><p>Nuestra propuesta abarca a niños con capacidades diferentes: hemos diseñado programas de trabajo que contemplan las necesidades de cada uno, garantizando el acceso igualitario a una educación integral y de calidad. El aprendizaje de una segunda lengua a temprana edad estimula el desarrollo de capacidades cognitivas y emocionales, potencia las habilidades lingüísticas y favorece la autoestima y la interacción social.</p><p>En 1° grado trabajamos con Jolly Phonics, un programa de alfabetización inicial basado en un enfoque fonético sintético y multisensorial. A medida que avanzan, los estudiantes amplían sus conocimientos a través de propuestas que integran situaciones auténticas de aprendizaje, proyectos interdisciplinarios, juegos, lecturas y producciones orales y escritas, alineadas con los niveles del Common European Framework of Reference (CEFR).</p><p>A fin de evaluar los resultados, los alumnos rinden el examen internacional A2 Key de la Universidad de Cambridge.</p>`
+      },
+
+      'p-fi-rincon': {
+        title: 'Rincón Literario',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>',
+        body: `<p>Organizamos este espacio de forma tal que, tanto los docentes como alumnos, tengan fácil acceso a los distintos recursos. Los alumnos concurren al menos una hora semanal al rincón literario donde buscamos:</p><p>Generar un ambiente cálido donde puedan estar en contacto con los libros. Incentivar la lectura placentera o informativa dentro de la biblioteca y llevándose textos a sus hogares. Estimular la responsabilidad, el amor y el cuidado por los libros.</p>`
+      },
+
+      'p-fi-tec': {
+        title: 'Inclusión de Tecnología',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+        body: `<p>Vivimos en una sociedad donde el cambio es permanente y cotidiano. La escuela no puede estar alejada de esta realidad: nuestra propuesta apunta a fortalecer la enseñanza integrando diferentes herramientas tecnológicas al proyecto educativo institucional, permitiendo que los estudiantes desarrollen nuevas competencias y habilidades.</p><p>Para llevar adelante nuestro proyecto contamos con: Proyectores y notebooks en todas las aulas. Plataformas educativas que permiten a toda la comunidad acceder a contenidos digitales de manera natural. Un Aula Digital Móvil integrada por tablets. Aula de tecnología con notebooks y tablets donde aprenden herramientas de office, software educativos y prácticas de programación. Impresora 3D. Robots: Botley, mBot, Lego. Lentes de Realidad Virtual, makey-makey y microbit.</p>`
+      },
+
+      'p-fi-soc': {
+        title: 'Desarrollo Socioemocional',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>',
+        body: `<p>Entendemos que aprender a convivir, comunicarse y construir vínculos saludables es tan importante como el desarrollo académico. Por eso, los alumnos participan semanalmente de un espacio específico de Habilidades Sociales.</p><p>Durante estos encuentros se trabajan contenidos vinculados con: Reconocimiento y manejo de las emociones. Empatía y comprensión de las perspectivas de los demás. Comunicación asertiva. Resolución pacífica de conflictos. Escucha activa. Autoestima y autoconocimiento. Autocuidado y bienestar personal.</p>`
+      },
+
+      'p-fi-ambiental': {
+        title: 'Conciencia Ambiental',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>',
+        body: `<p>Creemos que la educación ambiental es una herramienta fundamental para formar ciudadanos comprometidos con el cuidado del planeta y con la construcción de un futuro más sostenible.</p><p>A través de propuestas acordes a cada edad, promovemos la reflexión sobre el impacto de nuestras acciones en el ambiente, favoreciendo el desarrollo de hábitos responsables y una mirada crítica sobre los desafíos ambientales de nuestro tiempo.</p><p>Los alumnos participan de experiencias que los invitan a observar, investigar, preguntar y actuar, comprendiendo la importancia del cuidado de los recursos naturales, la reducción de residuos, el consumo responsable y el respeto por todos los seres vivos. Nuestro objetivo es que los chicos desarrollen una conciencia ambiental que les permita asumir un rol activo en el cuidado de su entorno, entendiendo que cada acción cotidiana puede contribuir a generar cambios positivos.</p>`
+      },
+
+      'p-fi-lab': {
+        title: 'Ciencias en laboratorio',
+        icon: '<svg style="width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M9 3v7.5L4.5 18A2 2 0 006.3 21h11.4a2 2 0 001.8-3L15 10.5V3"/><path d="M9 3h6"/><circle cx="9.5" cy="15" r=".8"/><circle cx="13" cy="17" r="1.1"/></svg>',
+        body: `<p>Los alumnos y alumnas experimentan, observan y ponen a prueba sus ideas en un espacio especialmente diseñado para aprender haciendo. A través del método científico, desarrollan el pensamiento crítico, la curiosidad y el gusto por descubrir.</p><p>En el laboratorio los estudiantes formulan preguntas, diseñan experimentos, registran observaciones y sacan conclusiones propias. Esta metodología los invita a ser protagonistas del conocimiento, construyendo una mirada científica y crítica sobre el mundo que los rodea.</p>`
+      }
+
+    };
+
+    /* ── Lógica modal ── */
+    const overlay = document.getElementById('modalOverlay');
+    const mTitle  = document.getElementById('modalTitle');
+    const mBody   = document.getElementById('modalBody');
+    const mIcon   = document.getElementById('modalIcon');
+    const mClose  = document.getElementById('modalClose');
+
+    function openModal(key) {
+      const d = modalData[key]; if (!d) return;
+      mTitle.textContent = d.title;
+      mBody.innerHTML    = d.body;
+      mIcon.innerHTML    = d.icon;
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      mClose.focus();
+    }
+    function closeModal() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.btn-info').forEach(btn =>
+      btn.addEventListener('click', () => openModal(btn.dataset.modal))
+    );
+    mClose.addEventListener('click', closeModal);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  </script>
+</body>
+</html>
