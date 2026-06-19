@@ -725,30 +725,39 @@ const PAGE_CONFIG = {
   },
   'nivel-inicial.html': {
     name: 'Nivel Inicial', icon: '🌱',
-    desc: 'Textos del hero y propuesta del Nivel Inicial',
+    desc: 'Hero, equipo directivo y horarios del Nivel Inicial',
     fields: [
-      { id:'p0', label:'Etiqueta',   sel:'.page-hero .section__eyebrow, .hero-nivel .section__eyebrow', type:'text' },
-      { id:'p1', label:'Título',     sel:'.page-hero h1, .hero-nivel h1',   type:'text' },
-      { id:'p2', label:'Descripción',sel:'.page-hero p:not(.section__eyebrow), .hero-nivel p', type:'textarea' },
-    ]
+      { id:'p0', label:'Etiqueta del hero (ej: "3 a 5 años")', sel:'.hero-sub__tag', type:'text' },
+      { id:'p1', label:'Título del hero',     sel:'.hero-sub__title',    type:'text' },
+      { id:'p2', label:'Subtítulo (frase corta)', sel:'.hero-sub__subtitle', type:'textarea' },
+      { id:'p3', label:'Descripción completa',    sel:'.hero-sub__desc',    type:'textarea' },
+    ],
+    equipo: true,
+    jornada: true,
   },
   'nivel-primario.html': {
     name: 'Nivel Primario', icon: '📚',
-    desc: 'Textos del hero y propuesta del Nivel Primario',
+    desc: 'Hero, equipo directivo y horarios del Nivel Primario',
     fields: [
-      { id:'p0', label:'Etiqueta',   sel:'.page-hero .section__eyebrow, .hero-nivel .section__eyebrow', type:'text' },
-      { id:'p1', label:'Título',     sel:'.page-hero h1, .hero-nivel h1',   type:'text' },
-      { id:'p2', label:'Descripción',sel:'.page-hero p:not(.section__eyebrow), .hero-nivel p', type:'textarea' },
-    ]
+      { id:'p0', label:'Etiqueta del hero (ej: "1° a 6° grado")', sel:'.hero-sub__tag', type:'text' },
+      { id:'p1', label:'Título del hero',     sel:'.hero-sub__title',    type:'text' },
+      { id:'p2', label:'Subtítulo (frase corta)', sel:'.hero-sub__subtitle', type:'textarea' },
+      { id:'p3', label:'Descripción completa',    sel:'.hero-sub__desc',    type:'textarea' },
+    ],
+    equipo: true,
+    jornada: true,
   },
   'nivel-secundario.html': {
     name: 'Nivel Secundario', icon: '🎓',
-    desc: 'Textos del hero y propuesta del Nivel Secundario',
+    desc: 'Hero, equipo directivo y horarios del Nivel Secundario',
     fields: [
-      { id:'p0', label:'Etiqueta',   sel:'.page-hero .section__eyebrow, .hero-nivel .section__eyebrow', type:'text' },
-      { id:'p1', label:'Título',     sel:'.page-hero h1, .hero-nivel h1',   type:'text' },
-      { id:'p2', label:'Descripción',sel:'.page-hero p:not(.section__eyebrow), .hero-nivel p', type:'textarea' },
-    ]
+      { id:'p0', label:'Etiqueta del hero (ej: "1° a 6° año")', sel:'.hero-sub__tag', type:'text' },
+      { id:'p1', label:'Título del hero',     sel:'.hero-sub__title',    type:'text' },
+      { id:'p2', label:'Subtítulo (frase corta)', sel:'.hero-sub__subtitle', type:'textarea' },
+      { id:'p3', label:'Descripción completa',    sel:'.hero-sub__desc',    type:'textarea' },
+    ],
+    equipo: true,
+    jornada: true,
   },
   'talleres.html': {
     name: 'Talleres', icon: '🎨',
@@ -807,24 +816,71 @@ async function openPageEditor(file){
     currentPageRaw = content;
     const doc = new DOMParser().parseFromString(content, 'text/html');
 
-    const fieldsHtml = cfg.fields.map(f => {
-      // Try each comma-separated selector
-      let val = '';
-      for(const sel of f.sel.split(',')){
-        const el = doc.querySelector(sel.trim());
-        if(el){ val = el.textContent.trim(); break; }
-      }
-      return `
-      <div class="fg" style="margin-bottom:20px">
-        <label style="font-size:.8rem;font-weight:600;color:#374151;display:block;margin-bottom:6px">${f.label}</label>
-        ${f.type==='textarea'
-          ? `<textarea id="pf_${f.id}" rows="3" style="width:100%;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.875rem;font-family:inherit;outline:none;resize:vertical" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e2e8f0'">${esc(val)}</textarea>`
-          : `<input type="text" id="pf_${f.id}" value="${esc(val)}" style="width:100%;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.875rem;outline:none" onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e2e8f0'" />`
-        }
-      </div>`;
-    }).join('');
+    function makeField(id, label, val, type){
+      const baseStyle = 'width:100%;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.875rem;outline:none;font-family:inherit;box-sizing:border-box';
+      const focus = "this.style.borderColor='#3b82f6'";
+      const blur  = "this.style.borderColor='#e2e8f0'";
+      return `<div style="margin-bottom:16px">
+        <label style="font-size:.78rem;font-weight:600;color:#374151;display:block;margin-bottom:5px">${label}</label>
+        ${type==='textarea'
+          ? `<textarea id="${id}" rows="3" style="${baseStyle};resize:vertical" onfocus="${focus}" onblur="${blur}">${esc(val)}</textarea>`
+          : `<input type="text" id="${id}" value="${esc(val)}" style="${baseStyle}" onfocus="${focus}" onblur="${blur}" />`
+        }</div>`;
+    }
 
-    document.getElementById('pag-fields').innerHTML = fieldsHtml ||
+    const sectionLabel = txt => `<div style="font-size:.68rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#94a3b8;border-top:1px solid #e2e8f0;margin:26px 0 18px;padding-top:18px">${txt}</div>`;
+
+    let html = '';
+
+    // Static fields from config
+    if(cfg.fields.length){
+      html += sectionLabel('Textos del encabezado');
+      html += cfg.fields.map(f => {
+        let val = '';
+        for(const sel of f.sel.split(',')){
+          const el = doc.querySelector(sel.trim());
+          if(el){ val = el.textContent.trim(); break; }
+        }
+        return makeField('pf_' + f.id, f.label, val, f.type);
+      }).join('');
+    }
+
+    // Equipo directivo
+    if(cfg.equipo){
+      const cards = doc.querySelectorAll('.equipo-card');
+      if(cards.length){
+        html += sectionLabel('Equipo directivo');
+        cards.forEach((card, i) => {
+          const role     = card.querySelector('.equipo-card__role');
+          const name     = card.querySelector('h3');
+          const initials = card.querySelector('.equipo-card__initials');
+          html += `<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px 18px;margin-bottom:12px">
+            <div style="display:grid;grid-template-columns:1fr 1fr 80px;gap:12px">
+              ${makeField('eq_'+i+'_role', 'Cargo', role ? role.textContent.trim() : '', 'text')}
+              ${makeField('eq_'+i+'_name', 'Nombre completo', name ? name.textContent.trim() : '', 'text')}
+              ${makeField('eq_'+i+'_ini', 'Iniciales', initials ? initials.textContent.trim() : '', 'text')}
+            </div></div>`;
+        });
+      }
+    }
+
+    // Jornada horarios
+    if(cfg.jornada){
+      const rows = doc.querySelectorAll('.jornada-row');
+      if(rows.length){
+        html += sectionLabel('Horarios y jornadas');
+        rows.forEach((row, i) => {
+          const nameEl = row.querySelector('.jornada-row__name');
+          const horaEl = row.querySelector('.jornada-row__hora');
+          html += `<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
+            ${makeField('jr_'+i+'_name', 'Nombre de la jornada', nameEl ? nameEl.textContent.trim() : '', 'text')}
+            ${makeField('jr_'+i+'_hora', 'Horario', horaEl ? horaEl.textContent.trim() : '', 'text')}
+          </div>`;
+        });
+      }
+    }
+
+    document.getElementById('pag-fields').innerHTML = html ||
       '<p style="color:#94a3b8;font-size:.85rem">No se encontraron campos editables en esta página.</p>';
 
   }catch(e){
@@ -843,6 +899,7 @@ async function savePage(){
 
   const doc = new DOMParser().parseFromString(currentPageRaw, 'text/html');
 
+  // Static fields
   cfg.fields.forEach(f => {
     const input = document.getElementById('pf_' + f.id);
     if(!input) return;
@@ -852,6 +909,30 @@ async function savePage(){
       if(el){ el.textContent = newVal; break; }
     }
   });
+
+  // Equipo directivo
+  if(cfg.equipo){
+    const cards = doc.querySelectorAll('.equipo-card');
+    cards.forEach((card, i) => {
+      const roleInput = document.getElementById('eq_'+i+'_role');
+      const nameInput = document.getElementById('eq_'+i+'_name');
+      const iniInput  = document.getElementById('eq_'+i+'_ini');
+      if(roleInput){ const el = card.querySelector('.equipo-card__role'); if(el) el.textContent = roleInput.value; }
+      if(nameInput){ const el = card.querySelector('h3');                if(el) el.textContent = nameInput.value; }
+      if(iniInput) { const el = card.querySelector('.equipo-card__initials'); if(el) el.textContent = iniInput.value; }
+    });
+  }
+
+  // Jornada horarios
+  if(cfg.jornada){
+    const rows = doc.querySelectorAll('.jornada-row');
+    rows.forEach((row, i) => {
+      const nameInput = document.getElementById('jr_'+i+'_name');
+      const horaInput = document.getElementById('jr_'+i+'_hora');
+      if(nameInput){ const el = row.querySelector('.jornada-row__name'); if(el) el.textContent = nameInput.value; }
+      if(horaInput){ const el = row.querySelector('.jornada-row__hora'); if(el) el.textContent = horaInput.value; }
+    });
+  }
 
   const updated = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
 
