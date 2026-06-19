@@ -444,12 +444,14 @@ async function ghGet(path){
 
 async function ghGetFile(filePath){
   const data = await ghGet(`repos/${REPO}/contents/${filePath}?ref=${BRANCH}`);
-  const content = atob(data.content.replace(/\n/g,''));
+  const bytes = Uint8Array.from(atob(data.content.replace(/\n/g,'')), c => c.charCodeAt(0));
+  const content = new TextDecoder('utf-8').decode(bytes);
   return { content, sha: data.sha };
 }
 
 async function ghPutFile(filePath, content, message, sha){
-  const encoded = btoa(unescape(encodeURIComponent(content)));
+  const bytes = new TextEncoder().encode(content);
+  const encoded = btoa(String.fromCharCode(...bytes));
   const body = { message, content: encoded, branch: BRANCH };
   if(sha) body.sha = sha;
   const r = await fetch(`${API}/repos/${REPO}/contents/${filePath}`,{
