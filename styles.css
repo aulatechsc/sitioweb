@@ -404,6 +404,8 @@ ul { list-style: none; }
 
 /* --- NOSOTROS --- */
 .nosotros__inner { max-width: 740px; margin: 0 auto; text-align: center; }
+.arbol-wrapper { margin-top: 40px; }
+.arbol-valores-img { width: 100%; max-width: 680px; height: auto; display: block; margin: 0 auto; }
 .nosotros__inner p { color: var(--text-lt); margin-bottom: 14px; line-height: 1.8; }
 .nosotros__inner .section__title { margin-bottom: 16px; }
 
@@ -1030,7 +1032,7 @@ ul { list-style: none; }
 @media (max-width: 768px) {
   :root { --header-h: 64px; }
   .arbol-wrapper { width:100vw; margin-left:calc(-50vw + 50%); overflow:hidden; }
-  .arbol-valores-img { width:160%; margin-left:-30%; }
+  .arbol-valores-img { width:160%; margin-left:-30%; margin-right:0; }
 
   .topbar__contact span { display: none; }
 
