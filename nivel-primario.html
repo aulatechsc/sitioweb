@@ -75,7 +75,8 @@
     .subnav__link:hover,.subnav__link.active{color:#fff;border-bottom-color:#ff4d5e}
 
     /* EQUIPO */
-    .equipo__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:28px}
+    .equipo__grid{display:flex;flex-wrap:wrap;justify-content:center;gap:28px}
+    .equipo__grid .equipo-card{width:200px;flex:0 0 200px}
     .equipo-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;text-align:center;transition:transform .3s ease,box-shadow .3s ease}
     .equipo-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
     .equipo-card__photo{width:100%;aspect-ratio:1/1;background:var(--light);display:flex;align-items:center;justify-content:center;overflow:hidden}
