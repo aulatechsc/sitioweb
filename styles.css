@@ -161,8 +161,8 @@ ul { list-style: none; }
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: var(--white);
-  box-shadow: 0 2px 16px rgba(0,0,0,.08);
+  background: #f4f6f8;
+  box-shadow: 0 2px 16px rgba(0,0,0,.06);
   height: var(--header-h);
   display: flex;
   align-items: center;
