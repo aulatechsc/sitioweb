@@ -649,6 +649,31 @@ ul { list-style: none; }
 }
 
 /* --- TALLERES CAROUSEL --- */
+.talleres-wrapper {
+  position: relative;
+}
+.talleres-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255,255,255,.92);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  color: var(--primary);
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s, box-shadow .2s, transform .2s;
+}
+.talleres-btn svg { width: 20px; height: 20px; }
+.talleres-btn:hover { background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,.2); transform: translateY(-50%) scale(1.08); }
+.talleres-btn--prev { left: 12px; }
+.talleres-btn--next { right: 12px; }
 .talleres-carousel {
   overflow: hidden;
   position: relative;

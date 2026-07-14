@@ -343,6 +343,13 @@
         <p class="section__desc">Arte, deporte y tecnología para el desarrollo integral. 12 propuestas para que cada alumno encuentre su espacio.</p>
       </div>
     </div>
+    <div class="talleres-wrapper">
+      <button class="talleres-btn talleres-btn--prev" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="talleres-btn talleres-btn--next" aria-label="Siguiente">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
     <div class="talleres-carousel">
       <div class="talleres-track">
         <!-- Set 1 -->
@@ -373,6 +380,7 @@
         <div class="taller-slide"><div class="taller-slide__img"><img src="img/talleres/tecnologia.jpg" alt="Tecnología" loading="lazy"/></div><div class="taller-slide__info"><h4>Tecnología</h4><span class="taller-slide__badge">Inicial · Primaria · Secundaria</span></div></div>
       </div>
     </div>
+    </div><!-- /.talleres-wrapper -->
     <div class="container" style="text-align:center;margin-top:44px">
       <a href="talleres.html" class="btn btn--primary">Ver todos los talleres</a>
     </div>
@@ -597,6 +605,55 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+  (function(){
+    var track = document.querySelector('.talleres-track');
+    var btnPrev = document.querySelector('.talleres-btn--prev');
+    var btnNext = document.querySelector('.talleres-btn--next');
+    if (!track || !btnPrev || !btnNext) return;
+    var SLIDE_W = 256 + 20;
+    var UNIQUE = 12;
+    var TOTAL_W = SLIDE_W * UNIQUE;
+    var DURATION = 40;
+    var offset = 0;
+    var paused = false;
+    var resumeTimer = null;
+
+    function getCurrentOffset() {
+      var matrix = new DOMMatrixReadOnly(window.getComputedStyle(track).transform);
+      return matrix.m41;
+    }
+    function pauseAt(x) {
+      track.style.animation = 'none';
+      track.style.transform = 'translateX(' + x + 'px)';
+      offset = x;
+      paused = true;
+    }
+    function resumeFrom(x) {
+      var norm = ((x % TOTAL_W) + TOTAL_W) % TOTAL_W;
+      if (norm > 0) norm -= TOTAL_W;
+      var progress = norm / -TOTAL_W;
+      track.style.transition = '';
+      track.style.transform = '';
+      track.style.animation = 'talleresScroll ' + DURATION + 's linear infinite';
+      track.style.animationDelay = (-progress * DURATION) + 's';
+      paused = false;
+    }
+    function move(dir) {
+      if (!paused) pauseAt(getCurrentOffset());
+      clearTimeout(resumeTimer);
+      var next = offset - dir * SLIDE_W;
+      if (next < -TOTAL_W) next += TOTAL_W;
+      if (next > 0) next -= TOTAL_W;
+      track.style.transition = 'transform 0.35s ease';
+      track.style.transform = 'translateX(' + next + 'px)';
+      offset = next;
+      resumeTimer = setTimeout(function(){ resumeFrom(offset); }, 3000);
+    }
+    btnPrev.addEventListener('click', function(){ move(-1); });
+    btnNext.addEventListener('click', function(){ move(1); });
+  })();
+  </script>
   <script>
     (function(){
       var splash = document.getElementById('splash');
