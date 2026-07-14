@@ -74,6 +74,10 @@ document.querySelectorAll(
   observer.observe(el);
 });
 
+document.querySelectorAll('.equipo-card, .nivel-contacto-card').forEach(el => {
+  observer.observe(el);
+});
+
 document.querySelectorAll('.slide-left, .slide-right, .slide-up').forEach(el => {
   observer.observe(el);
 });
