@@ -74,7 +74,7 @@ document.querySelectorAll(
   observer.observe(el);
 });
 
-document.querySelectorAll('.equipo-card, .nivel-contacto-card').forEach(el => {
+document.querySelectorAll('.equipo-card, .nivel-contacto-card, .paso, .arancel-card, .form-inscripcion').forEach(el => {
   observer.observe(el);
 });
 
