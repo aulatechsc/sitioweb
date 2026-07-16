@@ -324,60 +324,15 @@
           <p class="section__eyebrow">Primer paso</p>
           <h2 class="section__title" style="text-align:left">Solicitar una entrevista</h2>
           <p>El mejor modo de conocer el San Carlos es vivirlo. Te invitamos a agendar una visita al colegio para recorrer los espacios, conocer al equipo directivo y hacer todas las preguntas que tengas.</p>
-          <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px">
-            <a href="#formulario" class="btn btn--primary">Entrevista Nivel Inicial</a>
-            <a href="#formulario" class="btn btn--primary">Entrevista Nivel Primario</a>
-            <a href="#formulario" class="btn btn--primary">Entrevista Nivel Secundario</a>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:8px;max-width:300px">
+            <a href="#contacto" class="btn btn--primary">Entrevista Nivel Inicial</a>
+            <a href="#contacto" class="btn btn--primary">Entrevista Nivel Primario</a>
+            <a href="#contacto" class="btn btn--primary">Entrevista Nivel Secundario</a>
           </div>
         </div>
         <div class="entrevista__img slide-right">
           <img src="img/fachada.png" alt="Colegio San Carlos Diálogos" loading="lazy" />
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── FORMULARIO ─── -->
-  <section class="section bg-light" id="formulario">
-    <div class="container">
-      <div class="section__header slide-up">
-        <p class="section__eyebrow">Contacto inicial</p>
-        <h2 class="section__title">Formulario de inscripción</h2>
-        <p class="section__desc">Completá tus datos y nos ponemos en contacto a la brevedad.</p>
-      </div>
-      <div class="form-inscripcion fade-in">
-        <form action="mailto:administracion@sancarlos.edu.ar" method="post" enctype="text/plain">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="nombre">Nombre y apellido *</label>
-              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required />
-            </div>
-            <div class="form-group">
-              <label for="email">Email *</label>
-              <input type="email" id="email" name="email" placeholder="tu@email.com" required />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="telefono">Teléfono</label>
-              <input type="tel" id="telefono" name="telefono" placeholder="+54 11 ..." />
-            </div>
-            <div class="form-group">
-              <label for="nivel">Nivel de interés *</label>
-              <select id="nivel" name="nivel" required>
-                <option value="" disabled selected>Seleccioná un nivel</option>
-                <option value="inicial">Nivel Inicial (3 a 5 años)</option>
-                <option value="primario">Nivel Primario (1° a 6° grado)</option>
-                <option value="secundario">Nivel Secundario (1° a 6° año)</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="mensaje">Mensaje o consulta</label>
-            <textarea id="mensaje" name="mensaje" placeholder="Contanos sobre tu hijo/a o cualquier consulta que tengas..."></textarea>
-          </div>
-          <button type="submit" class="form-submit">Enviar consulta</button>
-        </form>
       </div>
     </div>
   </section>
