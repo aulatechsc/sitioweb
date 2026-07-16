@@ -291,14 +291,47 @@
         <h2 class="section__title">Aranceles</h2>
         <p class="section__desc">Para obtener información actualizada sobre los aranceles de cada nivel, te invitamos a comunicarte directamente con la administración.</p>
       </div>
-      <div style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--gray-border)">
-        <iframe
-          src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRNcwCmtixV5gX6wlsQDf65mEeBqzfSNmY5JLIUOUepGMKDWyhnLGK2lpFWhdwjMzlPOim2J46bEdUL/pubhtml"
-          style="width:100%;height:480px;border:none;display:block"
-          title="Cuadro de aranceles"
-          loading="lazy">
-        </iframe>
+      <div id="aranceles-wrap" style="overflow-x:auto;border-radius:var(--radius);box-shadow:var(--shadow-lg);border:1px solid var(--gray-border)">
+        <div id="aranceles-loading" style="padding:40px;text-align:center;color:var(--text-lt);font-family:'Ubuntu',sans-serif;font-size:14px">Cargando información...</div>
       </div>
+      <style>
+        #aranceles-tabla{width:100%;border-collapse:collapse;font-family:'Ubuntu',sans-serif;font-size:14px;background:var(--white)}
+        #aranceles-tabla thead tr{background:var(--primary)}
+        #aranceles-tabla thead th{padding:14px 18px;text-align:left;color:#fff;font-family:'Raleway',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;white-space:nowrap}
+        #aranceles-tabla tbody tr:nth-child(even){background:var(--light)}
+        #aranceles-tabla tbody tr:hover{background:#e8f0f8}
+        #aranceles-tabla tbody td{padding:12px 18px;color:var(--text);border-bottom:1px solid var(--gray-border);line-height:1.5}
+        #aranceles-tabla tbody td:first-child{font-weight:600;color:var(--primary)}
+        @media(max-width:600px){#aranceles-tabla thead th,#aranceles-tabla tbody td{padding:10px 12px;font-size:13px}}
+      </style>
+      <script>
+      (function(){
+        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRNcwCmtixV5gX6wlsQDf65mEeBqzfSNmY5JLIUOUepGMKDWyhnLGK2lpFWhdwjMzlPOim2J46bEdUL/pub?output=csv';
+        function parseCSV(text){
+          return text.trim().split('\n').map(row => {
+            const cells = []; let cur = '', inQ = false;
+            for(let i=0;i<row.length;i++){
+              const c = row[i];
+              if(c==='"'){inQ=!inQ;}
+              else if(c===','&&!inQ){cells.push(cur.trim());cur='';}
+              else{cur+=c;}
+            }
+            cells.push(cur.trim());
+            return cells;
+          });
+        }
+        fetch(CSV_URL).then(r=>r.text()).then(text=>{
+          const rows = parseCSV(text).filter(r=>r.some(c=>c!==''));
+          if(!rows.length) return;
+          const thead = '<thead><tr>'+rows[0].map(h=>`<th>${h}</th>`).join('')+'</tr></thead>';
+          const tbody = '<tbody>'+rows.slice(1).map(r=>'<tr>'+r.map(c=>`<td>${c}</td>`).join('')+'</tr>').join('')+'</tbody>';
+          const wrap = document.getElementById('aranceles-wrap');
+          wrap.innerHTML = `<table id="aranceles-tabla">${thead}${tbody}</table>`;
+        }).catch(()=>{
+          document.getElementById('aranceles-loading').textContent='No se pudo cargar la tabla. Por favor, contactanos directamente.';
+        });
+      })();
+      </script>
     </div>
   </section>
 
