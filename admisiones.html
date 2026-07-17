@@ -291,42 +291,114 @@
         <h2 class="section__title">Aranceles</h2>
         <p class="section__desc">Para obtener información actualizada sobre los aranceles de cada nivel, te invitamos a comunicarte directamente con la administración.</p>
       </div>
-      <div id="aranceles-wrap" style="overflow-x:auto;border-radius:var(--radius);box-shadow:var(--shadow-lg);border:1px solid var(--gray-border)">
+      <div id="aranceles-wrap">
         <div id="aranceles-loading" style="padding:40px;text-align:center;color:var(--text-lt);font-family:'Ubuntu',sans-serif;font-size:14px">Cargando información...</div>
       </div>
       <style>
-        #aranceles-tabla{width:100%;border-collapse:collapse;font-family:'Ubuntu',sans-serif;font-size:14px;background:var(--white)}
-        #aranceles-tabla thead tr{background:var(--primary)}
-        #aranceles-tabla thead th{padding:14px 18px;text-align:left;color:#fff;font-family:'Raleway',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;white-space:nowrap}
-        #aranceles-tabla tbody tr:nth-child(even){background:var(--light)}
-        #aranceles-tabla tbody tr:hover{background:#e8f0f8}
-        #aranceles-tabla tbody td{padding:12px 18px;color:var(--text);border-bottom:1px solid var(--gray-border);line-height:1.5}
-        #aranceles-tabla tbody td:first-child{font-weight:600;color:var(--primary)}
-        @media(max-width:600px){#aranceles-tabla thead th,#aranceles-tabla tbody td{padding:10px 12px;font-size:13px}}
+        .ar-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+        @media(max-width:700px){.ar-grid{grid-template-columns:1fr}}
+        .ar-col{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-lg);border:1px solid var(--gray-border);overflow:hidden}
+        .ar-head{background:var(--primary);color:#fff;font-family:'Raleway',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:14px 20px}
+        .ar-tbl{width:100%;border-collapse:collapse;font-family:'Ubuntu',sans-serif;font-size:14px}
+        .ar-tbl tr:nth-child(even){background:var(--light)}
+        .ar-tbl tr:hover{background:#e8f0f8}
+        .ar-tbl td{padding:11px 18px;border-bottom:1px solid var(--gray-border);vertical-align:top;line-height:1.6;color:var(--text)}
+        .ar-tbl td:first-child{color:var(--primary);font-weight:600;white-space:nowrap}
+        .ar-section{background:var(--primary-dk)!important}
+        .ar-section td{color:#fff!important;font-family:'Raleway',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:9px 18px}
+        .ar-price{color:var(--primary);font-weight:700}
+        .ar-opt{display:block;font-size:13px;color:var(--text-lt)}
+        .ar-opt strong{color:var(--primary)}
+        .ar-sub{color:var(--text-lt);font-weight:400;font-size:12px;display:block}
       </style>
       <script>
       (function(){
-        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRNcwCmtixV5gX6wlsQDf65mEeBqzfSNmY5JLIUOUepGMKDWyhnLGK2lpFWhdwjMzlPOim2J46bEdUL/pub?output=csv';
-        function parseCSV(text){
-          return text.trim().split('\n').map(row => {
-            const cells = []; let cur = '', inQ = false;
-            for(let i=0;i<row.length;i++){
-              const c = row[i];
-              if(c==='"'){inQ=!inQ;}
-              else if(c===','&&!inQ){cells.push(cur.trim());cur='';}
-              else{cur+=c;}
+        const URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vRNcwCmtixV5gX6wlsQDf65mEeBqzfSNmY5JLIUOUepGMKDWyhnLGK2lpFWhdwjMzlPOim2J46bEdUL/pub?output=csv';
+        function csv(t){return t.trim().split('\n').map(l=>{const o=[];let s='',q=false;for(const c of l){if(c==='"')q=!q;else if(c===','&&!q){o.push(s.trim());s='';}else s+=c;}o.push(s.trim());return o;});}
+        const isBool=v=>v==='TRUE'||v==='FALSE';
+        const isVal=v=>v&&!isBool(v)&&v!=='---'&&v!=='-----';
+        const LEVELS=['Primaria','Secundaria','Inicial'];
+
+        fetch(URL).then(r=>r.text()).then(t=>{
+          const rows=csv(t);
+          const fi=rows.findIndex(r=>LEVELS.includes(r[0]));
+          const extRaw=rows.slice(0,fi);
+          const nvRaw=rows.slice(fi);
+
+          // — EXTRAS —
+          let exHtml='';
+          for(let i=0;i<extRaw.length;i++){
+            const r=extRaw[i];
+            if(!r.some(isVal))continue;
+            if(isVal(r[0])&&i+1<extRaw.length&&!extRaw[i+1][0]){
+              const name=r[0];
+              const mods=r.slice(1).filter(isVal);
+              const prices=extRaw[i+1].slice(1).filter(isVal);
+              let det='';
+              if(mods.length&&prices.length){
+                det=mods.map((m,j)=>prices[j]?`<span class="ar-opt">${m}: <strong>${prices[j]}</strong></span>`:'').filter(Boolean).join('');
+              }else if(prices.length){
+                det=`<span class="ar-price">${prices[0]}</span>`;
+              }
+              exHtml+=`<tr><td>${name}</td><td>${det}</td></tr>`;
+              i++;
             }
-            cells.push(cur.trim());
-            return cells;
-          });
-        }
-        fetch(CSV_URL).then(r=>r.text()).then(text=>{
-          const rows = parseCSV(text).filter(r=>r.some(c=>c!==''));
-          if(!rows.length) return;
-          const thead = '<thead><tr>'+rows[0].map(h=>`<th>${h}</th>`).join('')+'</tr></thead>';
-          const tbody = '<tbody>'+rows.slice(1).map(r=>'<tr>'+r.map(c=>`<td>${c}</td>`).join('')+'</tr>').join('')+'</tbody>';
-          const wrap = document.getElementById('aranceles-wrap');
-          wrap.innerHTML = `<table id="aranceles-tabla">${thead}${tbody}</table>`;
+          }
+
+          // — NIVEL —
+          let nvHtml='';
+          let sec='';
+          let inicialH=null,inicialD=[];
+
+          function flushInicial(){
+            if(!inicialH||!inicialD.length)return;
+            // sub-headers at cols 0,2,4
+            const sh=[inicialH[0],inicialH[2],inicialH[4]].map(v=>v&&!isBool(v)?v:'');
+            inicialD.forEach(r=>{
+              if(r.every(c=>!isVal(c)))return;
+              [[sh[0],r[0],r[1]],[sh[1],r[2],r[3]]].forEach(([sub,lbl,prc])=>{
+                if(isVal(lbl)&&isVal(prc))
+                  nvHtml+=`<tr><td><span class="ar-sub">${sub}</span>${lbl}</td><td><span class="ar-price">${prc}</span></td></tr>`;
+              });
+            });
+          }
+
+          for(let i=0;i<nvRaw.length;i++){
+            const r=nvRaw[i];
+            if(!r.some(isVal))continue;
+            if(r.every(c=>!isVal(c)))continue;
+
+            if(LEVELS.includes(r[0])){
+              if(sec==='Inicial')flushInicial();
+              sec=r[0];inicialH=null;inicialD=[];
+              nvHtml+=`<tr class="ar-section"><td colspan="2">${sec}</td></tr>`;
+              continue;
+            }
+
+            if(sec==='Inicial'){
+              const clean=r.filter(isVal);
+              if(!inicialH&&(r[0]&&r[0].includes('Sala')||r[2]&&r[2].includes('Sala'))){
+                inicialH=r;
+              }else if(inicialH){
+                inicialD.push(r);
+              }
+              continue;
+            }
+
+            // Primaria / Secundaria
+            const vals=r.filter(isVal);
+            if(vals.length>=2){
+              const price=vals.find(v=>/\$|\d{5,}/.test(v));
+              if(price) nvHtml+=`<tr><td>${vals[0]}</td><td><span class="ar-price">${price}</span></td></tr>`;
+            }
+          }
+          if(sec==='Inicial')flushInicial();
+
+          document.getElementById('aranceles-wrap').innerHTML=
+            `<div class="ar-grid">
+              <div class="ar-col"><div class="ar-head">Nivel</div><table class="ar-tbl"><tbody>${nvHtml}</tbody></table></div>
+              <div class="ar-col"><div class="ar-head">Extras</div><table class="ar-tbl"><tbody>${exHtml}</tbody></table></div>
+            </div>`;
         }).catch(()=>{
           document.getElementById('aranceles-loading').textContent='No se pudo cargar la tabla. Por favor, contactanos directamente.';
         });
