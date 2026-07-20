@@ -330,8 +330,10 @@
           for(let i=0;i<extRaw.length;i++){
             const r=extRaw[i];
             if(!r.some(isVal))continue;
-            if(isVal(r[0])&&i+1<extRaw.length&&!extRaw[i+1][0]){
-              const name=r[0];
+            if(!isVal(r[0]))continue;
+            const name=r[0];
+            const hasPriceRow=i+1<extRaw.length&&extRaw[i+1][0]===''&&extRaw[i+1].slice(1).some(isVal);
+            if(hasPriceRow){
               const mods=r.slice(1).filter(isVal);
               const prices=extRaw[i+1].slice(1).filter(isVal);
               let det='';
@@ -342,6 +344,16 @@
               }
               exHtml+=`<tr><td>${name}</td><td>${det}</td></tr>`;
               i++;
+            } else {
+              // single-row item: name + price(s) in same row
+              const rest=r.slice(1).filter(isVal);
+              let det='';
+              if(rest.length===1){
+                det=`<span class="ar-price">${rest[0]}</span>`;
+              }else if(rest.length>1){
+                det=rest.map(v=>`<span class="ar-opt"><strong>${v}</strong></span>`).join('');
+              }
+              exHtml+=`<tr><td>${name}</td><td>${det}</td></tr>`;
             }
           }
 
