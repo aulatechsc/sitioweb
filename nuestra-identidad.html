@@ -62,10 +62,12 @@
     .pilar-card {
       background:var(--white); border-radius:var(--radius);
       box-shadow:var(--shadow); border:1px solid var(--gray-border);
-      padding:36px 32px; display:flex; gap:24px; align-items:flex-start;
+      overflow:hidden; display:flex; flex-direction:column;
       transition:transform .3s ease, box-shadow .3s ease;
     }
     .pilar-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-lg); }
+    .pilar-card__photo { width:100%; height:220px; object-fit:cover; display:block; }
+    .pilar-card__inner { display:flex; gap:24px; align-items:flex-start; padding:28px 32px 32px; }
 
     .pilar-card__icon {
       width:60px; height:60px; min-width:60px;
@@ -195,112 +197,142 @@
       <div class="pilares-grid">
 
         <div class="pilar-card fade-in">
-          <div class="pilar-card__icon">
-            <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-          </div>
-          <div class="pilar-card__body">
-            <h3>Educación bilingüe</h3>
-            <p>Creemos que aprender un idioma es también abrirse a nuevas culturas y formas de comprender el mundo. Nuestro proyecto bilingüe acompaña a los alumnos desde los primeros años, favoreciendo el desarrollo de competencias lingüísticas y una mirada global que los prepare para los desafíos del futuro.</p>
-            <p>A lo largo de su trayectoria, los estudiantes rinden exámenes internacionales de Cambridge que certifican los niveles alcanzados y evidencian su progreso en el dominio del idioma.</p>
-          </div>
-        </div>
-
-        <div class="pilar-card fade-in">
-          <div class="pilar-card__icon">
-            <svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          </div>
-          <div class="pilar-card__body">
-            <h3>Tecnología con propósito</h3>
-            <p>Incorporamos la tecnología como herramienta para crear, investigar, resolver problemas y desarrollar nuevas formas de aprender. Buscamos que nuestros alumnos no solo sean usuarios, sino creadores y productores de soluciones, contenidos y proyectos innovadores.</p>
-            <p>De este modo los preparamos para desempeñarse en un mundo en constante transformación, promoviendo competencias que les permitan adaptarse a escenarios y profesiones emergentes.</p>
+          <img class="pilar-card__photo" src="img/fotos%20cards%20-%20nos%20distingue/Educaci%C3%B3n%20bilingue.png" alt="Educación bilingüe">
+          <div class="pilar-card__inner">
+            <div class="pilar-card__icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            </div>
+            <div class="pilar-card__body">
+              <h3>Educación bilingüe</h3>
+              <p>Creemos que aprender un idioma es también abrirse a nuevas culturas y formas de comprender el mundo. Nuestro proyecto bilingüe acompaña a los alumnos desde los primeros años, favoreciendo el desarrollo de competencias lingüísticas y una mirada global que los prepare para los desafíos del futuro.</p>
+              <p>A lo largo de su trayectoria, los estudiantes rinden exámenes internacionales de Cambridge que certifican los niveles alcanzados y evidencian su progreso en el dominio del idioma.</p>
+            </div>
           </div>
         </div>
 
         <div class="pilar-card fade-in">
-          <div class="pilar-card__icon">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          </div>
-          <div class="pilar-card__body">
-            <h3>Desarrollo socioemocional</h3>
-            <p>Entendemos que la convivencia se aprende. Por eso promovemos el desarrollo de habilidades sociales que permitan a los alumnos construir vínculos saludables, gestionar emociones, resolver conflictos y desenvolverse de manera respetuosa y empática en distintos contextos.</p>
-            <p>Contamos con equipos de profesionales que acompañan, asesoran y orientan a los estudiantes, a los educadores y a las familias, fortaleciendo el bienestar integral de toda la comunidad educativa.</p>
-          </div>
-        </div>
-
-        <div class="pilar-card fade-in">
-          <div class="pilar-card__icon">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-          </div>
-          <div class="pilar-card__body">
-            <h3>Inclusión</h3>
-            <p>Creemos en una educación que valore la diversidad y brinde oportunidades de aprendizaje para todos. Nuestro proyecto de inclusión promueve el acompañamiento de los alumnos de acuerdo con sus necesidades y potencialidades, favoreciendo su participación plena en la vida escolar.</p>
-            <p>Trabajamos para que cada estudiante encuentre las condiciones necesarias para desarrollar al máximo sus capacidades, dentro de una comunidad que respeta y celebra las diferencias.</p>
+          <img class="pilar-card__photo" src="img/fotos%20cards%20-%20nos%20distingue/Tecnolog%C3%ADa%20con%20prop%C3%B3sito.jpeg" alt="Tecnología con propósito">
+          <div class="pilar-card__inner">
+            <div class="pilar-card__icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div class="pilar-card__body">
+              <h3>Tecnología con propósito</h3>
+              <p>Incorporamos la tecnología como herramienta para crear, investigar, resolver problemas y desarrollar nuevas formas de aprender. Buscamos que nuestros alumnos no solo sean usuarios, sino creadores y productores de soluciones, contenidos y proyectos innovadores.</p>
+              <p>De este modo los preparamos para desempeñarse en un mundo en constante transformación, promoviendo competencias que les permitan adaptarse a escenarios y profesiones emergentes.</p>
+            </div>
           </div>
         </div>
 
         <div class="pilar-card fade-in">
-          <div class="pilar-card__icon">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-          </div>
-          <div class="pilar-card__body">
-            <h3>Plan de lectura</h3>
-            <p>Fomentamos el encuentro con la literatura como una experiencia de disfrute, imaginación y crecimiento personal. A través de nuestro Plan Institucional de Lectura, acercamos a los alumnos a diversos textos y autores, fortaleciendo el hábito lector a lo largo de toda la trayectoria escolar.</p>
-            <p>Creemos que la lectura amplía horizontes, estimula la creatividad y contribuye a la formación de ciudadanos críticos y comprometidos con la cultura.</p>
-          </div>
-        </div>
-
-        <div class="pilar-card fade-in">
-          <div class="pilar-card__icon">
-            <svg class="icon-svg" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
-          </div>
-          <div class="pilar-card__body">
-            <h3>Ambiente y sostenibilidad</h3>
-            <p>Promovemos el compromiso con el cuidado del ambiente a través de experiencias que ayudan a comprender la importancia de nuestras acciones y su impacto en el planeta.</p>
-            <p>Trabajamos junto a alumnos, docentes y familias para construir hábitos responsables y una conciencia ambiental que contribuya al desarrollo de un futuro más sostenible.</p>
+          <img class="pilar-card__photo" src="img/fotos%20cards%20-%20nos%20distingue/Desarrollo%20socioemocional.jpg" alt="Desarrollo socioemocional">
+          <div class="pilar-card__inner">
+            <div class="pilar-card__icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </div>
+            <div class="pilar-card__body">
+              <h3>Desarrollo socioemocional</h3>
+              <p>Entendemos que la convivencia se aprende. Por eso promovemos el desarrollo de habilidades sociales que permitan a los alumnos construir vínculos saludables, gestionar emociones, resolver conflictos y desenvolverse de manera respetuosa y empática en distintos contextos.</p>
+              <p>Contamos con equipos de profesionales que acompañan, asesoran y orientan a los estudiantes, a los educadores y a las familias, fortaleciendo el bienestar integral de toda la comunidad educativa.</p>
+            </div>
           </div>
         </div>
 
         <div class="pilar-card fade-in">
-          <div class="pilar-card__icon">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 18l9-14 9 14H3z"/><path d="M9 18v-5l3-2 3 2v5"/></svg>
-          </div>
-          <div class="pilar-card__body">
-            <h3>Naturaleza y aventura</h3>
-            <p>Desde Sala de 5 hasta la finalización del secundario, los estudiantes participan de experiencias al aire libre que fortalecen la autonomía, la convivencia, el trabajo en equipo y el aprendizaje experiencial.</p>
-            <p>Campamentos, viajes educativos y propuestas de aventura permiten aprender en contacto con la naturaleza, asumir nuevos desafíos y construir recuerdos compartidos que acompañan a los alumnos a lo largo de toda su trayectoria.</p>
-          </div>
-        </div>
-
-        <div class="pilar-card fade-in">
-          <div class="pilar-card__icon">
-            <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <div class="pilar-card__body">
-            <h3>Escuela de líderes</h3>
-            <p>Buscamos formar jóvenes comprometidos, responsables y participativos, capaces de asumir desafíos y convertirse en referentes positivos dentro de la comunidad educativa.</p>
-            <p>A través de nuestro Programa de Líderes, los estudiantes desarrollan habilidades de liderazgo, comunicación, organización y trabajo en equipo, participando en proyectos recreativos, solidarios, campamentos y diversas experiencias de servicio.</p>
+          <img class="pilar-card__photo" src="img/fotos%20cards%20-%20nos%20distingue/Inclusi%C3%B3n.jpg" alt="Inclusión">
+          <div class="pilar-card__inner">
+            <div class="pilar-card__icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div class="pilar-card__body">
+              <h3>Inclusión</h3>
+              <p>Creemos en una educación que valore la diversidad y brinde oportunidades de aprendizaje para todos. Nuestro proyecto de inclusión promueve el acompañamiento de los alumnos de acuerdo con sus necesidades y potencialidades, favoreciendo su participación plena en la vida escolar.</p>
+              <p>Trabajamos para que cada estudiante encuentre las condiciones necesarias para desarrollar al máximo sus capacidades, dentro de una comunidad que respeta y celebra las diferencias.</p>
+            </div>
           </div>
         </div>
 
         <div class="pilar-card fade-in">
-          <div class="pilar-card__icon">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
-          </div>
-          <div class="pilar-card__body">
-            <h3>Compromiso social</h3>
-            <p>Creemos en una educación comprometida con la realidad y orientada al servicio de los demás. Por eso impulsamos proyectos solidarios que permiten a nuestros estudiantes involucrarse activamente con su comunidad y desarrollar una mirada empática sobre las necesidades de los otros.</p>
-            <p>A través de campañas solidarias, acciones comunitarias, intercambios socioculturales y actividades de servicio, promovemos valores como la solidaridad, la responsabilidad y el compromiso ciudadano.</p>
+          <img class="pilar-card__photo" src="img/fotos%20cards%20-%20nos%20distingue/Plan%20de%20lectura.jpg" alt="Plan de lectura">
+          <div class="pilar-card__inner">
+            <div class="pilar-card__icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+            </div>
+            <div class="pilar-card__body">
+              <h3>Plan de lectura</h3>
+              <p>Fomentamos el encuentro con la literatura como una experiencia de disfrute, imaginación y crecimiento personal. A través de nuestro Plan Institucional de Lectura, acercamos a los alumnos a diversos textos y autores, fortaleciendo el hábito lector a lo largo de toda la trayectoria escolar.</p>
+              <p>Creemos que la lectura amplía horizontes, estimula la creatividad y contribuye a la formación de ciudadanos críticos y comprometidos con la cultura.</p>
+            </div>
           </div>
         </div>
 
         <div class="pilar-card fade-in">
-          <div class="pilar-card__icon">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <img class="pilar-card__photo" src="img/fotos%20cards%20-%20nos%20distingue/Ambiente%20y%20sostenibilidad.jpg" alt="Ambiente y sostenibilidad">
+          <div class="pilar-card__inner">
+            <div class="pilar-card__icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+            </div>
+            <div class="pilar-card__body">
+              <h3>Ambiente y sostenibilidad</h3>
+              <p>Promovemos el compromiso con el cuidado del ambiente a través de experiencias que ayudan a comprender la importancia de nuestras acciones y su impacto en el planeta.</p>
+              <p>Trabajamos junto a alumnos, docentes y familias para construir hábitos responsables y una conciencia ambiental que contribuya al desarrollo de un futuro más sostenible.</p>
+            </div>
           </div>
-          <div class="pilar-card__body">
-            <h3>Comunidad y participación</h3>
-            <p>Entendemos la educación como una construcción compartida entre escuela y familia. Generamos espacios de encuentro, participación y experiencias que fortalecen el sentido de pertenencia y consolidan una comunidad educativa cercana y comprometida.</p>
-            <p>A lo largo de la trayectoria escolar, promovemos propuestas que favorecen el encuentro y la construcción de vínculos significativos entre alumnos, familias y educadores. Celebraciones, jornadas recreativas, pernoctadas y actividades comunitarias forman parte de una vida escolar que busca que cada alumno se sienta parte de algo que lo acompaña en su crecimiento.</p>
+        </div>
+
+        <div class="pilar-card fade-in">
+          <img class="pilar-card__photo" src="img/fotos%20cards%20-%20nos%20distingue/Naturaleza%20y%20aventura.jpg" alt="Naturaleza y aventura">
+          <div class="pilar-card__inner">
+            <div class="pilar-card__icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 18l9-14 9 14H3z"/><path d="M9 18v-5l3-2 3 2v5"/></svg>
+            </div>
+            <div class="pilar-card__body">
+              <h3>Naturaleza y aventura</h3>
+              <p>Desde Sala de 5 hasta la finalización del secundario, los estudiantes participan de experiencias al aire libre que fortalecen la autonomía, la convivencia, el trabajo en equipo y el aprendizaje experiencial.</p>
+              <p>Campamentos, viajes educativos y propuestas de aventura permiten aprender en contacto con la naturaleza, asumir nuevos desafíos y construir recuerdos compartidos que acompañan a los alumnos a lo largo de toda su trayectoria.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pilar-card fade-in">
+          <img class="pilar-card__photo" src="img/fotos%20cards%20-%20nos%20distingue/Escuela%20de%20lideres.png" alt="Escuela de líderes">
+          <div class="pilar-card__inner">
+            <div class="pilar-card__icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="pilar-card__body">
+              <h3>Escuela de líderes</h3>
+              <p>Buscamos formar jóvenes comprometidos, responsables y participativos, capaces de asumir desafíos y convertirse en referentes positivos dentro de la comunidad educativa.</p>
+              <p>A través de nuestro Programa de Líderes, los estudiantes desarrollan habilidades de liderazgo, comunicación, organización y trabajo en equipo, participando en proyectos recreativos, solidarios, campamentos y diversas experiencias de servicio.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pilar-card fade-in">
+          <img class="pilar-card__photo" src="img/fotos%20cards%20-%20nos%20distingue/Compromiso%20social.jpg" alt="Compromiso social">
+          <div class="pilar-card__inner">
+            <div class="pilar-card__icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+            </div>
+            <div class="pilar-card__body">
+              <h3>Compromiso social</h3>
+              <p>Creemos en una educación comprometida con la realidad y orientada al servicio de los demás. Por eso impulsamos proyectos solidarios que permiten a nuestros estudiantes involucrarse activamente con su comunidad y desarrollar una mirada empática sobre las necesidades de los otros.</p>
+              <p>A través de campañas solidarias, acciones comunitarias, intercambios socioculturales y actividades de servicio, promovemos valores como la solidaridad, la responsabilidad y el compromiso ciudadano.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pilar-card fade-in">
+          <img class="pilar-card__photo" src="img/fotos%20cards%20-%20nos%20distingue/Comunidad%20y%20participaci%C3%B3n.jpg" alt="Comunidad y participación">
+          <div class="pilar-card__inner">
+            <div class="pilar-card__icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div class="pilar-card__body">
+              <h3>Comunidad y participación</h3>
+              <p>Entendemos la educación como una construcción compartida entre escuela y familia. Generamos espacios de encuentro, participación y experiencias que fortalecen el sentido de pertenencia y consolidan una comunidad educativa cercana y comprometida.</p>
+              <p>A lo largo de la trayectoria escolar, promovemos propuestas que favorecen el encuentro y la construcción de vínculos significativos entre alumnos, familias y educadores. Celebraciones, jornadas recreativas, pernoctadas y actividades comunitarias forman parte de una vida escolar que busca que cada alumno se sienta parte de algo que lo acompaña en su crecimiento.</p>
+            </div>
           </div>
         </div>
 
