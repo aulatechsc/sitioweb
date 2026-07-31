@@ -118,8 +118,10 @@
 
     /* FORMACIÓN INTEGRAL */
     .formacion__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
-    .formacion-card{background:var(--white);border-radius:var(--radius);padding:36px 28px 32px;border:1px solid var(--gray-border);box-shadow:var(--shadow);display:flex;gap:20px;align-items:flex-start;transition:transform .3s ease,box-shadow .3s ease}
+    .formacion-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--gray-border);box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease}
     .formacion-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+    .formacion-card__photo{width:100%;height:240px;object-fit:cover;display:block}
+    .formacion-card__inner{display:flex;gap:20px;align-items:flex-start;padding:28px}
     .formacion-card__icon{width:54px;height:54px;min-width:54px;background:var(--light);border-radius:12px;display:flex;align-items:center;justify-content:center}
     .formacion-card__body h3{font-size:1.05rem;color:var(--primary);margin-bottom:10px}
     .formacion-card__body p{color:var(--text-lt);font-size:14px;line-height:1.7}
@@ -443,46 +445,58 @@
       <div class="formacion__grid">
 
         <div class="formacion-card fade-in slide-up">
-          <div class="formacion-card__icon">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-          </div>
-          <div class="formacion-card__body">
-            <h3>Rincón Literario</h3>
-            <p>Un espacio semanal de lectura placentera con acceso a una biblioteca diversa. Fomentamos el amor por los libros, la lectura en el hogar y el cuidado responsable de los materiales compartidos.</p>
-            <button class="btn-info" data-modal="p-fi-rincon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
-          </div>
-        </div>
-
-        <div class="formacion-card fade-in slide-up">
-          <div class="formacion-card__icon">
-            <svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          </div>
-          <div class="formacion-card__body">
-            <h3>Tecnología con propósito</h3>
-            <p>Concebimos la tecnología no como un fin en sí mismo, sino como una herramienta pedagógica para potenciar la creatividad y el pensamiento crítico. Contamos con un ecosistema de recursos de vanguardia: proyectores y notebooks en todas las aulas, Aula Digital Móvil, Aula Tech, impresora 3D, robots educativos y Realidad Virtual.</p>
-            <button class="btn-info" data-modal="p-fi-tec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+          <img class="formacion-card__photo" src="img/Propuestas%20que%20enriquecen%20en%20nivel%20primario/Rinc%C3%B3n%20literario.png" alt="Rincón Literario">
+          <div class="formacion-card__inner">
+            <div class="formacion-card__icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+            </div>
+            <div class="formacion-card__body">
+              <h3>Rincón Literario</h3>
+              <p>Un espacio semanal de lectura placentera con acceso a una biblioteca diversa. Fomentamos el amor por los libros, la lectura en el hogar y el cuidado responsable de los materiales compartidos.</p>
+              <button class="btn-info" data-modal="p-fi-rincon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+            </div>
           </div>
         </div>
 
         <div class="formacion-card fade-in slide-up">
-          <div class="formacion-card__icon">
-            <svg class="icon-svg" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
-          </div>
-          <div class="formacion-card__body">
-            <h3>Conciencia Ambiental</h3>
-            <p>Propuestas que promueven la reflexión sobre el impacto de nuestras acciones, el cuidado de los recursos naturales, la reducción de residuos y el consumo responsable desde edades tempranas.</p>
-            <button class="btn-info" data-modal="p-fi-ambiental"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+          <img class="formacion-card__photo" src="img/Propuestas%20que%20enriquecen%20en%20nivel%20primario/Tecnolog%C3%ADa%20con%20prop%C3%B3sito.JPG" alt="Tecnología con propósito">
+          <div class="formacion-card__inner">
+            <div class="formacion-card__icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div class="formacion-card__body">
+              <h3>Tecnología con propósito</h3>
+              <p>Concebimos la tecnología no como un fin en sí mismo, sino como una herramienta pedagógica para potenciar la creatividad y el pensamiento crítico. Contamos con un ecosistema de recursos de vanguardia: proyectores y notebooks en todas las aulas, Aula Digital Móvil, Aula Tech, impresora 3D, robots educativos y Realidad Virtual.</p>
+              <button class="btn-info" data-modal="p-fi-tec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+            </div>
           </div>
         </div>
 
         <div class="formacion-card fade-in slide-up">
-          <div class="formacion-card__icon">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 3v7.5L4.5 18A2 2 0 006.3 21h11.4a2 2 0 001.8-3L15 10.5V3"/><path d="M9 3h6"/><circle cx="9.5" cy="15" r=".8"/><circle cx="13" cy="17" r="1.1"/></svg>
+          <img class="formacion-card__photo" src="img/Propuestas%20que%20enriquecen%20en%20nivel%20primario/Conciencia%20ambiental.jpg" alt="Conciencia Ambiental">
+          <div class="formacion-card__inner">
+            <div class="formacion-card__icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+            </div>
+            <div class="formacion-card__body">
+              <h3>Conciencia Ambiental</h3>
+              <p>Propuestas que promueven la reflexión sobre el impacto de nuestras acciones, el cuidado de los recursos naturales, la reducción de residuos y el consumo responsable desde edades tempranas.</p>
+              <button class="btn-info" data-modal="p-fi-ambiental"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+            </div>
           </div>
-          <div class="formacion-card__body">
-            <h3>Ciencias en laboratorio</h3>
-            <p>Los alumnos y alumnas experimentan, observan y ponen a prueba sus ideas en un espacio especialmente diseñado para aprender haciendo. A través del método científico, desarrollan el pensamiento crítico, la curiosidad y el gusto por descubrir.</p>
-            <button class="btn-info" data-modal="p-fi-lab"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+        </div>
+
+        <div class="formacion-card fade-in slide-up">
+          <img class="formacion-card__photo" src="img/Propuestas%20que%20enriquecen%20en%20nivel%20primario/Ciencias%20en%20Laboratorio.jpg" alt="Ciencias en laboratorio">
+          <div class="formacion-card__inner">
+            <div class="formacion-card__icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 3v7.5L4.5 18A2 2 0 006.3 21h11.4a2 2 0 001.8-3L15 10.5V3"/><path d="M9 3h6"/><circle cx="9.5" cy="15" r=".8"/><circle cx="13" cy="17" r="1.1"/></svg>
+            </div>
+            <div class="formacion-card__body">
+              <h3>Ciencias en laboratorio</h3>
+              <p>Los alumnos y alumnas experimentan, observan y ponen a prueba sus ideas en un espacio especialmente diseñado para aprender haciendo. A través del método científico, desarrollan el pensamiento crítico, la curiosidad y el gusto por descubrir.</p>
+              <button class="btn-info" data-modal="p-fi-lab"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+            </div>
           </div>
         </div>
 
