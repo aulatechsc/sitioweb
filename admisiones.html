@@ -37,21 +37,32 @@
     .hero-admisiones__actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
     /* PROCESO */
-    .proceso-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+    .proceso-timeline { display: flex; flex-direction: column; gap: 0; }
     .paso {
-      background: var(--white); border-radius: var(--radius);
-      padding: 32px 26px; border: 1px solid var(--gray-border);
-      box-shadow: var(--shadow); position: relative;
+      display: grid; grid-template-columns: 72px 1fr;
+      gap: 0 28px; position: relative;
     }
+    .paso:not(:last-child) .paso__line { position: absolute; left: 35px; top: 72px; bottom: 0; width: 2px; background: var(--sky); }
+    .paso__left { display: flex; flex-direction: column; align-items: center; padding-bottom: 40px; }
     .paso__num {
-      width: 48px; height: 48px; border-radius: 50%;
+      width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
       background: var(--primary); color: #fff;
-      font-family: 'Raleway', sans-serif; font-size: 1.4rem; font-weight: 800;
+      font-family: 'Raleway', sans-serif; font-size: 1.3rem; font-weight: 800;
       display: flex; align-items: center; justify-content: center;
-      margin-bottom: 18px;
+      box-shadow: 0 4px 16px rgba(0,71,108,.25); position: relative; z-index: 1;
     }
-    .paso h3 { font-family: 'Raleway', sans-serif; font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
-    .paso p { font-size: 14px; color: var(--text-lt); line-height: 1.7; }
+    .paso__right {
+      background: var(--white); border-radius: var(--radius);
+      padding: 24px 28px; border: 1px solid var(--gray-border);
+      box-shadow: var(--shadow); margin-bottom: 20px;
+    }
+    .paso__right h3 { font-family: 'Raleway', sans-serif; font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+    .paso__right p { font-size: 14px; color: var(--text-lt); line-height: 1.7; margin: 0; }
+    @media(max-width:600px){
+      .paso { grid-template-columns: 48px 1fr; gap: 0 16px; }
+      .paso__num { width: 44px; height: 44px; font-size: 1.1rem; }
+      .paso:not(:last-child) .paso__line { left: 23px; top: 56px; }
+    }
 
     /* ARANCELES */
     .aranceles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -253,31 +264,45 @@
         <h2 class="section__title">Proceso de admisión</h2>
         <p class="section__desc">Un proceso pensado para conocernos mutuamente y acompañar a cada familia en la decisión de elegir el San Carlos.</p>
       </div>
-      <div class="proceso-steps">
+      <div class="proceso-timeline">
         <div class="paso fade-in">
-          <div class="paso__num">1</div>
-          <h3>Completá el formulario de admisión</h3>
-          <p>Completá el formulario con toda la información correspondiente al nivel al que desean ingresar.</p>
+          <div class="paso__line"></div>
+          <div class="paso__left"><div class="paso__num">1</div></div>
+          <div class="paso__right">
+            <h3>Completá el formulario de admisión</h3>
+            <p>Completá el formulario con toda la información correspondiente al nivel al que desean ingresar.</p>
+          </div>
         </div>
         <div class="paso fade-in">
-          <div class="paso__num">2</div>
-          <h3>Contacto del equipo de Admisiones</h3>
-          <p>A la brevedad, el responsable de Admisiones del nivel se comunicará por mail o teléfono para coordinar una entrevista.</p>
+          <div class="paso__line"></div>
+          <div class="paso__left"><div class="paso__num">2</div></div>
+          <div class="paso__right">
+            <h3>Contacto del equipo de Admisiones</h3>
+            <p>A la brevedad, el responsable de Admisiones del nivel se comunicará por mail o teléfono para coordinar una entrevista.</p>
+          </div>
         </div>
         <div class="paso fade-in">
-          <div class="paso__num">3</div>
-          <h3>Primera entrevista</h3>
-          <p>La primera entrevista es una instancia destinada a los adultos responsables para presentar nuestro proyecto educativo, conocer a la familia y conversar sobre sus expectativas y la propuesta del colegio.</p>
+          <div class="paso__line"></div>
+          <div class="paso__left"><div class="paso__num">3</div></div>
+          <div class="paso__right">
+            <h3>Primera entrevista</h3>
+            <p>La primera entrevista es una instancia destinada a los adultos responsables para presentar nuestro proyecto educativo, conocer a la familia y conversar sobre sus expectativas y la propuesta del colegio.</p>
+          </div>
         </div>
         <div class="paso fade-in">
-          <div class="paso__num">4</div>
-          <h3>Visita al colegio</h3>
-          <p>Los postulantes son invitados a visitar nuestra institución para conocer sus instalaciones, familiarizarse con los distintos espacios y vivir de cerca el ambiente que caracteriza a nuestra comunidad educativa.</p>
+          <div class="paso__line"></div>
+          <div class="paso__left"><div class="paso__num">4</div></div>
+          <div class="paso__right">
+            <h3>Visita al colegio</h3>
+            <p>Los postulantes son invitados a visitar nuestra institución para conocer sus instalaciones, familiarizarse con los distintos espacios y vivir de cerca el ambiente que caracteriza a nuestra comunidad educativa.</p>
+          </div>
         </div>
         <div class="paso fade-in">
-          <div class="paso__num">5</div>
-          <h3>Proceso administrativo</h3>
-          <p>Una vez finalizadas las instancias de admisión y confirmada la vacante, las familias deberán completar la documentación requerida y presentar la información necesaria para formalizar el ingreso del alumno al colegio.</p>
+          <div class="paso__left"><div class="paso__num">5</div></div>
+          <div class="paso__right">
+            <h3>Proceso administrativo</h3>
+            <p>Una vez finalizadas las instancias de admisión y confirmada la vacante, las familias deberán completar la documentación requerida y presentar la información necesaria para formalizar el ingreso del alumno al colegio.</p>
+          </div>
         </div>
       </div>
     </div>
