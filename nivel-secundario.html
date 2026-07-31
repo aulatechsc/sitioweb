@@ -118,8 +118,10 @@
 
     /* FORMACIÓN INTEGRAL */
     .formacion__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
-    .formacion-card{background:var(--white);border-radius:var(--radius);padding:36px 28px 32px;border:1px solid var(--gray-border);box-shadow:var(--shadow);display:flex;gap:20px;align-items:flex-start;transition:transform .3s ease,box-shadow .3s ease}
+    .formacion-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--gray-border);box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease}
     .formacion-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+    .formacion-card__photo{width:100%;height:240px;object-fit:cover;display:block}
+    .formacion-card__inner{display:flex;gap:20px;align-items:flex-start;padding:28px}
     .formacion-card__icon{width:54px;height:54px;min-width:54px;background:var(--light);border-radius:12px;display:flex;align-items:center;justify-content:center}
     .formacion-card__body h3{font-size:1.05rem;color:var(--primary);margin-bottom:10px}
     .formacion-card__body p{color:var(--text-lt);font-size:14px;line-height:1.7}
@@ -458,46 +460,58 @@
       <div class="formacion__grid">
 
         <div class="formacion-card fade-in">
-          <div class="formacion-card__icon">
-            <svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          </div>
-          <div class="formacion-card__body">
-            <h3>Tecnología con Propósito, Creatividad e Impacto Social</h3>
-            <p>Formamos jóvenes críticos, creativos y éticamente responsables en el entorno digital. Los recursos digitales se entraman de manera transversal con las materias curriculares, potenciando aprendizajes significativos. Contamos con el Aula Tech, alianzas con IBM y participamos en certámenes nacionales de innovación e inteligencia artificial.</p>
-            <button class="btn-info" data-modal="s-fi-tec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
-          </div>
-        </div>
-
-        <div class="formacion-card fade-in">
-          <div class="formacion-card__icon">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <div class="formacion-card__body">
-            <h3>Vinculación con Universidades</h3>
-            <p>Convenios con Di Tella, Palermo, ESEADE, UCES y otras instituciones. Propuestas de orientación vocacional, talleres y actividades académicas que permiten a los estudiantes acercarse al mundo universitario, explorar intereses y comenzar a proyectar su futuro académico y profesional.</p>
-            <button class="btn-info" data-modal="s-fi-uni"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+          <img class="formacion-card__photo" src="img/Propuestas%20que%20enriquecen%20en%20nivel%20secundario/Tecnolog%C3%ADa%20con%20prop%C3%B3sito.JPG" alt="Tecnología con propósito">
+          <div class="formacion-card__inner">
+            <div class="formacion-card__icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div class="formacion-card__body">
+              <h3>Tecnología con Propósito, Creatividad e Impacto Social</h3>
+              <p>Formamos jóvenes críticos, creativos y éticamente responsables en el entorno digital. Los recursos digitales se entraman de manera transversal con las materias curriculares, potenciando aprendizajes significativos. Contamos con el Aula Tech, alianzas con IBM y participamos en certámenes nacionales de innovación e inteligencia artificial.</p>
+              <button class="btn-info" data-modal="s-fi-tec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+            </div>
           </div>
         </div>
 
         <div class="formacion-card fade-in">
-          <div class="formacion-card__icon">
-            <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-          </div>
-          <div class="formacion-card__body">
-            <h3>Intercambios y viajes internacionales</h3>
-            <p>Creemos que aprender también es descubrir otras culturas. Ofrecemos intercambios educativos y viajes de estudio que fortalecen la autonomía, la comunicación en inglés, la convivencia y el respeto por la diversidad cultural.</p>
-            <button class="btn-info" data-modal="s-fi-int"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+          <img class="formacion-card__photo" src="img/Propuestas%20que%20enriquecen%20en%20nivel%20secundario/Vinculaci%C3%B3n%20con%20universidades.jpeg" alt="Vinculación con Universidades">
+          <div class="formacion-card__inner">
+            <div class="formacion-card__icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div class="formacion-card__body">
+              <h3>Vinculación con Universidades</h3>
+              <p>Convenios con Di Tella, Palermo, ESEADE, UCES y otras instituciones. Propuestas de orientación vocacional, talleres y actividades académicas que permiten a los estudiantes acercarse al mundo universitario, explorar intereses y comenzar a proyectar su futuro académico y profesional.</p>
+              <button class="btn-info" data-modal="s-fi-uni"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+            </div>
           </div>
         </div>
 
         <div class="formacion-card fade-in">
-          <div class="formacion-card__icon">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <img class="formacion-card__photo" src="img/Propuestas%20que%20enriquecen%20en%20nivel%20secundario/Intercambios%20y%20viajes%20internacionales.jpg" alt="Intercambios y viajes internacionales">
+          <div class="formacion-card__inner">
+            <div class="formacion-card__icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            </div>
+            <div class="formacion-card__body">
+              <h3>Intercambios y viajes internacionales</h3>
+              <p>Creemos que aprender también es descubrir otras culturas. Ofrecemos intercambios educativos y viajes de estudio que fortalecen la autonomía, la comunicación en inglés, la convivencia y el respeto por la diversidad cultural.</p>
+              <button class="btn-info" data-modal="s-fi-int"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+            </div>
           </div>
-          <div class="formacion-card__body">
-            <h3>UBA XXI</h3>
-            <p>En el último año, los alumnos pueden cursar materias del programa UBA XXI, acercándose al ámbito universitario antes de finalizar el colegio. Desarrollan hábitos de estudio, autonomía y estrategias de aprendizaje para una transición más gradual hacia la educación superior.</p>
-            <button class="btn-info" data-modal="s-fi-uba"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+        </div>
+
+        <div class="formacion-card fade-in">
+          <img class="formacion-card__photo" src="img/Propuestas%20que%20enriquecen%20en%20nivel%20secundario/UBA%20XXI.jpeg" alt="UBA XXI">
+          <div class="formacion-card__inner">
+            <div class="formacion-card__icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div class="formacion-card__body">
+              <h3>UBA XXI</h3>
+              <p>En el último año, los alumnos pueden cursar materias del programa UBA XXI, acercándose al ámbito universitario antes de finalizar el colegio. Desarrollan hábitos de estudio, autonomía y estrategias de aprendizaje para una transición más gradual hacia la educación superior.</p>
+              <button class="btn-info" data-modal="s-fi-uba"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Más info</button>
+            </div>
           </div>
         </div>
 
