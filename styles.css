@@ -649,6 +649,10 @@ ul { list-style: none; }
 }
 
 /* --- TALLERES CAROUSEL --- */
+.talleres .section__eyebrow { color: rgba(255,255,255,.65); }
+.talleres .section__title { color: #fff; }
+.talleres .section__desc { color: rgba(255,255,255,.82); }
+.talleres .link-arrow { color: rgba(255,255,255,.85); }
 .talleres-wrapper {
   position: relative;
 }
