@@ -652,9 +652,9 @@ ul { list-style: none; }
 .niveles .section__eyebrow { color: rgba(255,255,255,.65); }
 .niveles .section__title { color: #fff; }
 .niveles .section__desc { color: rgba(255,255,255,.82); }
-#experiencias .section__eyebrow { color: var(--primary); }
-#experiencias .section__title { color: var(--primary-dk); }
-#experiencias .section__desc { color: var(--primary); }
+#experiencias .section__eyebrow { color: #fff; }
+#experiencias .section__title { color: var(--accent); }
+#experiencias .section__desc { color: #fff; }
 .talleres .section__eyebrow { color: rgba(255,255,255,.65); }
 .talleres .section__title { color: #fff; }
 .talleres .section__desc { color: rgba(255,255,255,.82); }
@@ -1182,6 +1182,18 @@ ul { list-style: none; }
   font-size: .9rem; font-weight: 700;
   color: #fff; line-height: 1.3;
 }
+#experiencias .flip-card__front {
+  background: var(--sky);
+}
+#experiencias .flip-card__front .fc-icon { display: none; }
+#experiencias .flip-card__front h3 {
+  font-size: 1.05rem; color: var(--primary-dk);
+}
+#experiencias .flip-card__back {
+  background: var(--primary-dk);
+  border-color: var(--primary);
+}
+#experiencias .flip-card__back p { color: #fff; font-size: 14px; }
 .flip-card__back {
   transform: rotateY(180deg);
   background: var(--white);
