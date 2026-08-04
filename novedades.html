@@ -14,23 +14,29 @@
 
     /* HERO */
     .hero-sub {
-      position: relative; min-height: 380px;
-      display: flex; align-items: center;
-      background-size: cover; background-position: center;
-      background-image: url('img/hero/hero-novedades.jpg');
+      position:relative;
+      height:62vh; min-height:440px; max-height:660px;
+      overflow:hidden; display:flex; align-items:center;
+      background-image:url('img/hero/hero-novedades.jpg');
+      background-size:cover; background-position:center;
     }
     .hero-sub__overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(0,35,60,.72) 0%, rgba(0,35,60,.42) 100%);
+      position:absolute; inset:0;
+      background:linear-gradient(108deg,rgba(0,51,82,.92) 0%,rgba(0,71,108,.70) 60%,rgba(0,71,108,.22) 100%);
     }
-    .hero-sub__content { position: relative; z-index: 2; max-width: 700px; color: #fff; }
+    .hero-sub__content { position:relative; z-index:2; max-width:700px; color:#fff; }
     .hero-sub__tag {
-      display: inline-block; font-family: 'Raleway', sans-serif;
-      font-size: .78rem; font-weight: 700; letter-spacing: .12em;
-      text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: 14px;
+      display:inline-block; background:var(--accent); color:#fff;
+      font-family:'Raleway',sans-serif; font-size:12px; font-weight:700;
+      letter-spacing:2px; text-transform:uppercase;
+      padding:5px 16px; border-radius:20px; margin-bottom:20px;
     }
-    .hero-sub__title { font-family: 'Raleway', sans-serif; font-size: clamp(2.2rem,5vw,3.4rem); font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
-    .hero-sub__subtitle { font-size: 1.15rem; color: rgba(255,255,255,.88); font-weight: 500; max-width: 540px; line-height: 1.65; margin-bottom: 32px; }
+    .hero-sub__title {
+      font-family:'Raleway',sans-serif;
+      font-size:clamp(2.4rem,5.5vw,3.8rem); font-weight:800;
+      color:#fff; line-height:1.08; margin-bottom:18px;
+    }
+    .hero-sub__subtitle { font-size:1.15rem; color:rgba(255,255,255,.88); font-weight:500; max-width:540px; line-height:1.65; margin-bottom:32px; }
 
     /* FILTROS */
     .filtros {
