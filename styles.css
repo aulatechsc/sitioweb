@@ -261,6 +261,7 @@ ul { list-style: none; }
   transition: var(--transition);
 }
 .dropdown li a:hover { background: var(--light); color: var(--accent); padding-left: 26px; }
+.dropdown li a.active { color: var(--accent); font-weight: 600; }
 
 .nav__cta { margin-left: 8px; }
 
