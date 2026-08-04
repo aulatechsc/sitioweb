@@ -1185,7 +1185,7 @@ ul { list-style: none; }
 #experiencias .flip-card__front {
   background: #B9CCE1;
 }
-#experiencias .flip-card__front .fc-icon { display: none; }
+#experiencias .flip-card__front .fc-icon { stroke: var(--primary-dk); }
 #experiencias .flip-card__front h3 {
   font-size: 1.05rem; color: var(--primary-dk);
 }
