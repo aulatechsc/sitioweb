@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin — Colegio San Carlos</title>
+  <title>Admin â€” Colegio San Carlos</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f1f5f9;color:#1e293b;min-height:100vh}
@@ -113,32 +113,32 @@
 </head>
 <body>
 
-<!-- ── AUTH SCREEN ───────────────────────────────────────────────────────── -->
+<!-- â”€â”€ AUTH SCREEN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
 <div id="auth-screen">
   <div class="auth-card">
     <img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="San Carlos" />
-    <h1>Panel de Administración</h1>
-    <p>Ingresá tus credenciales para continuar</p>
-    <div class="auth-err" id="auth-err">Usuario o contraseña incorrectos.</div>
+    <h1>Panel de AdministraciÃ³n</h1>
+    <p>IngresÃ¡ tus credenciales para continuar</p>
+    <div class="auth-err" id="auth-err">Usuario o contraseÃ±a incorrectos.</div>
     <form id="auth-form">
       <div class="field"><label>Usuario</label><input id="a-user" type="text" autocomplete="username" required autofocus /></div>
-      <div class="field"><label>Contraseña</label><input id="a-pass" type="password" autocomplete="current-password" required /></div>
+      <div class="field"><label>ContraseÃ±a</label><input id="a-pass" type="password" autocomplete="current-password" required /></div>
       <button type="submit" class="btn-auth">Ingresar</button>
     </form>
   </div>
 </div>
 
-<!-- ── TOKEN SCREEN ──────────────────────────────────────────────────────── -->
+<!-- â”€â”€ TOKEN SCREEN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
 <div id="token-screen" style="display:none">
   <div class="token-card">
     <h2>Configurar acceso a GitHub</h2>
-    <p>Para guardar cambios en el sitio necesitás un <strong>Personal Access Token</strong> de GitHub. Solo se pide una vez y queda guardado en este navegador.</p>
+    <p>Para guardar cambios en el sitio necesitÃ¡s un <strong>Personal Access Token</strong> de GitHub. Solo se pide una vez y queda guardado en este navegador.</p>
     <ol>
-      <li>Entrá a <strong>github.com → Settings</strong></li>
-      <li>Ir a <strong>Developer settings → Personal access tokens → Tokens (classic)</strong></li>
+      <li>EntrÃ¡ a <strong>github.com â†’ Settings</strong></li>
+      <li>Ir a <strong>Developer settings â†’ Personal access tokens â†’ Tokens (classic)</strong></li>
       <li>Clic en <strong>Generate new token (classic)</strong></li>
-      <li>Marcá el permiso <strong>repo</strong></li>
-      <li>Copiá el token y pegalo abajo</li>
+      <li>MarcÃ¡ el permiso <strong>repo</strong></li>
+      <li>CopiÃ¡ el token y pegalo abajo</li>
     </ol>
     <div class="fg">
       <label>Token de GitHub</label>
@@ -148,13 +148,13 @@
   </div>
 </div>
 
-<!-- ── ADMIN PANEL ───────────────────────────────────────────────────────── -->
+<!-- â”€â”€ ADMIN PANEL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
 <div id="admin-panel">
 <div class="layout">
   <aside class="sidebar">
     <div class="sidebar__logo">
       <img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="San Carlos" />
-      <span>Panel de administración</span>
+      <span>Panel de administraciÃ³n</span>
     </div>
     <nav class="sidebar__nav">
       <button class="nav-item active" onclick="showTab('dashboard')">
@@ -164,7 +164,7 @@
         <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg> Novedades
       </button>
       <button class="nav-item" onclick="showTab('paginas')">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg> Páginas
+        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg> PÃ¡ginas
       </button>
       <button class="nav-item" onclick="showTab('historial')">
         <svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg> Historial
@@ -173,7 +173,7 @@
     <div class="sidebar__bottom">
       <button class="btn-logout" onclick="logout()">
         <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:currentColor"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
-        Cerrar sesión
+        Cerrar sesiÃ³n
       </button>
     </div>
   </aside>
@@ -181,19 +181,19 @@
   <div class="main">
     <div class="topbar">
       <h2 id="page-title">Inicio</h2>
-      <span class="badge">Colegio San Carlos Diálogos</span>
+      <span class="badge">Colegio San Carlos DiÃ¡logos</span>
     </div>
     <div class="content">
 
       <!-- DASHBOARD -->
       <div id="tab-dashboard">
         <div class="stats" id="dash-stats">
-          <div class="stat"><div class="stat__n" id="stat-nov">—</div><div class="stat__l">Novedades</div></div>
-          <div class="stat"><div class="stat__n">8</div><div class="stat__l">Páginas</div></div>
-          <div class="stat"><div class="stat__n" id="stat-commits">—</div><div class="stat__l">Commits</div></div>
+          <div class="stat"><div class="stat__n" id="stat-nov">â€”</div><div class="stat__l">Novedades</div></div>
+          <div class="stat"><div class="stat__n">8</div><div class="stat__l">PÃ¡ginas</div></div>
+          <div class="stat"><div class="stat__n" id="stat-commits">â€”</div><div class="stat__l">Commits</div></div>
         </div>
         <div class="panel">
-          <div class="panel__hd"><h3>Accesos rápidos</h3></div>
+          <div class="panel__hd"><h3>Accesos rÃ¡pidos</h3></div>
           <div class="panel__bd" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
             <button class="btn btn-accent" onclick="showTab('novedades');openNovForm(null)" style="justify-content:center;padding:14px">
               <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg> Nueva novedad
@@ -203,8 +203,8 @@
           </div>
         </div>
         <div class="panel">
-          <div class="panel__hd"><h3>Últimas novedades</h3></div>
-          <table><thead><tr><th>Imagen</th><th>Título</th><th>Categoría</th><th>Fecha</th></tr></thead>
+          <div class="panel__hd"><h3>Ãšltimas novedades</h3></div>
+          <table><thead><tr><th>Imagen</th><th>TÃ­tulo</th><th>CategorÃ­a</th><th>Fecha</th></tr></thead>
           <tbody id="dash-nov-rows"><tr><td colspan="4" style="text-align:center;color:#94a3b8;padding:20px">Cargando...</td></tr></tbody></table>
         </div>
       </div>
@@ -219,20 +219,20 @@
           </div>
           <div class="panel">
             <div class="panel__hd"><h3 id="nov-list-title">Novedades</h3></div>
-            <table><thead><tr><th>Imagen</th><th>Título</th><th>Categoría</th><th>Fecha</th><th>Acciones</th></tr></thead>
+            <table><thead><tr><th>Imagen</th><th>TÃ­tulo</th><th>CategorÃ­a</th><th>Fecha</th><th>Acciones</th></tr></thead>
             <tbody id="nov-rows"><tr><td colspan="5" style="text-align:center;color:#94a3b8;padding:20px">Cargando...</td></tr></tbody></table>
           </div>
         </div>
         <div id="nov-form-view" class="section-hidden">
-          <div style="margin-bottom:16px"><button class="btn btn-ghost btn-sm" onclick="closeNovForm()">← Volver a la lista</button></div>
+          <div style="margin-bottom:16px"><button class="btn btn-ghost btn-sm" onclick="closeNovForm()">â† Volver a la lista</button></div>
           <div class="panel">
             <div class="panel__hd"><h3 id="nov-form-title">Nueva novedad</h3></div>
             <div class="panel__bd">
               <div class="form-2col">
-                <div class="fg"><label>Título *</label><input id="nv-title" type="text" placeholder="Ej: Exámenes Cambridge 2026" /></div>
-                <div class="fg"><label>Categoría</label>
+                <div class="fg"><label>TÃ­tulo *</label><input id="nv-title" type="text" placeholder="Ej: ExÃ¡menes Cambridge 2026" /></div>
+                <div class="fg"><label>CategorÃ­a</label>
                   <select id="nv-cat">
-                    <option>Académico</option><option>Institucional</option><option>Deportes</option>
+                    <option>AcadÃ©mico</option><option>Institucional</option><option>Deportes</option>
                     <option>Comunidad</option><option>Internacional</option><option>Proyecto</option><option>Convivencia</option>
                   </select>
                 </div>
@@ -240,29 +240,29 @@
                 <div class="fg">
                   <label>Imagen hero (URL)</label>
                   <input id="nv-img" type="text" placeholder="img/novedades/foto.jpg" oninput="prevHero(this.value)" />
-                  <div class="hint">También podés subir: <input type="file" accept="image/*" onchange="uploadImg(this,'nv-img','nv-img-prev')" style="font-size:.72rem"></div>
+                  <div class="hint">TambiÃ©n podÃ©s subir: <input type="file" accept="image/*" onchange="uploadImg(this,'nv-img','nv-img-prev')" style="font-size:.72rem"></div>
                   <img id="nv-img-prev" class="img-prev" />
                 </div>
                 <div class="fg full"><label>Extracto (para la lista de novedades)</label><textarea id="nv-excerpt" rows="2"></textarea></div>
               </div>
               <div class="fg">
-                <label>Cuerpo del artículo</label>
+                <label>Cuerpo del artÃ­culo</label>
                 <div class="editor-wrap">
                   <div class="editor-tb">
                     <button type="button" onclick="fmt('bold')"><strong>N</strong></button>
                     <button type="button" onclick="fmt('italic')"><em>K</em></button>
                     <button type="button" onclick="insTag('h2')">H2</button>
-                    <button type="button" onclick="insTag('p')">¶ Párrafo</button>
+                    <button type="button" onclick="insTag('p')">Â¶ PÃ¡rrafo</button>
                     <button type="button" onclick="insTag('ul')">Lista</button>
                     <button type="button" onclick="insCita()">Cita</button>
                   </div>
                   <div class="editor-body" id="nv-body" contenteditable="true">
-                    <p>Escribí el contenido de la novedad aquí...</p>
+                    <p>EscribÃ­ el contenido de la novedad aquÃ­...</p>
                   </div>
                 </div>
               </div>
               <div class="fg">
-                <label>Galería de fotos</label>
+                <label>GalerÃ­a de fotos</label>
                 <div id="gallery-rows"></div>
                 <div style="display:flex;gap:8px;margin-top:8px">
                   <button class="btn btn-ghost btn-sm" type="button" onclick="addGalleryRow()">+ URL</button>
@@ -282,17 +282,17 @@
         </div>
       </div>
 
-      <!-- PÁGINAS -->
+      <!-- PÃGINAS -->
       <div id="tab-paginas" class="section-hidden">
         <div id="pag-list-view">
-          <p style="color:#64748b;font-size:.85rem;margin-bottom:18px">Seleccioná una página para editar sus textos.</p>
+          <p style="color:#64748b;font-size:.85rem;margin-bottom:18px">SeleccionÃ¡ una pÃ¡gina para editar sus textos.</p>
           <div style="display:flex;flex-direction:column;gap:10px" id="pag-cards"></div>
         </div>
         <div id="pag-editor-view" class="section-hidden">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
-            <button class="btn btn-ghost btn-sm" onclick="closePageEditor()">← Volver</button>
+            <button class="btn btn-ghost btn-sm" onclick="closePageEditor()">â† Volver</button>
             <h3 id="pag-editor-title" style="font-size:.95rem;font-weight:600"></h3>
-            <a id="pag-preview-link" href="#" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Ver página →</a>
+            <a id="pag-preview-link" href="#" target="_blank" class="btn btn-ghost btn-sm" style="margin-left:auto">Ver pÃ¡gina â†’</a>
           </div>
           <div class="panel">
             <div class="panel__bd">
@@ -337,7 +337,7 @@
 </div>
 
 <script>
-// ── CONFIG ────────────────────────────────────────────────────────────────
+// â”€â”€ CONFIG â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const REPO   = 'aulatechsc/sitioweb';
 const BRANCH = 'master';
 const PASS_HASH = '3d1a38c82efb47f0a567acc4840f281f9d72f02f0e7d995b6cd7b47f1c48f4e1';
@@ -350,7 +350,7 @@ let editingSlug = null;
 let currentPageFile = '';
 let currentPageSha = '';
 
-// ── AUTH ──────────────────────────────────────────────────────────────────
+// â”€â”€ AUTH â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function sha256(str){
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
   return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
@@ -375,7 +375,7 @@ function logout(){
   location.reload();
 }
 
-// ── STARTUP ───────────────────────────────────────────────────────────────
+// â”€â”€ STARTUP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function startApp(){
   document.getElementById('auth-screen').style.display = 'none';
   if(!ghToken){
@@ -388,7 +388,7 @@ async function startApp(){
 
 function saveToken(){
   const t = document.getElementById('gh-token-input').value.trim();
-  if(!t){ toast('Ingresá el token','err'); return; }
+  if(!t){ toast('IngresÃ¡ el token','err'); return; }
   ghToken = t;
   localStorage.setItem('sc_gh_token', t);
   document.getElementById('token-screen').style.display = 'none';
@@ -402,9 +402,9 @@ window.addEventListener('load', ()=>{
   }
 });
 
-// ── TABS ──────────────────────────────────────────────────────────────────
+// â”€â”€ TABS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const TABS = ['dashboard','novedades','paginas','historial'];
-const TITLES = {dashboard:'Inicio',novedades:'Novedades',paginas:'Páginas',historial:'Historial'};
+const TITLES = {dashboard:'Inicio',novedades:'Novedades',paginas:'PÃ¡ginas',historial:'Historial'};
 
 function showTab(tab){
   TABS.forEach(t=>{
@@ -419,7 +419,7 @@ function showTab(tab){
   if(tab==='historial') loadHistory();
 }
 
-// ── GITHUB API ───────────────────────────────────────────────────────────
+// â”€â”€ GITHUB API â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function ghGet(path){
   const r = await fetch(`${API}/${path}`, {
     headers:{ Authorization:`Bearer ${ghToken}`, Accept:'application/vnd.github+json' }
@@ -483,7 +483,7 @@ async function uploadImageFile(file){
   });
 }
 
-// ── DASHBOARD ────────────────────────────────────────────────────────────
+// â”€â”€ DASHBOARD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function loadDashboard(){
   try{
     const novData = await loadNovedadesData();
@@ -503,7 +503,7 @@ async function loadDashboard(){
   }catch(e){}
 }
 
-// ── NOVEDADES ─────────────────────────────────────────────────────────────
+// â”€â”€ NOVEDADES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function loadNovedadesData(){
   try{
     const {content} = await ghGetFile('admin/data/novedades.json');
@@ -543,8 +543,8 @@ async function loadNovedades(){
       <td style="display:flex;gap:5px;align-items:center">
         <button class="btn btn-ghost btn-sm" onclick="openNovForm('${esc(n.slug)}')">Editar</button>
         <button class="btn btn-danger btn-sm" onclick="deleteNov('${esc(n.slug)}','${esc(n.title)}')">Eliminar</button>
-        ${i>0?`<button class="btn btn-ghost btn-sm" onclick="moveNov('${esc(n.slug)}','up')">↑</button>`:''}
-        ${i<novedades.length-1?`<button class="btn btn-ghost btn-sm" onclick="moveNov('${esc(n.slug)}','down')">↓</button>`:''}
+        ${i>0?`<button class="btn btn-ghost btn-sm" onclick="moveNov('${esc(n.slug)}','up')">â†‘</button>`:''}
+        ${i<novedades.length-1?`<button class="btn btn-ghost btn-sm" onclick="moveNov('${esc(n.slug)}','down')">â†“</button>`:''}
       </td>
     </tr>`).join('');
   document.getElementById('nov-rows').innerHTML = rows || '<tr><td colspan="5" style="text-align:center;color:#94a3b8;padding:20px">Sin novedades</td></tr>';
@@ -554,19 +554,19 @@ function openNovForm(slug){
   editingSlug = slug;
   document.getElementById('nov-form-title').textContent = slug ? 'Editar novedad' : 'Nueva novedad';
   document.getElementById('nv-title').value = '';
-  document.getElementById('nv-cat').value = 'Académico';
+  document.getElementById('nv-cat').value = 'AcadÃ©mico';
   document.getElementById('nv-date').value = '';
   document.getElementById('nv-img').value = '';
   document.getElementById('nv-img-prev').classList.remove('show');
   document.getElementById('nv-excerpt').value = '';
-  document.getElementById('nv-body').innerHTML = '<p>Escribí el contenido aquí...</p>';
+  document.getElementById('nv-body').innerHTML = '<p>EscribÃ­ el contenido aquÃ­...</p>';
   document.getElementById('gallery-rows').innerHTML = '';
 
   if(slug){
     const nov = novedades.find(n=>n.slug===slug);
     if(nov){
       document.getElementById('nv-title').value = nov.title||'';
-      document.getElementById('nv-cat').value = nov.cat||'Académico';
+      document.getElementById('nv-cat').value = nov.cat||'AcadÃ©mico';
       document.getElementById('nv-date').value = nov.date||'';
       document.getElementById('nv-img').value = nov.img||'';
       if(nov.img){ const p=document.getElementById('nv-img-prev'); p.src='https://raw.githubusercontent.com/'+REPO+'/'+BRANCH+'/'+nov.img; p.classList.add('show'); }
@@ -597,7 +597,7 @@ function closeNovForm(){
 
 async function saveNov(publish){
   const title = document.getElementById('nv-title').value.trim();
-  if(!title){ toast('El título es obligatorio','err'); return; }
+  if(!title){ toast('El tÃ­tulo es obligatorio','err'); return; }
   const slug = editingSlug || slugify(title);
   const cat = document.getElementById('nv-cat').value;
   const date = document.getElementById('nv-date').value.trim();
@@ -639,7 +639,7 @@ async function saveNov(publish){
 }
 
 async function deleteNov(slug, title){
-  confirm2('Eliminar novedad', `¿Eliminar "${title}"?`, async()=>{
+  confirm2('Eliminar novedad', `Â¿Eliminar "${title}"?`, async()=>{
     try{
       novedades = novedades.filter(n=>n.slug!==slug);
       let jsonSha;
@@ -683,7 +683,7 @@ async function regenerateNovedadesGrid(){
             <time>${esc(n.date)}</time>
             <h3>${esc(n.title)}</h3>
             <p>${esc(n.excerpt)}</p>
-            <a href="${esc(n.href||'novedad-'+n.slug+'.html')}" class="link-arrow">Leer más →</a>
+            <a href="${esc(n.href||'novedad-'+n.slug+'.html')}" class="link-arrow">Leer mÃ¡s â†’</a>
           </div>
         </article>`).join('\n');
   const updated = content.replace(
@@ -693,16 +693,16 @@ async function regenerateNovedadesGrid(){
   await ghPutFile('novedades.html', updated, 'Actualizar grilla de novedades', sha);
 }
 
-// ── PAGE CONFIG ───────────────────────────────────────────────────────────
+// â”€â”€ PAGE CONFIG â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const PAGE_CONFIG = {
-  'index.html':             { name:'Inicio',             icon:'🏠', desc:'Página principal del colegio' },
-  'nivel-inicial.html':     { name:'Nivel Inicial',      icon:'🌱', desc:'Propuesta pedagógica para 3 a 5 años' },
-  'nivel-primario.html':    { name:'Nivel Primario',     icon:'📚', desc:'Propuesta para 1° a 6° grado' },
-  'nivel-secundario.html':  { name:'Nivel Secundario',   icon:'🎓', desc:'Propuesta para 1° a 6° año' },
-  'nuestra-identidad.html': { name:'Nuestra Identidad',  icon:'⭐', desc:'Identidad y propuesta institucional' },
-  'contacto.html':          { name:'Contacto',           icon:'📞', desc:'Información de contacto e inscripciones' },
-  'novedades.html':         { name:'Novedades',          icon:'📰', desc:'Página de novedades y noticias' },
-  'talleres.html':          { name:'Talleres',           icon:'🎨', desc:'Talleres y actividades extracurriculares' },
+  'index.html':             { name:'Inicio',             icon:'ðŸ ', desc:'PÃ¡gina principal del colegio' },
+  'nivel-inicial.html':     { name:'Nivel Inicial',      icon:'ðŸŒ±', desc:'Propuesta pedagÃ³gica para 3 a 5 aÃ±os' },
+  'nivel-primario.html':    { name:'Nivel Primario',     icon:'ðŸ“š', desc:'Propuesta para 1Â° a 6Â° grado' },
+  'nivel-secundario.html':  { name:'Nivel Secundario',   icon:'ðŸŽ“', desc:'Propuesta para 1Â° a 6Â° aÃ±o' },
+  'nuestra-identidad.html': { name:'Nuestra Identidad',  icon:'â­', desc:'Identidad y propuesta institucional' },
+  'contacto.html':          { name:'Contacto',           icon:'ðŸ“ž', desc:'InformaciÃ³n de contacto e inscripciones' },
+  'novedades.html':         { name:'Novedades',          icon:'ðŸ“°', desc:'PÃ¡gina de novedades y noticias' },
+  'talleres.html':          { name:'Talleres',           icon:'ðŸŽ¨', desc:'Talleres y actividades extracurriculares' },
 };
 
 // Selectores de todos los elementos de texto editable
@@ -728,25 +728,25 @@ function getFieldLabel(el){
   const cls = (el.className||'').toString();
   const tag = el.tagName.toLowerCase();
   if(cls.includes('equipo-card__role'))    return 'Cargo';
-  if(cls.includes('equipo-card__initials'))return 'Iniciales (círculo)';
+  if(cls.includes('equipo-card__initials'))return 'Iniciales (cÃ­rculo)';
   if(tag==='h3' && el.closest('.equipo-card')) return 'Nombre';
   if(cls.includes('jornada-row__name'))    return 'Nombre de jornada';
   if(cls.includes('jornada-row__hora'))    return 'Horario';
   if(cls.includes('section__eyebrow')||cls.includes('hero-sub__tag')||cls.includes('hero__eyebrow')||cls.includes('hero-contacto__tag')) return 'Etiqueta';
-  if(cls.includes('hero-sub__title')||cls.includes('hero__title')||tag==='h1') return 'Título principal';
-  if(cls.includes('hero-sub__subtitle')||cls.includes('hero__subtitle')) return 'Subtítulo';
-  if(cls.includes('hero-sub__desc')) return 'Descripción del hero';
-  if(cls.includes('aspecto-item')) return 'Característica';
-  if(cls.includes('stat__number')) return 'Número estadística';
-  if(cls.includes('stat__label'))  return 'Etiqueta estadística';
+  if(cls.includes('hero-sub__title')||cls.includes('hero__title')||tag==='h1') return 'TÃ­tulo principal';
+  if(cls.includes('hero-sub__subtitle')||cls.includes('hero__subtitle')) return 'SubtÃ­tulo';
+  if(cls.includes('hero-sub__desc')) return 'DescripciÃ³n del hero';
+  if(cls.includes('aspecto-item')) return 'CaracterÃ­stica';
+  if(cls.includes('stat__number')) return 'NÃºmero estadÃ­stica';
+  if(cls.includes('stat__label'))  return 'Etiqueta estadÃ­stica';
   if(el.closest('.topbar__contact')){
     const href = el.getAttribute('href')||'';
-    if(href.includes('tel'))    return 'Teléfono';
+    if(href.includes('tel'))    return 'TelÃ©fono';
     if(href.includes('mailto')) return 'Email';
-    return 'Horario de atención';
+    return 'Horario de atenciÃ³n';
   }
-  if(tag==='h2') return 'Título de sección';
-  if(tag==='h3'||tag==='h4') return 'Subtítulo';
+  if(tag==='h2') return 'TÃ­tulo de secciÃ³n';
+  if(tag==='h3'||tag==='h4') return 'SubtÃ­tulo';
   return 'Texto';
 }
 
@@ -756,7 +756,7 @@ function getElemText(el){
   return nodes || el.textContent.trim();
 }
 
-// Determinar a qué grupo pertenece el elemento
+// Determinar a quÃ© grupo pertenece el elemento
 function getGroupInfo(el){
   const topbar = el.closest('.topbar');
   if(topbar) return { key:'topbar', label:'Datos de contacto (barra superior)' };
@@ -764,16 +764,16 @@ function getGroupInfo(el){
   if(!section) return { key:'general', label:'General' };
   const id = section.id||'';
   const heading = section.querySelector('h2,.section__eyebrow');
-  const label = heading ? heading.textContent.trim() : id ? id.replace(/-/g,' ') : 'Sección';
+  const label = heading ? heading.textContent.trim() : id ? id.replace(/-/g,' ') : 'SecciÃ³n';
   return { key: id||label, label };
 }
 
-// Taggear todos los elementos editables con un índice correlativo
+// Taggear todos los elementos editables con un Ã­ndice correlativo
 function tagEditableElements(doc){
   const items = [];
   let idx = 0;
   doc.querySelectorAll(EDIT_SELECTORS).forEach(el => {
-    // Saltar si está dentro de nav, script, style o dropdown
+    // Saltar si estÃ¡ dentro de nav, script, style o dropdown
     if(el.closest('nav')||el.closest('script')||el.closest('style')) return;
     // Saltar si tiene hijos de bloque (no es nodo hoja de texto)
     if(Array.from(el.children).some(c=>['P','DIV','SECTION','H1','H2','H3','H4','UL','OL'].includes(c.tagName))) return;
@@ -800,13 +800,13 @@ function buildPageCards(){
         </div>
       </div>
       <div style="display:flex;gap:7px">
-        <a href="${file}" target="_blank" class="btn btn-ghost btn-sm">Ver →</a>
+        <a href="${file}" target="_blank" class="btn btn-ghost btn-sm">Ver â†’</a>
         <button class="btn btn-primary btn-sm" onclick="openPageEditor('${file}')">Editar</button>
       </div>
     </div>`).join('');
 }
 
-// ── PAGE EDITOR ───────────────────────────────────────────────────────────
+// â”€â”€ PAGE EDITOR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function openPageEditor(file){
   const cfg = PAGE_CONFIG[file];
   if(!cfg) return;
@@ -824,7 +824,7 @@ async function openPageEditor(file){
     const doc = new DOMParser().parseFromString(content, 'text/html');
     const items = tagEditableElements(doc);
 
-    // Agrupar por sección
+    // Agrupar por secciÃ³n
     const groups = new Map();
     items.forEach(item => {
       const {key, label} = item.group;
@@ -867,10 +867,10 @@ function closePageEditor(){
 
 async function savePage(){
   const cfg = PAGE_CONFIG[currentPageFile];
-  if(!cfg||!currentPageRaw){ toast('Error: recargá la página','err'); return; }
+  if(!cfg||!currentPageRaw){ toast('Error: recargÃ¡ la pÃ¡gina','err'); return; }
 
   const doc = new DOMParser().parseFromString(currentPageRaw, 'text/html');
-  tagEditableElements(doc); // Re-tagear con los mismos índices
+  tagEditableElements(doc); // Re-tagear con los mismos Ã­ndices
 
   doc.querySelectorAll('[data-sc-idx]').forEach(el => {
     const idx = el.getAttribute('data-sc-idx');
@@ -878,7 +878,7 @@ async function savePage(){
     el.removeAttribute('data-sc-idx');
     if(!input) return;
     const newVal = input.value;
-    // Si tiene SVG adentro, actualizar solo los nodos de texto (no borrar el ícono)
+    // Si tiene SVG adentro, actualizar solo los nodos de texto (no borrar el Ã­cono)
     if(el.querySelector('svg')){
       Array.from(el.childNodes).forEach(n => {
         if(n.nodeType===3 && n.textContent.trim()) n.textContent = ' ' + newVal;
@@ -899,7 +899,7 @@ async function savePage(){
   }catch(e){ toast(e.message||'Error al guardar','err'); }
 }
 
-// ── HISTORIAL ─────────────────────────────────────────────────────────────
+// â”€â”€ HISTORIAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function loadHistory(){
   document.getElementById('commit-list').innerHTML = '<li style="color:#94a3b8;font-size:.85rem;text-align:center;padding:20px">Cargando...</li>';
   try{
@@ -916,7 +916,7 @@ async function loadHistory(){
 }
 
 async function rollback(sha, msg){
-  confirm2('Restaurar versión', `Se creará un nuevo commit restaurando el estado del commit "${msg}" (${sha.slice(0,7)}). Esto afectará todos los archivos modificados en esa versión.`, async()=>{
+  confirm2('Restaurar versiÃ³n', `Se crearÃ¡ un nuevo commit restaurando el estado del commit "${msg}" (${sha.slice(0,7)}). Esto afectarÃ¡ todos los archivos modificados en esa versiÃ³n.`, async()=>{
     try{
       toast('Restaurando...');
       // Get files changed in that commit
@@ -937,24 +937,24 @@ async function rollback(sha, msg){
           await fetch(`${API}/repos/${REPO}/contents/${f.filename}`,{
             method:'PUT',
             headers:{Authorization:`Bearer ${ghToken}`, Accept:'application/vnd.github+json','Content-Type':'application/json'},
-            body: JSON.stringify({ message:'Restaurar '+f.filename+' a versión '+sha.slice(0,7), content: data.content.replace(/\n/g,''), branch: BRANCH, ...(curSha?{sha:curSha}:{}) })
+            body: JSON.stringify({ message:'Restaurar '+f.filename+' a versiÃ³n '+sha.slice(0,7), content: data.content.replace(/\n/g,''), branch: BRANCH, ...(curSha?{sha:curSha}:{}) })
           });
         }catch(e){ console.warn('No se pudo restaurar '+f.filename, e); }
       }
-      toast('Versión restaurada');
+      toast('VersiÃ³n restaurada');
       loadHistory();
     }catch(e){ toast(e.message||'Error al restaurar','err'); }
   });
 }
 
-// ── NOVEDAD HTML GENERATOR ────────────────────────────────────────────────
+// â”€â”€ NOVEDAD HTML GENERATOR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function generateNovedadHtml(nov){
   const gallery = nov.gallery||[];
   const slides = gallery.map((g,i)=>`<div class="carousel__slide"><img src="${esc(g.src)}" alt="${esc(g.alt||nov.title)}" loading="lazy"/></div>`).join('\n            ');
   const dots = gallery.map((g,i)=>`<button class="carousel__dot${i===0?' active':''}" aria-label="Foto ${i+1}"></button>`).join('\n            ');
   const carousel = gallery.length ? `
   <section class="section" style="padding-top:0"><div class="container"><div class="article-container">
-    <h3 style="font-family:'Raleway',sans-serif;font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:18px">Galería de fotos</h3>
+    <h3 style="font-family:'Raleway',sans-serif;font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:18px">GalerÃ­a de fotos</h3>
     <div class="carousel" id="carousel-${nov.slug}">
       <div class="carousel__track">${slides}</div>
       <button class="carousel__btn carousel__btn--prev" aria-label="Anterior">&#8249;</button>
@@ -968,7 +968,7 @@ function generateNovedadHtml(nov){
 <html lang="es">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${esc(nov.title)} | Colegio San Carlos Diálogos</title>
+  <title>${esc(nov.title)} | Colegio San Carlos DiÃ¡logos</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -1005,15 +1005,15 @@ function generateNovedadHtml(nov){
 <body>
   <div class="topbar"><div class="container topbar__inner">
     <div class="topbar__contact">
-      <span><svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:rgba(255,255,255,.7);flex-shrink:0"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> José María Paz 2431 – Olivos – Vte. López</span>
+      <span><svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:rgba(255,255,255,.7);flex-shrink:0"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> JosÃ© MarÃ­a Paz 2431 â€“ Olivos â€“ Vte. LÃ³pez</span>
       <a href="tel:+541147960504"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg> +54 (11) 4796-0504</a>
     </div>
   </div></div>
   <header class="header" id="header"><div class="container header__inner">
-    <a href="index.html" class="header__logo"><img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="Colegio San Carlos Diálogos" /></a>
-    <button class="header__burger" id="burger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    <a href="index.html" class="header__logo"><img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="Colegio San Carlos DiÃ¡logos" /></a>
+    <button class="header__burger" id="burger" aria-label="Abrir menÃº"><span></span><span></span><span></span></button>
     <nav class="nav" id="nav">
-      <button class="nav__close" id="navClose" aria-label="Cerrar menú">✕</button>
+      <button class="nav__close" id="navClose" aria-label="Cerrar menÃº">âœ•</button>
       <ul class="nav__list">
         <li><a href="index.html" class="nav__link">Inicio</a></li>
         <li class="has-dropdown"><a href="index.html#niveles" class="nav__link">Niveles <svg viewBox="0 0 24 24" class="chevron"><path d="M7 10l5 5 5-5z"/></svg></a>
@@ -1022,7 +1022,7 @@ function generateNovedadHtml(nov){
         <li><a href="nuestra-identidad.html" class="nav__link">Nuestra Identidad</a></li>
         <li><a href="talleres.html" class="nav__link">Talleres</a></li>
         <li><a href="novedades.html" class="nav__link active">Novedades</a></li>
-        <li><a href="contacto.html" class="nav__link">Contacto</a></li>
+        <li><a href="admisiones.html#contacto" class="nav__link">Contacto</a></li>
       </ul>
       <a href="https://linktr.ee/sancarlos_colegio" target="_blank" rel="noopener" class="btn btn--primary nav__cta">Admisiones</a>
     </nav>
@@ -1039,16 +1039,16 @@ function generateNovedadHtml(nov){
   </div>
 
   <section class="section"><div class="container"><div class="article-container">
-    <a href="novedades.html" class="article-back">← Volver a Novedades</a>
+    <a href="novedades.html" class="article-back">â† Volver a Novedades</a>
     <div class="article-text">${nov.body}</div>
   </div></div></section>
   ${carousel}
 
   <footer class="footer"><div class="container footer__grid">
-    <div class="footer__brand"><img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="Colegio San Carlos Diálogos" class="footer__logo" loading="lazy" /></div>
+    <div class="footer__brand"><img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="Colegio San Carlos DiÃ¡logos" class="footer__logo" loading="lazy" /></div>
     <div class="footer__col"><h5>El Colegio</h5><ul><li><a href="nivel-inicial.html">Nivel Inicial</a></li><li><a href="nivel-primario.html">Nivel Primario</a></li><li><a href="nivel-secundario.html">Nivel Secundario</a></li></ul></div>
-    <div class="footer__col"><h5>Contacto</h5><ul><li>José María Paz 2431, Olivos</li><li><a href="tel:+541147960504">(+11) 4796-0504</a></li></ul></div>
-  </div><div class="footer__bottom"><p>&copy; 2025 Colegio San Carlos Diálogos.</p></div></footer>
+    <div class="footer__col"><h5>Contacto</h5><ul><li>JosÃ© MarÃ­a Paz 2431, Olivos</li><li><a href="tel:+541147960504">(+11) 4796-0504</a></li></ul></div>
+  </div><div class="footer__bottom"><p>&copy; 2025 Colegio San Carlos DiÃ¡logos.</p></div></footer>
 
   <script src="script.js"><\/script>
   ${gallery.length?`<script>function initCarousel(id){const el=document.getElementById(id);if(!el)return;const track=el.querySelector('.carousel__track'),slides=el.querySelectorAll('.carousel__slide'),dots=el.querySelectorAll('.carousel__dot'),counter=el.querySelector('.carousel__counter');let cur=0,timer;function go(n){cur=(n+slides.length)%slides.length;track.style.transform='translateX(-'+cur*100+'%)';dots.forEach((d,i)=>d.classList.toggle('active',i===cur));if(counter)counter.textContent=(cur+1)+' / '+slides.length;}el.querySelector('.carousel__btn--prev').addEventListener('click',()=>{clearInterval(timer);go(cur-1);start();});el.querySelector('.carousel__btn--next').addEventListener('click',()=>{clearInterval(timer);go(cur+1);start();});dots.forEach((d,i)=>d.addEventListener('click',()=>{clearInterval(timer);go(i);start();}));function start(){timer=setInterval(()=>go(cur+1),4500);}go(0);start();}initCarousel('carousel-${nov.slug}');<\/script>`:''}
@@ -1056,14 +1056,14 @@ function generateNovedadHtml(nov){
 </html>`;
 }
 
-// ── GALLERY HELPERS ───────────────────────────────────────────────────────
+// â”€â”€ GALLERY HELPERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function addGalleryRow(src='', alt=''){
   const d = document.createElement('div');
   d.className = 'gallery-row';
   d.innerHTML = `<img src="${src}" onerror="this.style.display='none'" />
     <input type="text" value="${src}" placeholder="URL imagen" class="g-src" style="flex:1;padding:7px 10px;border:1.5px solid #e2e8f0;border-radius:6px;font-size:.78rem" oninput="this.previousElementSibling.src=this.value;this.previousElementSibling.style.display=''" />
-    <input type="text" value="${alt}" placeholder="Descripción" class="g-alt" style="width:180px;padding:7px 10px;border:1.5px solid #e2e8f0;border-radius:6px;font-size:.78rem" />
-    <button type="button" class="btn btn-danger btn-sm" onclick="this.closest('.gallery-row').remove()">✕</button>`;
+    <input type="text" value="${alt}" placeholder="DescripciÃ³n" class="g-alt" style="width:180px;padding:7px 10px;border:1.5px solid #e2e8f0;border-radius:6px;font-size:.78rem" />
+    <button type="button" class="btn btn-danger btn-sm" onclick="this.closest('.gallery-row').remove()">âœ•</button>`;
   document.getElementById('gallery-rows').appendChild(d);
 }
 
@@ -1101,7 +1101,7 @@ function prevHero(v){
   p.classList.toggle('show', !!v);
 }
 
-// ── EDITOR HELPERS ────────────────────────────────────────────────────────
+// â”€â”€ EDITOR HELPERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function fmt(cmd){ document.execCommand(cmd); }
 function insTag(tag){
   const el = document.createElement(tag==='ul'?'ul':tag);
@@ -1117,9 +1117,9 @@ function insCita(){
   if(sel.rangeCount){ const r=sel.getRangeAt(0); r.deleteContents(); r.insertNode(d); }
 }
 
-// ── UTILS ─────────────────────────────────────────────────────────────────
+// â”€â”€ UTILS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function slugify(t){ return t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
+function slugify(t){ return t.toLowerCase().normalize('NFD').replace(/[Ì€-Í¯]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
 
 function toast(msg, type='ok'){
   const t=document.getElementById('toast');
@@ -1138,3 +1138,4 @@ function closeConfirm(){ document.getElementById('confirm-overlay').classList.re
 </script>
 </body>
 </html>
+

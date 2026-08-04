@@ -58,7 +58,6 @@
         <li><a href="novedades.html" class="nav__link active">Novedades</a></li>
         <li><a href="nuestro-equipo.html" class="nav__link">Nuestro Equipo</a></li>
           <li><a href="admisiones.html" class="nav__link">Admisiones</a></li>
-          <li><a href="index.html#contacto" class="nav__link">Contacto</a></li>
       </ul>
     </nav>
   </div></header>
@@ -121,4 +120,5 @@
   <script>function initCarousel(id){const el=document.getElementById(id);if(!el)return;const track=el.querySelector('.carousel__track'),slides=el.querySelectorAll('.carousel__slide'),dots=el.querySelectorAll('.carousel__dot'),counter=el.querySelector('.carousel__counter');let cur=0,timer;function go(n){cur=(n+slides.length)%slides.length;track.style.transform='translateX(-'+cur*100+'%)';dots.forEach((d,i)=>d.classList.toggle('active',i===cur));if(counter)counter.textContent=(cur+1)+' / '+slides.length;}el.querySelector('.carousel__btn--prev').addEventListener('click',()=>{clearInterval(timer);go(cur-1);start();});el.querySelector('.carousel__btn--next').addEventListener('click',()=>{clearInterval(timer);go(cur+1);start();});dots.forEach((d,i)=>d.addEventListener('click',()=>{clearInterval(timer);go(i);start();}));function start(){timer=setInterval(()=>go(cur+1),4500);}go(0);start();}initCarousel('carousel-visita-ilustradora');</script>
 </body>
 </html>
+
 
