@@ -405,7 +405,7 @@ ul { list-style: none; }
 /* --- NOSOTROS --- */
 .nosotros__inner { max-width: 740px; margin: 0 auto; text-align: center; }
 .arbol-wrapper { margin-top: 40px; }
-.arbol-valores-img { width: 100%; max-width: 960px; height: auto; display: block; margin: 0 auto; }
+.arbol-valores-img { width: 100%; max-width: 768px; height: auto; display: block; margin: 0 auto; }
 .nosotros__inner p { color: var(--text-lt); margin-bottom: 14px; line-height: 1.8; }
 .nosotros__inner .section__title { margin-bottom: 16px; }
 
