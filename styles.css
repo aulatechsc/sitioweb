@@ -1183,7 +1183,7 @@ ul { list-style: none; }
   color: #fff; line-height: 1.3;
 }
 #experiencias .flip-card__front {
-  background: var(--sky);
+  background: #B9CCE1;
 }
 #experiencias .flip-card__front .fc-icon { display: none; }
 #experiencias .flip-card__front h3 {
