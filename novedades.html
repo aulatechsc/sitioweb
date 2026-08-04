@@ -13,18 +13,24 @@
     /* ── novedades.html ── */
 
     /* HERO */
-    .hero-novedades {
-      background: linear-gradient(rgba(0,35,60,.55), rgba(0,35,60,.55)), url('img/hero/hero-novedades.jpg') center/cover no-repeat;
-      padding: 96px 0 80px;
-      text-align: center;
+    .hero-sub {
+      position: relative; min-height: 380px;
+      display: flex; align-items: center;
+      background-size: cover; background-position: center;
+      background-image: url('img/hero/hero-novedades.jpg');
     }
-    .hero-novedades .section__eyebrow { color: rgba(255,255,255,.65); }
-    .hero-novedades h1 {
-      font-family: 'Raleway', sans-serif;
-      font-size: clamp(2.4rem, 5vw, 3.4rem);
-      font-weight: 800; color: #fff; margin-bottom: 16px;
+    .hero-sub__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,35,60,.72) 0%, rgba(0,35,60,.42) 100%);
     }
-    .hero-novedades p { color: rgba(255,255,255,.82); font-size: 1.1rem; max-width: 520px; margin: 0 auto; line-height: 1.7; }
+    .hero-sub__content { position: relative; z-index: 2; max-width: 700px; color: #fff; }
+    .hero-sub__tag {
+      display: inline-block; font-family: 'Raleway', sans-serif;
+      font-size: .78rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: 14px;
+    }
+    .hero-sub__title { font-family: 'Raleway', sans-serif; font-size: clamp(2.2rem,5vw,3.4rem); font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
+    .hero-sub__subtitle { font-size: 1.15rem; color: rgba(255,255,255,.88); font-weight: 500; max-width: 540px; line-height: 1.65; margin-bottom: 32px; }
 
     /* FILTROS */
     .filtros {
@@ -182,13 +188,14 @@
   </header>
 
   <!-- ─── HERO ─── -->
-  <div class="hero-novedades">
-    <div class="container">
-      <p class="section__eyebrow">Comunidad San Carlos</p>
-      <h1>Novedades</h1>
-      <p>Lo que pasa en nuestra escuela: proyectos, logros, intercambios y todo lo que hace especial la vida en San Carlos.</p>
+  <section class="hero-sub">
+    <div class="hero-sub__overlay"></div>
+    <div class="container hero-sub__content">
+      <span class="hero-sub__tag">Comunidad San Carlos</span>
+      <h1 class="hero-sub__title">Novedades</h1>
+      <p class="hero-sub__subtitle">Lo que pasa en nuestra escuela: proyectos, logros, intercambios y todo lo que hace especial la vida en San Carlos.</p>
     </div>
-  </div>
+  </section>
 
   <!-- ─── FILTROS ─── -->
   <div class="filtros" id="filtros">
