@@ -649,6 +649,9 @@ ul { list-style: none; }
 }
 
 /* --- TALLERES CAROUSEL --- */
+.niveles .section__eyebrow { color: rgba(255,255,255,.65); }
+.niveles .section__title { color: #fff; }
+.niveles .section__desc { color: rgba(255,255,255,.82); }
 #experiencias .section__eyebrow { color: var(--primary); }
 #experiencias .section__title { color: var(--primary-dk); }
 #experiencias .section__desc { color: var(--primary); }
