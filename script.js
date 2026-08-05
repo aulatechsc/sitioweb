@@ -6,16 +6,19 @@ const navClose = document.getElementById('navClose');
 burger.addEventListener('click', () => nav.classList.add('open'));
 navClose.addEventListener('click', () => nav.classList.remove('open'));
 
-// Close nav on link click (mobile)
+// Close nav on link click (mobile) — except dropdown triggers
 nav.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => nav.classList.remove('open'));
+  if (!link.closest('.has-dropdown') || !link.classList.contains('nav__link')) {
+    link.addEventListener('click', () => nav.classList.remove('open'));
+  }
 });
 
 // Dropdown toggle on mobile (tap)
 document.querySelectorAll('.has-dropdown > .nav__link').forEach(link => {
   link.addEventListener('click', e => {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 900) {
       e.preventDefault();
+      e.stopPropagation();
       link.closest('.has-dropdown').classList.toggle('open');
     }
   });
