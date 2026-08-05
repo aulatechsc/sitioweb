@@ -484,6 +484,31 @@ ul { list-style: none; }
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
 }
+/* GALERÍA */
+.galeria__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 220px;
+  gap: 10px;
+}
+.galeria__item { overflow: hidden; border-radius: var(--radius-sm); background: var(--light); }
+.galeria__item--tall { grid-row: span 2; }
+.galeria__item--wide { grid-column: span 2; }
+.galeria__item img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .5s ease;
+}
+.galeria__item:hover img { transform: scale(1.06); }
+@media(max-width:900px) {
+  .galeria__grid { grid-template-columns: repeat(2,1fr); grid-auto-rows:180px; }
+  .galeria__item--tall { grid-row: span 1; }
+  .galeria__item--wide { grid-column: span 2; }
+}
+@media(max-width:520px) {
+  .galeria__grid { grid-template-columns: 1fr 1fr; grid-auto-rows:140px; }
+  .galeria__item--wide { grid-column: span 2; }
+}
+
 .nivel-card {
   background: var(--white);
   border-radius: var(--radius);
