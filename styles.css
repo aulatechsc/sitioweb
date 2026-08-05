@@ -1234,15 +1234,14 @@ ul { list-style: none; }
 @media (max-width: 900px) { .flip-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) {
   .flip-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-  .flip-card { height: auto; perspective: none; }
-  .flip-card__inner { height: auto; transform-style: flat; transition: none; }
+  .flip-card { height: auto; perspective: none; cursor: default; }
+  .flip-card__inner { height: auto; transform-style: flat; transition: none; display: flex; flex-direction: column; }
   .flip-card:hover .flip-card__inner, .flip-card.flipped .flip-card__inner { transform: none; }
   .flip-card__front, .flip-card__back {
     position: static; transform: none !important;
     backface-visibility: visible; -webkit-backface-visibility: visible;
-    padding: 16px 12px;
+    padding: 14px 10px;
   }
-  .flip-card__back { display: none; }
-  .flip-card.flipped .flip-card__front { display: none; }
-  .flip-card.flipped .flip-card__back { display: flex; }
+  .flip-card__back { display: flex; border-radius: 0 0 var(--radius) var(--radius); }
+  .flip-card__front { border-radius: var(--radius) var(--radius) 0 0; padding-bottom: 8px; }
 }
