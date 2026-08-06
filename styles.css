@@ -7,6 +7,7 @@
 
 /* --- RESET & BASE --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { overflow-x: hidden; max-width: 100%; }
 
 :root {
   /* Paleta oficial Manual de Marca San Carlos */
