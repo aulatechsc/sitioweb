@@ -489,19 +489,34 @@ ul { list-style: none; }
 .inicio-grilla {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 200px;
+  grid-auto-rows: 220px;
   gap: 10px;
 }
-.ig-item { overflow: hidden; border-radius: var(--radius-sm); }
+.ig-item {
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.ig-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.ig-item:nth-child(2) { transition-delay: .08s; }
+.ig-item:nth-child(3) { transition-delay: .16s; }
+.ig-item:nth-child(4) { transition-delay: .24s; }
+.ig-item:nth-child(5) { transition-delay: .10s; }
+.ig-item:nth-child(6) { transition-delay: .18s; }
+.ig-item:nth-child(7) { transition-delay: .26s; }
+.ig-item:nth-child(8) { transition-delay: .34s; }
 .ig-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
 .ig-item:hover img { transform: scale(1.05); }
-.ig-item.ig-tall { grid-row: span 2; }
 @media(max-width: 860px) {
-  .inicio-grilla { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 160px; }
+  .inicio-grilla { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 160px; }
 }
-@media(max-width: 540px) {
-  .inicio-grilla { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 130px; }
-  .ig-item.ig-tall { grid-row: span 1; }
+@media(max-width: 600px) {
+  .inicio-grilla { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; }
 }
 
 /* NOSOTROS + COLLAGE ARBOL */

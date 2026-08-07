@@ -85,6 +85,10 @@ document.querySelectorAll('.slide-left, .slide-right, .slide-up').forEach(el => 
   observer.observe(el);
 });
 
+document.querySelectorAll('.ig-item').forEach(el => {
+  observer.observe(el);
+});
+
 // Botón Admin flotante con modal de login
 (function(){
   const css = `
