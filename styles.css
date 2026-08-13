@@ -1264,7 +1264,7 @@ ul { list-style: none; }
 /* ── FLIP CARDS — Experiencias ── */
 .flip-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 18px;
 }
 .flip-card {
