@@ -1267,6 +1267,15 @@ ul { list-style: none; }
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
 }
+.flip-grid__last-row {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+}
+.flip-grid__last-row .flip-card {
+  flex: 0 0 calc((100% - 36px) / 3);
+}
 .flip-card {
   height: 210px;
   perspective: 1000px;
