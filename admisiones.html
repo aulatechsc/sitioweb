@@ -19,7 +19,15 @@
       overflow: hidden;
       display: flex;
       align-items: center;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dk) 100%);
+      background-image: url('img/niveles/inicial.jpeg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-sub__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(108deg, rgba(0, 51, 82, .90) 0%, rgba(0, 71, 108, .65) 55%, rgba(0, 71, 108, .20) 100%);
     }
 
     .hero-sub__content {
@@ -27,7 +35,6 @@
       z-index: 2;
       max-width: 680px;
       color: #fff;
-      padding: 0 24px;
     }
 
     .hero-sub__tag {
@@ -411,11 +418,12 @@
   </div>
 </header>
 
-<section class="hero-sub">
-  <div class="hero-sub__content">
-    <span class="hero-sub__tag">Admisiones</span>
+<section class="hero-sub" id="inicio">
+  <div class="hero-sub__overlay"></div>
+  <div class="container hero-sub__content">
+    <span class="hero-sub__tag">Completá tu solicitud</span>
     <h1 class="hero-sub__title">Formulario de Admisión</h1>
-    <p class="hero-sub__desc">Muchas gracias por su interés en nuestra propuesta educativa. Complete el siguiente formulario según el nivel que solicita.</p>
+    <p class="hero-sub__desc">Muchas gracias por tu interés en nuestra propuesta educativa. Completá el formulario correspondiente a tu nivel.</p>
   </div>
 </section>
 
