@@ -77,14 +77,19 @@
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 40px 24px 80px;
+      padding: 48px 24px 80px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .hero {
       text-align: center;
-      margin-bottom: 56px;
+      margin-bottom: 48px;
+      width: 100%;
     }
 
     .hero h1 {
@@ -104,17 +109,15 @@
     }
 
     .level-selector {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      display: flex;
+      justify-content: center;
       gap: 16px;
       margin-bottom: 48px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
+      flex-wrap: wrap;
     }
 
     .level-btn {
-      padding: 16px 20px;
+      padding: 13px 24px;
       border: 2px solid var(--border);
       border-radius: var(--radius);
       background: var(--white);
@@ -124,6 +127,8 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
+      min-width: 160px;
+      text-align: center;
     }
 
     .level-btn:hover {
@@ -142,17 +147,21 @@
       border-radius: var(--radius);
       border: 1px solid var(--border);
       overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.3s, transform 0.3s;
+      transform: translateY(10px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       pointer-events: none;
+      max-width: 700px;
+      margin: 0 auto;
+      visibility: hidden;
     }
 
     .form-wrapper.active {
       opacity: 1;
       transform: translateY(0);
       pointer-events: auto;
+      visibility: visible;
     }
 
     .form-header {
@@ -176,7 +185,8 @@
     }
 
     form {
-      padding: 28px;
+      padding: 32px;
+      width: 100%;
     }
 
     .sc-section {
@@ -967,7 +977,7 @@ document.querySelectorAll('.level-btn').forEach(btn => {
     btn.classList.add('active');
 
     document.querySelectorAll('.form-wrapper').forEach(w => w.classList.remove('active'));
-    document.querySelector(`[data-level="${level}"]`).classList.add('active');
+    document.querySelector(`.form-wrapper[data-level="${level}"]`).classList.add('active');
   });
 });
 
@@ -1069,6 +1079,9 @@ function handleFormSubmit(e) {
 }
 
 setupFormHandlers();
+
+// Initialize first form as active
+document.querySelector('.form-wrapper[data-level="inicial"]').classList.add('active');
 </script>
 
 </body>
