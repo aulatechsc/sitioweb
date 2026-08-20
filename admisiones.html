@@ -5,107 +5,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admisiones · Colegio San Carlos Diálogos</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   <style>
-    :root {
-      --primary: #00476C;
-      --primary-dk: #003352;
-      --accent: #E4051F;
-      --sky: #B9CCE1;
-      --white: #FFFFFF;
-      --text: #1C2B36;
-      --text-lt: #5C6B76;
-      --border: #E0E0E0;
-      --error: #B3432E;
-      --success: #2E7D4F;
-      --radius: 8px;
-      --header-h: 64px;
-    }
+    /* Estilos específicos para admisiones */
 
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      background: #f8f8f8;
-      color: var(--text);
-      font-family: 'Ubuntu', sans-serif;
-      line-height: 1.5;
-      padding-top: var(--header-h);
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: var(--header-h);
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
+    .hero-sub {
+      position: relative;
+      height: calc(100vh - var(--header-h));
+      min-height: 520px;
+      max-height: 800px;
+      overflow: hidden;
       display: flex;
       align-items: center;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dk) 100%);
+    }
+
+    .hero-sub__content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      color: #fff;
       padding: 0 24px;
-      z-index: 100;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
     }
 
-    .header-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 40px;
-    }
-
-    .logo {
+    .hero-sub__tag {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
       font-family: 'Raleway', sans-serif;
-      font-size: 18px;
+      font-size: 12px;
       font-weight: 700;
-      color: var(--primary);
-      text-decoration: none;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
     }
 
-    nav a {
-      color: var(--text-lt);
-      text-decoration: none;
-      font-size: 14px;
-      transition: color 0.2s;
+    .hero-sub__title {
+      font-family: 'Raleway', sans-serif;
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.08;
+      margin-bottom: 22px;
     }
 
-    nav a:hover {
-      color: var(--primary);
+    .hero-sub__subtitle {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.92);
+      font-weight: 500;
+      margin-bottom: 14px;
+      max-width: 560px;
+      line-height: 1.6;
+    }
+
+    .hero-sub__desc {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.76);
+      margin-bottom: 38px;
+      max-width: 530px;
+      line-height: 1.75;
+    }
+
+    .page-content {
+      background: #f8f8f8;
     }
 
     .container {
       max-width: 900px;
       margin: 0 auto;
-      padding: 48px 24px 80px;
+      padding: 56px 24px 80px;
       width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .hero {
-      text-align: center;
-      margin-bottom: 48px;
-      width: 100%;
-    }
-
-    .hero h1 {
-      font-family: 'Raleway', sans-serif;
-      font-size: clamp(28px, 4vw, 42px);
-      font-weight: 800;
-      color: var(--primary-dk);
-      margin: 0 0 12px;
-    }
-
-    .hero p {
-      color: var(--text-lt);
-      font-size: 16px;
-      margin: 0;
-      max-width: 600px;
-      margin: 0 auto;
     }
 
     .level-selector {
@@ -432,28 +405,27 @@
 </head>
 <body>
 
-<header>
-  <div class="header-content">
+<header class="header">
+  <div class="header__inner">
     <a href="index.html" class="logo">San Carlos Diálogos</a>
-    <nav>
-      <a href="index.html#nosotros">Quiénes somos</a>
-      <a href="index.html#contacto">Contacto</a>
-    </nav>
   </div>
 </header>
 
-<div class="container">
-
-  <div class="hero">
-    <h1>Formulario de Admisión</h1>
-    <p>Muchas gracias por su interés en nuestra propuesta educativa. Complete el siguiente formulario según el nivel que solicita.</p>
+<section class="hero-sub">
+  <div class="hero-sub__content">
+    <span class="hero-sub__tag">Admisiones</span>
+    <h1 class="hero-sub__title">Formulario de Admisión</h1>
+    <p class="hero-sub__desc">Muchas gracias por su interés en nuestra propuesta educativa. Complete el siguiente formulario según el nivel que solicita.</p>
   </div>
+</section>
 
-  <div class="level-selector">
-    <button class="level-btn active" data-level="inicial">Nivel Inicial</button>
-    <button class="level-btn" data-level="primario">Nivel Primario</button>
-    <button class="level-btn" data-level="secundario">Nivel Secundario</button>
-  </div>
+<div class="page-content">
+  <div class="container">
+    <div class="level-selector">
+      <button class="level-btn active" data-level="inicial">Nivel Inicial</button>
+      <button class="level-btn" data-level="primario">Nivel Primario</button>
+      <button class="level-btn" data-level="secundario">Nivel Secundario</button>
+    </div>
 
   <!-- FORMULARIO INICIAL -->
   <div class="form-wrapper active" data-level="inicial">
@@ -958,6 +930,7 @@
     </div>
   </div>
 
+  </div>
 </div>
 
 <script>
