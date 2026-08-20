@@ -87,11 +87,10 @@
       background: #f8f8f8;
     }
 
-    .container {
+    .page-content .container {
       max-width: 900px;
-      margin: 0 auto;
-      padding: 56px 24px 80px;
-      width: 100%;
+      padding-top: 56px;
+      padding-bottom: 80px;
     }
 
     .level-selector {
@@ -442,7 +441,7 @@
   <!-- HEADER / NAVBAR -->
   <header class="header" id="header">
     <div class="container header__inner">
-      <a href="index.html" class="header__logo">
+      <a href="#inicio" class="header__logo">
         <img src="img/Logo%20San%20Carlos%20color.png" alt="Colegio San Carlos Diálogos" />
       </a>
 
@@ -455,7 +454,7 @@
         <ul class="nav__list">
           <li><a href="index.html" class="nav__link">Inicio</a></li>
           <li class="has-dropdown">
-            <a href="index.html#niveles" class="nav__link">Niveles <svg viewBox="0 0 24 24" class="chevron"><path d="M7 10l5 5 5-5z"/></svg></a>
+            <a href="#niveles" class="nav__link">Niveles <svg viewBox="0 0 24 24" class="chevron"><path d="M7 10l5 5 5-5z"/></svg></a>
             <ul class="dropdown">
               <li><a href="nivel-inicial.html">Nivel Inicial</a></li>
               <li><a href="nivel-primario.html">Nivel Primario</a></li>
@@ -1005,8 +1004,8 @@ const ENDPOINTS = {
 // Hero background images
 const heroImages = {
   inicial: 'url(\'img/niveles/inicial.jpeg\')',
-  primario: 'url(\'img/niveles/primaria.jpeg\')',
-  secundario: 'url(\'img/niveles/secundaria.jpeg\')'
+  primario: 'url(\'img/niveles/primaria.jpg\')',
+  secundario: 'url(\'img/niveles/secundaria.jpg\')'
 };
 
 // Level selector
