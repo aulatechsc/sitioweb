@@ -39,6 +39,8 @@ function goToSlide(index) {
 }
 
 function startSlider() {
+  // Solo la portada tiene slider; el resto de las paginas usan hero fijo
+  if (!slides.length) return;
   sliderTimer = setInterval(() => goToSlide(current + 1), 5000);
 }
 
@@ -89,12 +91,17 @@ document.querySelectorAll('.ig-item').forEach(el => {
   observer.observe(el);
 });
 
-// Botón Admin flotante con modal de login
+// Botón Admin en el footer, con modal de login
 (function(){
   const css = `
-    #sc-admin-btn{position:fixed;bottom:22px;right:22px;z-index:9000;background:#003352;color:#fff;border:none;border-radius:50px;padding:10px 18px;font-family:sans-serif;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.22);display:flex;align-items:center;gap:7px;transition:background .2s,transform .15s}
-    #sc-admin-btn:hover{background:#004d78;transform:translateY(-2px)}
-    #sc-admin-btn svg{width:15px;height:15px;fill:#fff;flex-shrink:0}
+    .footer__bottom .container{position:relative}
+    #sc-admin-btn{position:absolute;right:0;top:50%;transform:translateY(-50%);background:none;border:none;padding:4px 6px;font-family:'Raleway',sans-serif;font-size:11px;font-weight:600;letter-spacing:.3px;color:rgba(255,255,255,.35);cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:color .2s}
+    #sc-admin-btn:hover{color:rgba(255,255,255,.85)}
+    #sc-admin-btn svg{width:11px;height:11px;fill:currentColor;flex-shrink:0}
+    @media(max-width:640px){
+      .footer__bottom .container{display:flex;flex-direction:column;align-items:center;gap:8px}
+      #sc-admin-btn{position:static;transform:none}
+    }
     #sc-admin-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9001;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s;backdrop-filter:blur(2px)}
     #sc-admin-overlay.open{opacity:1;pointer-events:all}
     #sc-admin-modal{background:#fff;border-radius:18px;padding:36px 32px;width:100%;max-width:360px;box-shadow:0 24px 64px rgba(0,0,0,.22);transform:translateY(20px);transition:transform .2s}
@@ -117,11 +124,16 @@ document.querySelectorAll('.ig-item').forEach(el => {
   style.textContent = css;
   document.head.appendChild(style);
 
-  // Botón
+  // Botón: va dentro del footer, abajo a la derecha
+  const destino = document.querySelector('.footer__bottom .container');
+  if(!destino) return;
+
   const btn = document.createElement('button');
   btn.id = 'sc-admin-btn';
+  btn.type = 'button';
+  btn.setAttribute('aria-label', 'Panel de administración');
   btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg> Admin';
-  document.body.appendChild(btn);
+  destino.appendChild(btn);
 
   // Modal overlay
   const overlay = document.createElement('div');
