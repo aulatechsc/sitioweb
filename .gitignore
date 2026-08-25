@@ -2,3 +2,14 @@
 estructura_raw.xml
 admin/node_modules/
 admin/data/
+*.zip
+push-a-github.bat
+
+# Windows
+desktop.ini
+
+# Material de referencia, no se publica
+img/sancarlos-original/
+img/novedades/ilustradora/
+info/tmp-*/
+info/temp_extract/
