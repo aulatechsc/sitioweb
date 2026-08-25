@@ -2,6 +2,7 @@
 estructura_raw.xml
 admin/node_modules/
 admin/data/
+herramientas/node_modules/
 *.zip
 push-a-github.bat
 

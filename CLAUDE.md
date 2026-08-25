@@ -77,9 +77,38 @@ Repositorio GitHub: `aulatechsc/sitioweb` (branch `master`).
    git push origin master
    ```
 
+## Publicar el sitio (deploy manual)
+
+**No hay deploy automático.** GitHub es el repositorio de trabajo; el hosting se
+actualiza a mano cuando se quiere publicar. Son dos cosas separadas: un `push` a
+GitHub **no** publica nada.
+
+Para publicar:
+
+1. `node herramientas/armar-zip.js` → genera `SITIO-COMPLETO.zip` en el Escritorio
+2. Entrar a DirectAdmin: https://da3.toservers.com:2222/evo/login
+3. Administrador de Archivos → `/domains/sancarlos.edu.ar/public_html/`
+4. Borrar el contenido **menos `.well-known`** (certificado SSL)
+5. Subir el ZIP y extraerlo ahí con **Merge and overwrite**
+6. Borrar el ZIP del servidor
+
+Detalles en `herramientas/LEEME.md`.
+
+Hubo un workflow de GitHub Actions que publicaba por FTP en cada push. Se quitó
+porque el servidor dejó de aceptar la conexión desde las IPs de GitHub
+(`connect ETIMEDOUT` al puerto 21), aparentemente por el firewall del hosting.
+
+## Imágenes
+
+Las fotos del sitio están optimizadas a 1800 px de ancho máximo. Las que vienen
+de cámara o celular pesan 20 o 30 veces más de lo necesario, así que antes de
+publicar fotos nuevas conviene pasarlas por `node herramientas/optimizar-imagenes.js`.
+
 ## Git
 
 - Remote: `https://github.com/aulatechsc/sitioweb.git`
 - Branch principal: `master`
 - Config global: `user.email = aulatech@sancarlos.edu.ar`, `user.name = AulaTech San Carlos`
-- `.gitignore` excluye: `.claude/`, `admin/node_modules/`, `admin/data/`, `estructura_raw.xml`
+- `.gitignore` excluye: `.claude/`, `admin/node_modules/`, `admin/data/`,
+  `herramientas/node_modules/`, `estructura_raw.xml`, `*.zip` y las carpetas de
+  material de referencia (`img/sancarlos-original/`, `img/novedades/ilustradora/`)
