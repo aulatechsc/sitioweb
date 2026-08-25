@@ -418,8 +418,24 @@
       }
     }
   </style>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1531122184376261');
+  fbq('track', 'PageView');
+  </script>
+  <!-- End Meta Pixel Code -->
 </head>
 <body>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1531122184376261&ev=PageView&noscript=1" alt="" /></noscript>
 
   <!-- TOP BAR -->
   <div class="topbar">
@@ -1184,6 +1200,14 @@ function handleFormSubmit(e) {
     e.target.closest('.form-wrapper').querySelector('.form-header').style.display = 'none';
     e.target.style.display = 'none';
     e.target.closest('.form-wrapper').querySelector('.confirm').classList.add('active');
+
+    // Meta Pixel: conversion "Cliente potencial". Se dispara aca, junto con el
+    // mensaje de gracias, asi nunca salta si el envio fallo (eso cae en el catch).
+    // La bandera evita repetirlo si el mismo formulario se enviara dos veces.
+    if (!e.target.dataset.leadEnviado) {
+      e.target.dataset.leadEnviado = '1';
+      if (typeof fbq === 'function') fbq('track', 'Lead');
+    }
   }).catch(err => {
     submitBtn.disabled = false;
     submitBtn.textContent = 'Enviar formulario';
