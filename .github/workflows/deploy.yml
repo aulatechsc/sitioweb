@@ -10,15 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout código
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /public_html/
+          # El default son 30s: se queda corto en subidas grandes y el
+          # servidor corta la conexion con "Timeout (control socket)"
+          timeout: 600000
+          log-level: verbose
           exclude: |
             **/.git*
             **/.git*/**
@@ -27,3 +31,9 @@ jobs:
             admin/data/**
             info/**
             .claude/**
+            CLAUDE.md
+            estructura_raw.xml
+            **/*.bat
+            **/desktop.ini
+            img/sancarlos-original/**
+            img/novedades/ilustradora/**
