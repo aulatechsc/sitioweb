@@ -141,7 +141,7 @@ document.querySelectorAll('.ig-item').forEach(el => {
   overlay.innerHTML = `
     <div id="sc-admin-modal">
       <button id="sc-admin-close" onclick="document.getElementById('sc-admin-overlay').classList.remove('open')" aria-label="Cerrar">✕</button>
-      <img src="https://sancarlos.edu.ar/wpcsc/wp-content/uploads/2016/06/plantilla-logo-home-SC.png" alt="San Carlos" />
+      <img src="img/Logo%20San%20Carlos%20color.png" alt="San Carlos" />
       <h2>Panel de Administración</h2>
       <p>Ingresá tus datos para continuar</p>
       <div id="sc-admin-err">Usuario o contraseña incorrectos</div>
