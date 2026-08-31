@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Página no encontrada | Colegio San Carlos Diálogos</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #00476C;
+      --primary-dk: #003352;
+      --accent: #E4051F;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary-dk) 0%, var(--primary) 100%);
+      font-family: 'Ubuntu', sans-serif;
+      color: #fff;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .caja { max-width: 560px; }
+    .logo { height: 88px; margin: 0 auto 36px; display: block; filter: brightness(0) invert(1); }
+    .codigo {
+      font-family: 'Raleway', sans-serif;
+      font-size: clamp(4rem, 14vw, 7rem);
+      font-weight: 800;
+      line-height: 1;
+      margin: 0 0 8px;
+      color: rgba(255,255,255,.22);
+      letter-spacing: -2px;
+    }
+    h1 {
+      font-family: 'Raleway', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.1rem);
+      font-weight: 800;
+      margin: 0 0 16px;
+    }
+    p {
+      color: rgba(255,255,255,.8);
+      line-height: 1.75;
+      margin: 0 0 32px;
+      font-size: 1rem;
+    }
+    .acciones { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      display: inline-block;
+      padding: 13px 26px;
+      border-radius: 6px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform .15s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--rojo { background: var(--accent); color: #fff; }
+    .btn--rojo:hover { background: #c40419; }
+    .btn--linea { border: 2px solid rgba(255,255,255,.5); color: #fff; }
+    .btn--linea:hover { border-color: #fff; background: rgba(255,255,255,.1); }
+    .ayuda { margin-top: 40px; font-size: .85rem; color: rgba(255,255,255,.55); }
+    .ayuda a { color: rgba(255,255,255,.85); }
+  </style>
+</head>
+<body>
+
+  <div class="caja">
+    <img src="/img/Logo%20San%20Carlos%20color.png" alt="Colegio San Carlos Diálogos" class="logo" />
+
+    <div class="codigo">404</div>
+    <h1>No encontramos esta página</h1>
+    <p>
+      Puede que el enlace esté desactualizado o que la dirección tenga un error.
+      Te dejamos los accesos más buscados.
+    </p>
+
+    <div class="acciones">
+      <a href="/admisiones.html" class="btn btn--rojo">Solicitar entrevista</a>
+      <a href="/index.html" class="btn btn--linea">Ir al inicio</a>
+    </div>
+
+    <p class="ayuda">
+      ¿Necesitás ayuda? Escribinos a
+      <a href="mailto:administracion@sancarlos.edu.ar">administracion@sancarlos.edu.ar</a>
+      o llamanos al <a href="tel:+541147960504">(+11) 4796-0504</a>
+    </p>
+  </div>
+
+</body>
+</html>

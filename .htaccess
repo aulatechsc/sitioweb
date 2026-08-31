@@ -1,3 +1,20 @@
+# ─── URLs sin .html ────────────────────────────────────────
+# Permite que /admisiones sirva admisiones.html. Sin esto, cualquier
+# enlace sin la extension (anuncios, links viejos del WordPress,
+# resultados de Google) devuelve 404.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # /admisiones  ->  /admisiones.html  (sin cambiar la URL en la barra)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+    RewriteRule ^(.+?)/?$ $1.html [L]
+</IfModule>
+
+# Pagina de error con el diseño del sitio
+ErrorDocument 404 /404.html
+
 # ─── Compresión Gzip ───────────────────────────────────────
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/plain text/css
