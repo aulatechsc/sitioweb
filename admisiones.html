@@ -418,6 +418,15 @@
       }
     }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HM9713WXT2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HM9713WXT2');
+  </script>
+  <!-- End Google tag -->
   <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -1207,6 +1216,8 @@ function handleFormSubmit(e) {
     if (!e.target.dataset.leadEnviado) {
       e.target.dataset.leadEnviado = '1';
       if (typeof fbq === 'function') fbq('track', 'Lead');
+      // Google Analytics 4: de ahi Google Ads importa la conversion "Formulario"
+      if (typeof gtag === 'function') gtag('event', 'generate_lead', { nivel: data['nivel'] });
     }
   }).catch(err => {
     submitBtn.disabled = false;
