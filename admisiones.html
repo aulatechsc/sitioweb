@@ -1216,8 +1216,14 @@ function handleFormSubmit(e) {
     if (!e.target.dataset.leadEnviado) {
       e.target.dataset.leadEnviado = '1';
       if (typeof fbq === 'function') fbq('track', 'Lead');
-      // Google Analytics 4: de ahi Google Ads importa la conversion "Formulario"
-      if (typeof gtag === 'function') gtag('event', 'generate_lead', { nivel: data['nivel'] });
+      // Google Analytics 4. Van los dos eventos a proposito:
+      //  - generate_lead es el nombre estandar de GA4, sirve para los informes
+      //  - ads_conversion_Formulario_1 es el que espera la conversion "Formulario"
+      //    de Google Ads; sin el, la campana no cuenta la solicitud
+      if (typeof gtag === 'function') {
+        gtag('event', 'generate_lead', { nivel: data['nivel'] });
+        gtag('event', 'ads_conversion_Formulario_1', { nivel: data['nivel'] });
+      }
     }
   }).catch(err => {
     submitBtn.disabled = false;
